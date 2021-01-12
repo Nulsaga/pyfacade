@@ -1,0 +1,1903 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutoCAD Interface (pyfacade.pyacad) &mdash; pyfacade 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Toolbox for Structural Calculation (pyfacade.strcals)" href="module_strcals.html" />
+    <link rel="prev" title="MathCAD Interface (pyfacade.pymcad)" href="module_pymcad.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pyfacade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_pyeng.html">Solver for 2D-frame Question (pyfacade.pyeng)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_transxml.html">MathCAD XML Constructor (pyfacade.transxml)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pymcad.html">MathCAD Interface (pyfacade.pymcad)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AutoCAD Interface (pyfacade.pyacad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_strcals.html">Toolbox for Structural Calculation (pyfacade.strcals)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyfacade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>AutoCAD Interface (pyfacade.pyacad)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/module_pyacad.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyacad">
+<span id="autocad-interface-pyfacade-pyacad"></span><h1>AutoCAD Interface (pyfacade.pyacad)<a class="headerlink" href="#module-pyacad" title="Permalink to this headline">¶</a></h1>
+<p>Module <code class="docutils literal notranslate"><span class="pre">pyfacade.pyacad</span></code> encapsulates a class as AutoCAD API, including some utility methods
+for quick tasks.</p>
+<dl class="py class">
+<dt id="pyfacade.pyacad.Acad">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pyacad.</code><code class="sig-name descname">Acad</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">visible</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">hanging</span><span class="o">=</span><span class="default_value">0.5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad" title="Permalink to this definition">¶</a></dt>
+<dd><p>AutoCAD Automation API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – str, file name (and path) to open with application. Activate the specified file
+if it is opened already. Otherwise, try to open the file from specified path.</p></li>
+<li><p><strong>visible</strong> – bool, show AutoCAD Application UI after launching.</p></li>
+<li><p><strong>hanging</strong> – float, time in seconds to wait when each time application is found busy.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.findacad">
+<em class="property">static </em><code class="sig-name descname">findacad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.findacad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show <em>Windows Handle</em> of AutoCAD application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of int, handle of application windows.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.visible">
+<em class="property">property </em><code class="sig-name descname">visible</code><a class="headerlink" href="#pyfacade.pyacad.Acad.visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visibility of application</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.drawinglist">
+<code class="sig-name descname">drawinglist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fullname</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.drawinglist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a name list of drawings opened by application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fullname</strong> – bool, get the full path of the drawings.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of str.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.drawing">
+<em class="property">property </em><code class="sig-name descname">drawing</code><a class="headerlink" href="#pyfacade.pyacad.Acad.drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of operating drawing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.new">
+<code class="sig-name descname">new</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">template</span><span class="o">=</span><span class="default_value">'acadiso.dwt'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new drawing and set it as operating target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>template</strong> – str, template name used to create new drawing.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.current">
+<code class="sig-name descname">current</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the active drawing as operating target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>str. name of the active drawing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.prompt">
+<code class="sig-name descname">prompt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.prompt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show a message in <em>Command Line</em> of AutoCAD UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>message</strong> – str, content of message.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.marco">
+<code class="sig-name descname">marco</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">macro_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.marco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run pre-defined Macro of the drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>macro_name</strong> – str. name of the Macro.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renew the drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.isbusy">
+<code class="sig-name descname">isbusy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.isbusy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if application is busy now</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.showwindow">
+<code class="sig-name descname">showwindow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.showwindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bring the application window to the most front.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.showdwg">
+<code class="sig-name descname">showdwg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hanging</span><span class="o">=</span><span class="default_value">0.5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.showdwg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the operating drawing on screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hanging</strong> – float, time in seconds of each waiting when application is busy.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.point">
+<em class="property">static </em><code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">z</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a point coordinates array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – float, X-coordinate of the point.</p></li>
+<li><p><strong>y</strong> – float, Y-coordinate of the point.</p></li>
+<li><p><strong>z</strong> – float, Z-coordinate of the point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">win32com.client.VARIANT</span></code> for VBA COM usage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyfacade.pyacad.Acad.UCS">
+<em class="property">class </em><code class="sig-name descname">UCS</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span></em>, <em class="sig-param"><span class="n">point_x</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">point_ref</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A user defined orthogonal coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>origin</strong> – 3-element array-like, global coordinates of origin point.</p></li>
+<li><p><strong>point_x</strong> – 3-element array-like, global coordinates of a point lying on local x-direction.
+By default, it follows WCS x-direction.</p></li>
+<li><p><strong>point_ref</strong> – 3-element array-like, global coordinates of a point lying on positive y side of local
+xy plane. By default, it use WCS y-direction.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.o">
+<em class="property">property </em><code class="sig-name descname">o</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinates of origin point. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unit vector of x-direction. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unit vector of y-direction. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.z">
+<em class="property">property </em><code class="sig-name descname">z</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unit vector of z-direction. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.m3">
+<em class="property">property </em><code class="sig-name descname">m3</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.m3" title="Permalink to this definition">¶</a></dt>
+<dd><p>[3x3] matrix of direction transformation from UCS to WCS. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.m4">
+<em class="property">property </em><code class="sig-name descname">m4</code><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.m4" title="Permalink to this definition">¶</a></dt>
+<dd><p>[4x4] matrix of homogenous coordinate transformation from UCS to WCS. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.toucs">
+<code class="sig-name descname">toucs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.toucs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate a WCS coordinates to UCS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> – 3-element array-like, WCS coordinates of a point in the form of (X,Y,Z).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>numpy.ndarray, corresponding coordinate on UCS in the form of (x,y,z).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.UCS.fromucs">
+<code class="sig-name descname">fromucs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.UCS.fromucs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate a UCS coordinates to WCS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> – 3-element array-like, UCS coordinates of a point in the form of (x,y,z).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>numpy.ndarray, corresponding coordinate on WCS in the form of (X,Y,Z).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intype</span><span class="o">=</span><span class="default_value">'point'</span></em>, <em class="sig-param"><span class="n">ref_pnt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">'Specify a point from drawing: '</span></em>, <em class="sig-param"><span class="n">bits</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">keyword</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get information from drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intype</strong> – <p>str, type of requested information.</p>
+<ul>
+<li><p><strong>’point’</strong> - WCS coordinate of a point. Select from drawing, or input from keyboard.</p></li>
+<li><p><strong>’angle’</strong> - angel in radians between specified direction and <em>Base Angle</em> according to System Variable <em>ANGBASE</em>.</p>
+<blockquote>
+<div><p>Specify two points to indicate the direction by selecting from drawing or
+keyboard input of their coordinates. Alternatively, a number in unit of <em>degree</em> can be input
+directly by keyboard.</p>
+</div></blockquote>
+</li>
+<li><p><strong>’distance’</strong> - distance between two specified points.</p>
+<blockquote>
+<div><p>Specify two points by selecting from drawing or keyboard input of their coordinates.
+Alternatively, a number as distance can be input directly by keyboard.</p>
+</div></blockquote>
+</li>
+<li><p><strong>’orientation’</strong> - angel in radians between specified direction and <em>World X-direction</em>.</p></li>
+<li><p><strong>’corner’</strong> -  WCS coordinate of a point as corner of a Rectangle formed by itself and <em>ref_pnt</em>.</p>
+<blockquote>
+<div><p>Specify by selecting from drawing or keyboard input of its coordinate.</p>
+</div></blockquote>
+</li>
+</ul>
+</p></li>
+<li><p><strong>ref_pnt</strong> – list of float, coordinate of reference point in the form of [x,y,z].
+If information required is <em>‘angle’</em>, <em>‘distance’</em> or <em>‘orientation’</em>, this reference point is
+taken as the first point specified.</p></li>
+<li><p><strong>prompt</strong> – str, prompt message.</p></li>
+<li><p><strong>bits</strong> – <p>int, input filter.</p>
+<div class="line-block">
+<div class="line">0-No filtering</div>
+<div class="line">1-Disallows NULL input, i.e. [return] or [space].</div>
+<div class="line">2-Disallows input of zero.</div>
+<div class="line">4-Disallows negative values.</div>
+</div>
+</p></li>
+<li><p><strong>keyword</strong> – str. keywords to be recognized when receiving input from keyboard, separate each keyword by
+blank.</p></li>
+<li><p><strong>default</strong> – value to be returned when received keyword is NULL. Invalid when <em>bits</em> = 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or tuple of float according to required information type, or str if keyword is inputted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.kbinput">
+<code class="sig-name descname">kbinput</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">intype</span><span class="o">=</span><span class="default_value">'real'</span></em>, <em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">bits</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">keyword</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">space</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">default</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.kbinput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get keyboard input interactively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intype</strong> – str, requested input type. ‘integer’, ‘real’, ‘string’ or ‘keyword’.</p></li>
+<li><p><strong>prompt</strong> – str, prompt message.</p></li>
+<li><p><strong>bits</strong> – <p>int, input filter. Invalid when <em>intype</em> = ‘string’.</p>
+<div class="line-block">
+<div class="line">0-No filtering</div>
+<div class="line">1-Disallows NULL input, i.e. [return] or [space]</div>
+<div class="line">2-Disallows input of zero</div>
+<div class="line">4-Disallows negative values</div>
+</div>
+</p></li>
+<li><p><strong>keyword</strong> – str, keywords to be recognized when receiving input from keyboard, separate each keyword by
+blank. Invalid when <em>intype</em> = ‘string’.</p></li>
+<li><p><strong>space</strong> – bool, spaces are allowed when requested input is string.</p></li>
+<li><p><strong>default</strong> – value to be returned when received keyword is NULL. Invalid when <em>bits</em> = 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>int, float or str according to requested input type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.pick">
+<code class="sig-name descname">pick</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">'Select a entity from drawing: '</span></em>, <em class="sig-param"><span class="n">keyword</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.pick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <em>AutoCAD Entity</em> from drawing by mouse-click selecting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objtype</strong> – str, type of requested entity either in formal name (e.g. ‘AcDbLine’) or short name
+(e.g. ‘line’). Any type of entity will be acceptable if not specified.</p></li>
+<li><p><strong>prompt</strong> – str, prompt message.</p></li>
+<li><p><strong>keyword</strong> – str,  keywords to be recognized when receiving input from keyboard, separate each keyword by
+blank.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>selected entity object or keyword.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.select">
+<code class="sig-name descname">select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">'Select entities from drawing: '</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a selection set by window selecting on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objtype</strong> – str, type of requested entity either in formal name (e.g. ‘AcDbLine’) or short name
+(e.g. ‘line’). Any type of entity will be acceptable if not specified.</p></li>
+<li><p><strong>prompt</strong> – str, prompt message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of selected entities.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.byid">
+<code class="sig-name descname">byid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.byid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <em>AutoCAD Entity</em> by its object ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>obj_id</strong> – int, AUtoCAD object ID.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>entity object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.readtable">
+<code class="sig-name descname">readtable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_obj</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">header</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.readtable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from a table in drawing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_obj</strong> – AcDbTable object</p></li>
+<li><p><strong>title</strong> – bool, ignore the first row of table</p></li>
+<li><p><strong>header</strong> – bool, read the second row of table as header of each column</p></li>
+<li><p><strong>index</strong> – bool, read the first column of table as index of each row</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.command">
+<code class="sig-name descname">command</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comds</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.command" title="Permalink to this definition">¶</a></dt>
+<dd><p>send a commands list to AutoCAD</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>comds</strong> – list of str, commends to be executed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.setcolor">
+<code class="sig-name descname">setcolor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color</span></em>, <em class="sig-param"><span class="n">dwg_obj</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">dwg_objs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.setcolor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set color of entity objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> – str as color name, or a tuple of 3 int as RGB value.</p></li>
+<li><p><strong>dwg_obj</strong> – entity object to be set color.</p></li>
+<li><p><strong>dwg_objs</strong> – other entity objects to be set color.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.setlinetype">
+<code class="sig-name descname">setlinetype</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ltype</span></em>, <em class="sig-param"><span class="n">dwg_obj</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">dwg_objs</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lib</span><span class="o">=</span><span class="default_value">'acadiso.lin'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.setlinetype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set line type  of entity objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ltype</strong> – str, name of line type.</p></li>
+<li><p><strong>dwg_obj</strong> – entity object to be set line type.</p></li>
+<li><p><strong>dwg_objs</strong> – other entity objects to be set line type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. Remain unchanged if not specified.</p></li>
+<li><p><strong>lib</strong> – str, library that specified line type is loaded from if it has not been loaded yet.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.setlayer">
+<code class="sig-name descname">setlayer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layer_name</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lweight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">plottable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">hidden</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">freeze</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">lock</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">activate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.setlayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change settings of a layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_name</strong> – str, name of operating layer, if layer name is not existing, a new layer will be created</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. Remain unchanged if not specified.</p></li>
+<li><p><strong>lweight</strong> – <p>int, weight of lines when plotted. Remain unchanged if not specified.
+below is correspondence of valid values:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>by layer</p></td>
+<td><p>-1</p></td>
+</tr>
+<tr class="row-even"><td><p>by block</p></td>
+<td><p>-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td><p>-3</p></td>
+</tr>
+<tr class="row-even"><td><p>line weight</p></td>
+<td><div class="line-block">
+<div class="line">0,5,9,13,15,18,20,25,30,35,40,50,53,60,70,80,90</div>
+<div class="line">100,106,120,140,158,200,211</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</p></li>
+<li><p><strong>plottable</strong> – bool, print objects belongs to this layer when plotting. Remain unchanged if not specified.</p></li>
+<li><p><strong>hidden</strong> – bool, hide objects belongs to this layer. Remain unchanged if not specified.</p></li>
+<li><p><strong>freeze</strong> – <p>bool, freeze objects belongs to this layer. Remain unchanged if not specified.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Active layer can <strong>NOT</strong> be frozen.</p>
+</div>
+</p></li>
+<li><p><strong>lock</strong> – bool, lock objects belongs to this layer. Remain unchanged if not specified.</p></li>
+<li><p><strong>activate</strong> – bool, activate operated layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>operating layer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addline">
+<code class="sig-name descname">addline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_1</span></em>, <em class="sig-param"><span class="n">point_2</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">other_points</span></em>, <em class="sig-param"><span class="n">close</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">polyline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">line_width</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw straight lines on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_1</strong> – list of float [x,y,z], coordinate of first point.</p></li>
+<li><p><strong>point_2</strong> – list of float [x,y,z], coordinate of second point.</p></li>
+<li><p><strong>other_points</strong> – list of float, coordinate of other points, [x,y,z]…</p></li>
+<li><p><strong>close</strong> – bool, make a line between last point and first point when more than 2 points are provided.</p></li>
+<li><p><strong>polyline</strong> – bool, make a continuous polyline instead of separated lines.</p></li>
+<li><p><strong>line_width</strong> – float, global width of polyline. Only valid when <em>ployline</em> = True.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw lines on. If not given, draw lines on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created polyline object, or a list of line objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addcurve">
+<code class="sig-name descname">addcurve</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">fitpoints</span></em>, <em class="sig-param"><span class="n">start_tan</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">end_tan</span><span class="o">=</span><span class="default_value">[0, 0, 0]</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addcurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw Nurbs curve as spline passing through specified fit points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitpoints</strong> – list of float [x,y,z], coordinate of fit points.</p></li>
+<li><p><strong>start_tan</strong> – list of float, 3D vector of tangency at start point</p></li>
+<li><p><strong>end_tan</strong> – list of float, 3D vector of tangency at end point</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw curve on. If not given, draw curve on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created spline object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addrect">
+<code class="sig-name descname">addrect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">corner_1</span></em>, <em class="sig-param"><span class="n">corner_2</span></em>, <em class="sig-param"><span class="n">line_width</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addrect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut of drawing a rectangle by defining its 2 opposite corners.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>corner_1</strong> – list of float [x,y,z], coordinate of one corner point.</p></li>
+<li><p><strong>corner_2</strong> – list of float [x,y,z], coordinate of the opposite corner point.</p></li>
+<li><p><strong>line_width</strong> – float, global width of polyline.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw rectangle on. If not given, draw rectangle on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created of polyline object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addcircle">
+<code class="sig-name descname">addcircle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">center</span></em>, <em class="sig-param"><span class="n">radius</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addcircle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a circle by defining center point and radius</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> – list of float [x,y,z], coordinate of center point.</p></li>
+<li><p><strong>radius</strong> – float, radius of circle.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw rectangle on. If not given, draw rectangle on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created circle object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addnode">
+<code class="sig-name descname">addnode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">other_points</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addnode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark nodes at specified locations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> – list of float [x,y,z], coordinate to mark node at.</p></li>
+<li><p><strong>other_points</strong> – 3-element lists [x,y,z], other coordinates of to mark nodes at.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to mark node on. If not given, mark node on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created node object, or a list of node objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.fillhatch">
+<code class="sig-name descname">fillhatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outerloops</span></em>, <em class="sig-param"><span class="n">innerloops</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">pattern</span><span class="o">=</span><span class="default_value">'ANSI31'</span></em>, <em class="sig-param"><span class="n">angle</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">asso</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.fillhatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill the entities by specified pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>outerloops</strong> – nested list of objects, outer boundary of hatch filling, in the form of
+[[object group 1], [object group 2], [object group 3]…], objects in
+each group should form a simple closed boundary.</p></li>
+<li><p><strong>innerloops</strong> – nested list of objects, inner boundary of hatch filling, in the form of
+[[object group 1], [object group 2], [object group 3]…], objects in
+each group should form a simple closed boundary.</p></li>
+<li><p><strong>pattern</strong> – str, name of hatch pattern.</p></li>
+<li><p><strong>angle</strong> – float, angle of hatch in radians.</p></li>
+<li><p><strong>scale</strong> – float, scale of hatch.</p></li>
+<li><p><strong>asso</strong> – bool, associate hatch with boundaries.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to create hatch on. If not given, create hatch on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created hatch object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.adddim">
+<code class="sig-name descname">adddim</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_1</span></em>, <em class="sig-param"><span class="n">point_2</span></em>, <em class="sig-param"><span class="n">offset</span></em>, <em class="sig-param"><span class="n">measure_dir</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dimstyle</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.adddim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a aligned or rotated dimension annotation on x-y plane measuring the distance between 2 points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_1</strong> – list of float [x,y,z], coordinates of first point.</p></li>
+<li><p><strong>point_2</strong> – list of float [x,y,z], coordinates of second point.</p></li>
+<li><p><strong>offset</strong> – float, offset distance of dimension annotation from measured line.</p></li>
+<li><p><strong>measure_dir</strong> – list of float [vx,vy,vz], direction vector which measurement align with. If not given, align
+with the line connecting two measured points.</p></li>
+<li><p><strong>dimstyle</strong> – str, name of dimension style. Use current active style if not specified.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to create annotation on. If not given, create annotation on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created dimension object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addleader">
+<code class="sig-name descname">addleader</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_1</span></em>, <em class="sig-param"><span class="n">point_2</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">other_points</span></em>, <em class="sig-param"><span class="n">style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">arrow</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">headsize</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spline</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addleader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a straight or curved leader line on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_1</strong> – list of float [x,y,z], coordinate of base point which the leader points at.</p></li>
+<li><p><strong>point_2</strong> – list of float [x,y,z], coordinate of second point leader line passes.</p></li>
+<li><p><strong>other_points</strong> – list of float [x,y,z], coordinate of other point leader line passes.</p></li>
+<li><p><strong>style</strong> – str, name of dimension style. Use current active style if not specified.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use color defined by
+dimension style</p></li>
+<li><p><strong>arrow</strong> – <p>int, index of arrow type, from 0 to 19. If not given, use arrow type defined by dimension style.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Index</p></th>
+<th class="head"><p>Arrow Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Closed filled</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Closed blank</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Closed</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Dot</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Architectural tick</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Oblique</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Open</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Origin indicator</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Origin indicator 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Right angle</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Open 30</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Dot small</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>Dot blank</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>Dot small blank</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>Box</p></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>Box filled</p></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>Datum triangle</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>Datum triangle filled</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>Integral</p></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>No arrow</p></td>
+</tr>
+</tbody>
+</table>
+</p></li>
+<li><p><strong>headsize</strong> – float, size of arrow. If not given, use arrow size defined by dimension style.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to create annotation on. If not given, create leader line on current layer.</p></li>
+<li><p><strong>spline</strong> – bool, draw leader line as curved spline.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created leader object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.insertblock">
+<code class="sig-name descname">insertblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">insert_pnt</span></em>, <em class="sig-param"><span class="n">block_name</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">(1.0, 1.0, 1.0)</span></em>, <em class="sig-param"><span class="n">rotation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">dynamic_prop</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.insertblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a block to current drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>insert_pnt</strong> – list of float [x,y,z], coordinates of insert point.</p></li>
+<li><p><strong>block_name</strong> – str, path and file name of inserted block including ‘.dwg’ extension.</p></li>
+<li><p><strong>scale</strong> – list or tuple of float (sx,sy,sz), scale of inserting block in x, y and z direction.
+for Dynamic Block, only uniform scaling is allowed.</p></li>
+<li><p><strong>rotation</strong> – float, rotation angle about insert point in radians.</p></li>
+<li><p><strong>dynamic_prop</strong> – dict, customized properties for dynamic block. Keys of dict can be int as numeric index or
+str as property name.</p></li>
+<li><p><strong>attr</strong> – dict, attributes of block. Keys of dict can be int as numeric index or str as tag name.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to insert block to. If not given, insert block to current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>inserted block object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.makeregion">
+<code class="sig-name descname">makeregion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objects</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">del_source</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.makeregion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create region from selected or provided objects</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objects</strong> – list of objects. If not given, interactive selecting on screen will be requested.</p></li>
+<li><p><strong>del_source</strong> – bool, delete the source objects after region being created.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to create generated region on. If not given, create region on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of created regions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.textstyle">
+<code class="sig-name descname">textstyle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">style_name</span></em>, <em class="sig-param"><span class="n">font_file</span></em>, <em class="sig-param"><span class="n">bigfont_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">bold</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">italic</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">regen</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">activate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.textstyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a text style</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>style_name</strong> – str, name of text style, existing text style with same name will be overwritten.</p></li>
+<li><p><strong>font_file</strong> – str, path and name of font file.</p></li>
+<li><p><strong>bigfont_file</strong> – str, path and  name of big font file.</p></li>
+<li><p><strong>bold</strong> – bool, bold font style.</p></li>
+<li><p><strong>italic</strong> – bool, italic font style.</p></li>
+<li><p><strong>regen</strong> – bool, regenerate the drawing. Modification on existing text style will only be shown after
+regeneration</p></li>
+<li><p><strong>activate</strong> – bool, set the new defined text style as the active one.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addtext">
+<code class="sig-name descname">addtext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">insert_point</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">align_type</span><span class="o">=</span><span class="default_value">'Left'</span></em>, <em class="sig-param"><span class="n">rotation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addtext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add single-line text on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> – str, content of text.</p></li>
+<li><p><strong>insert_point</strong> – list of float [x,y,z], coordinate of reference point for text alignment.</p></li>
+<li><p><strong>height</strong> – float, height of text.</p></li>
+<li><p><strong>style</strong> – str, text style. Use current active style if not specified.</p></li>
+<li><p><strong>align_type</strong> – <p>str, type of alignment. One of below:</p>
+<p><em>’Left’, ‘Center’, ‘Right’, ‘Middle’, ‘TopLeft’, ‘TopCenter’, ‘TopRight’, ‘MiddleLeft’, ‘MiddleCenter’,
+‘MiddleRight’, ‘BottomLeft’, ‘BottomCenter’, ‘BottomRight’</em></p>
+</p></li>
+<li><p><strong>rotation</strong> – float, rotation angle about reference point in radians.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to add text to. If not given, add text to current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created text object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addmtext">
+<code class="sig-name descname">addmtext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">insert_point</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">align_type</span><span class="o">=</span><span class="default_value">'TopLeft'</span></em>, <em class="sig-param"><span class="n">rotation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addmtext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add multi-line text zone on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> – str, content of text.</p></li>
+<li><p><strong>insert_point</strong> – list of float [x,y,z], coordinate of reference point for text alignment.</p></li>
+<li><p><strong>height</strong> – float, height of text.</p></li>
+<li><p><strong>width</strong> – float, width of text zone.</p></li>
+<li><p><strong>style</strong> – str, text style, Use current active style if not specified.</p></li>
+<li><p><strong>align_type</strong> – <p>str, type of alignment. One of below:</p>
+<p><em>’TopLeft’, ‘TopCenter’, ‘TopRight’, ‘MiddleLeft’, ‘MiddleCenter’, ‘MiddleRight’, ‘BottomLeft’,
+‘BottomCenter’, ‘BottomRight’</em></p>
+</p></li>
+<li><p><strong>rotation</strong> – float, rotation angle about reference point in radians.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to add multi-line text to. If not given, add multi-line text to current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>added mtext object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addtable">
+<code class="sig-name descname">addtable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table_data</span></em>, <em class="sig-param"><span class="n">insert_point</span></em>, <em class="sig-param"><span class="n">row_height</span></em>, <em class="sig-param"><span class="n">col_width</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_index</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">show_header</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">headers</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">title_textheight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">header_textheight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">main_textheight</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title_style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">header_style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">main_style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title_align</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">header_align</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">main_align</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cell_style</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cell_color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">merge_empty</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addtable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a Table on drawing according to input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_data</strong> – array-like, Series or DataFrame, data to be shown in table.</p></li>
+<li><p><strong>insert_point</strong> – list of float [x,y,z], coordinate of reference point for text alignment.</p></li>
+<li><p><strong>row_height</strong> – float or list of float, height of rows. If a list is provided, height is specified
+respectively from top to bottom.</p></li>
+<li><p><strong>col_width</strong> – float or list of float, width of columns. If a list is provided, width is specified
+respectively from left to right.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to insert table to. If not given, insert to current layer.</p></li>
+<li><p><strong>title</strong> – str, title of table.</p></li>
+<li><p><strong>show_index</strong> – bool, show the index for each row of data.</p></li>
+<li><p><strong>index</strong> – list of str, name of indices. If not given, indices will be read from input data as first option,
+when failed, the default indices such as <em>‘R1’, ‘R2’, ‘R3’</em> will be applied.</p></li>
+<li><p><strong>show_header</strong> – bool, show the header for each column of data.</p></li>
+<li><p><strong>headers</strong> – list of str, name of headers. If not given, headers will be read from input data as first
+option, when failed, the default header such as <em>‘C1’, ‘C2’, ‘C3’</em> will be applied.</p></li>
+<li><p><strong>acc</strong> – int. number of decimal place to be shown in table if input value is a float.</p></li>
+<li><p><strong>title_textheight</strong> – float, text height of title. USe default height if not specified.</p></li>
+<li><p><strong>header_textheight</strong> – float, text height of header. USe default height if not specified.</p></li>
+<li><p><strong>main_textheight</strong> – float, text height of main data part. USe default height if not specified.</p></li>
+<li><p><strong>title_style</strong> – str. style name of title text. Use current active style if not specified.</p></li>
+<li><p><strong>header_style</strong> – str. style name of header text. Use current active style if not specified.</p></li>
+<li><p><strong>main_style</strong> – str. style name of main data text. Use current active style if not specified.</p></li>
+<li><p><strong>title_align</strong> – <p>str. alignment of title text. One of below:</p>
+<p><em>’TopLeft’, ‘TopCenter’, ‘TopRight’, ‘MiddleLeft’, ‘MiddleCenter’, ‘MiddleRight’, ‘BottomLeft’,
+‘BottomCenter’, ‘BottomRight’</em></p>
+<p>Use default alignment if not specified.</p>
+</p></li>
+<li><p><strong>header_align</strong> – str. alignment of header text. Use default alignment if not specified. Valid value is same
+as title_align.</p></li>
+<li><p><strong>main_align</strong> – str. alignment of main data text. Use default alignment if not specified. Valid value is same
+as title_align.</p></li>
+<li><p><strong>cell_style</strong> – dict. text style of individual cell, in the form of {(row, col):’TextStyle’, …}</p></li>
+<li><p><strong>cell_color</strong> – dict. text color of individual cell, in the form of {(row, col):’ColorName’, …} or
+{(row, col):(r,g,b),…}</p></li>
+<li><p><strong>merge_empty</strong> – <p>int. option for merging empty cells to adjacent cells.</p>
+<div class="line-block">
+<div class="line">0- do not merge</div>
+<div class="line">1- merge to left cell</div>
+<div class="line">2 - merge to upper cell</div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created table object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="o">=</span><span class="default_value">2013</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the drawing file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>full_file_name</strong> – str. path and file name to save the drawing as, including extension <em>‘.dwg’</em> or <em>‘.dxf’</em> .
+If not given, save the drawing in-place.</p></li>
+<li><p><strong>version</strong> – int. version of AutoCAD file. Supported version are: <em>2000, 2004, 2010, 2013, 2018</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Discard changes and close the drawing.</p>
+<p>Operating target will be shifted to next active drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>bool, flag states if all the drawings have been closed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.getvector">
+<code class="sig-name descname">getvector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.getvector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a vector by specifying two point on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>unit</strong> – bool, return unit vector.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>numpy.ndarray represents a 3-dimensional vector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.vangle">
+<em class="property">static </em><code class="sig-name descname">vangle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vector</span></em>, <em class="sig-param"><span class="n">rad</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.vangle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get projected orientation of a vector on <em>X-Y Plane</em>, in range from 0 to pi.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> – array-like [vx, vy ,vz], the vector</p></li>
+<li><p><strong>rad</strong> – return the orientation angle in radians. When False, return the angle in degree</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float, the solved angle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.tolerate">
+<em class="property">static </em><code class="sig-name descname">tolerate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_1</span></em>, <em class="sig-param"><span class="n">var_2</span></em>, <em class="sig-param"><span class="n">dim</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">1e-06</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.tolerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether two points or vectors are equivalent within tolerance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_1</strong> – array-like of float, the coordinate of first point, or the first vector.</p></li>
+<li><p><strong>var_2</strong> – array-like of float, the coordinate of second point, or the second vector.</p></li>
+<li><p><strong>dim</strong> – int. number of dimensions to compare.</p></li>
+<li><p><strong>acc</strong> – float. allowable tolerance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>bool.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.rotatevec">
+<em class="property">static </em><code class="sig-name descname">rotatevec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vector</span></em>, <em class="sig-param"><span class="n">angle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.rotatevec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate a vector by specified angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> – array-like of float [vx, vy, vz], the vector to be rotated.</p></li>
+<li><p><strong>angle</strong> – float, rotating angle in radians. take counter-clockwise as positive.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array-like of float, the rotated vector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.addpolygon">
+<code class="sig-name descname">addpolygon</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">insert_point</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">radius</span></em>, <em class="sig-param"><span class="n">start_angle</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">line_width</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.addpolygon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut to drawing a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>insert_point</strong> – list of float [x,y,z], coordinates of center of polygon.</p></li>
+<li><p><strong>n</strong> – int. number of sides.</p></li>
+<li><p><strong>radius</strong> – float, length of sides.</p></li>
+<li><p><strong>start_angle</strong> – float, orientation angle of the line connecting center and the first corner.</p></li>
+<li><p><strong>line_width</strong> – float, global width of polyline.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw polygon on. If not given, draw polygon on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created polyline object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.freedraw">
+<code class="sig-name descname">freedraw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">polyline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">line_width</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ltype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.freedraw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut to continuously draw lines or a polyline in interactive way.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>polyline</strong> – bool, draw a polyline instead of individual lines.</p></li>
+<li><p><strong>line_width</strong> – float, global width of polyline. Only valid when <em>polyline</em> = True.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+<li><p><strong>ltype</strong> – str, name of line type. If not given, use current active type.</p></li>
+<li><p><strong>scale</strong> – float, line type scale. If not given, use default scale = 1.</p></li>
+<li><p><strong>layer</strong> – str, name of layer to draw on. If not given, draw on current layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created polyline object, or list of created lines.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.locate">
+<code class="sig-name descname">locate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">ucs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.locate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the coordinate of insert point of selected blocks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>block_name</strong> – str, name of the block to be located. If not given, a sample block will be requested to be
+selected from drawing.</p></li>
+<li><p><strong>ucs</strong> – <code class="docutils literal notranslate"><span class="pre">Acad.UCS</span></code> object, return the coordinate of insert points in this UCS. If not given, return the
+coordinates in WCS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of tuple.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.readsecprop">
+<code class="sig-name descname">readsecprop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">sec_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.readsecprop" title="Permalink to this definition">¶</a></dt>
+<dd><p>read section properties data from selected tables in drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sort</strong> – <p>int, method of sorting selected tables.</p>
+<div class="line-block">
+<div class="line">0: no sorting.</div>
+<div class="line">1: vertical priority, from upper to lower.</div>
+<div class="line">2: horizontal priority, from left to right.</div>
+</div>
+</p></li>
+<li><p><strong>sec_name</strong> – list of str, section name used as header of each column of data. If not given, Use default name
+such as ‘Section_01’, ‘Section_02’ etc.</p></li>
+<li><p><strong>file_name</strong> – str, file name to for data export, with extension of ‘.csv’ or ‘.json’. If not
+specified, exporting procedure will be skipped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.getsecprop">
+<code class="sig-name descname">getsecprop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region_obj</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.getsecprop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyze section properties of a region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_obj</strong> – Region object.</p></li>
+<li><p><strong>file_name</strong> – str, file name to for data export, with extension of ‘.json’. If not specified, exporting
+procedure will be skipped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>dict. keys correspondence is shown below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>’A’</p></td>
+<td><p>area of cross section</p></td>
+</tr>
+<tr class="row-even"><td><p>’Ix’</p></td>
+<td><p>moment of inertia about x-axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’Iy’</p></td>
+<td><p>moment of inertia about y-axis</p></td>
+</tr>
+<tr class="row-even"><td><p>’Ixy’</p></td>
+<td><p>product moment of inertia</p></td>
+</tr>
+<tr class="row-odd"><td><p>’Zx’</p></td>
+<td><p>elastic section modulus about x-axis</p></td>
+</tr>
+<tr class="row-even"><td><p>’Zy’</p></td>
+<td><p>elastic section modulus about y-axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’Sx’</p></td>
+<td><p>plastic section modulus about x-axis</p></td>
+</tr>
+<tr class="row-even"><td><p>’Sy’</p></td>
+<td><p>plastic section modulus about y-axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’I1’</p></td>
+<td><p>moment of inertia about major axis</p></td>
+</tr>
+<tr class="row-even"><td><p>’I2’</p></td>
+<td><p>moment of inertia about minor axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’alpha’</p></td>
+<td><p>angle between major axis and x-axis, in radians</p></td>
+</tr>
+<tr class="row-even"><td><p>’Z1’</p></td>
+<td><p>elastic section modulus about major axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’Z2’</p></td>
+<td><p>elastic section modulus about minor axis</p></td>
+</tr>
+<tr class="row-even"><td><p>’S1’</p></td>
+<td><p>plastic section modulus about major axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>’S2’</p></td>
+<td><p>elastic section modulus about minor axis</p></td>
+</tr>
+</tbody>
+</table>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.getplasec">
+<code class="sig-name descname">getplasec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region_obj</span></em>, <em class="sig-param"><span class="n">axis_angle</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">acc</span><span class="o">=</span><span class="default_value">1e-06</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.getplasec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate plastic section modulus about a specified axis of a region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_obj</strong> – Region object.</p></li>
+<li><p><strong>axis_angle</strong> – float, orientation angle of specified axis in radians.</p></li>
+<li><p><strong>acc</strong> – float, allowable tolerance when finding the center line of the section.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float, calculated plastic section modulus.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.getboundary">
+<code class="sig-name descname">getboundary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region_obj</span></em>, <em class="sig-param"><span class="n">spl_sub</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.getboundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get vector from centroid of a section to its boundary corner and arcs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_obj</strong> – Region object.</p></li>
+<li><p><strong>spl_sub</strong> – int, numbers of subdivided segments of a spline boundary.</p></li>
+<li><p><strong>file_name</strong> – str, file name for data exporting, with extension of ‘.json’. If not specified, exporting
+procedure will be skipped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple in the form of:</p>
+<div class="line-block">
+<div class="line">([vector_to_corner_1, vector_to_corner_2, … ],</div>
+<div class="line">[(vector_to_center_arc1, (start_angle_arc1, end_angle_arc1), radius_arc1 ),</div>
+<div class="line">(vector_to_center_arc2, (start_angle_arc2, end_angle_arc2), radius_arc2 ),</div>
+<div class="line">… ]</div>
+<div class="line">)</div>
+</div>
+<p>each vector is a tuple of float (vx, vy).</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.boundalong">
+<em class="property">classmethod </em><code class="sig-name descname">boundalong</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">boundary_nodes</span></em>, <em class="sig-param"><span class="n">boundary_arc</span></em>, <em class="sig-param"><span class="n">direction_vector</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.boundalong" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure the distance from centroid of section to its boundary in specified direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>boundary_nodes</strong> – list of vector from centroid to boundary corner.
+each vector is a tuple of float, (vx, vy).</p></li>
+<li><p><strong>boundary_arc</strong> – <p>list of tuple states geometrical information of boundary arc, in the form of:</p>
+<div class="line-block">
+<div class="line">[(vector_to_center_arc1, (start_angle_arc1, end_angle_arc1), radius_arc1 ),</div>
+<div class="line">(vector_to_center_arc2, (start_angle_arc2, end_angle_arc2), radius_arc2 ), … ]</div>
+</div>
+</p></li>
+<li><p><strong>direction_vector</strong> – array-like, vector indicating the direction of measurement.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of float, (max. negative distance, max. positive distance). Here negative distance is measured
+along the opposite direction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.dimregion">
+<code class="sig-name descname">dimregion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">region_obj</span></em>, <em class="sig-param"><span class="n">direction_vector</span><span class="o">=</span><span class="default_value">(1, 0, 0)</span></em>, <em class="sig-param"><span class="n">spl_sub</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">dim_offset</span><span class="o">=</span><span class="default_value">- 10</span></em>, <em class="sig-param"><span class="n">outside</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">dimstyle</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.dimregion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add dimension annotation marking overall size of a region along specified direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_obj</strong> – Region object.</p></li>
+<li><p><strong>direction_vector</strong> – array-like, vector indicating the direction of measurement.</p></li>
+<li><p><strong>spl_sub</strong> – int, numbers of subdivided segments of a spline boundary.</p></li>
+<li><p><strong>dim_offset</strong> – float, offset distance of dimension annotation from reference point. reference point is the
+most left point on measured object When <em>‘outside’</em> = False, and is the most outside point
+on boundary when <em>‘outside’</em> = True.</p></li>
+<li><p><strong>outside</strong> – bool, always put the dimension annotation outside of measured object.</p></li>
+<li><p><strong>dimstyle</strong> – str, name of dimension style. If not given, current active style will be used.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>created dimension object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.seclib">
+<code class="sig-name descname">seclib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">sec_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">spl_sub</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.seclib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a group of regions and output their object ID, section properties and boundary information to .csv
+or .json file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – str, file name of output with extension of ‘.csv’ or ‘.json’.</p></li>
+<li><p><strong>sort</strong> – <p>int, method of sorting selected regions.</p>
+<div class="line-block">
+<div class="line">0: no sorting.</div>
+<div class="line">1: vertical priority, from upper to lower.</div>
+<div class="line">2: horizontal priority, from left to right.</div>
+</div>
+</p></li>
+<li><p><strong>sec_name</strong> – list of str, section name used as header of each column of data. If not given, Use default name
+such as ‘Section_01’, ‘Section_02’ etc.</p></li>
+<li><p><strong>spl_sub</strong> – int, numbers of subdivided segments when obtain boundary node of a spline.</p></li>
+<li><p><strong>update</strong> – bool, partially update the output file if it is existing.
+If True, data column with new section name will be inserted to the existing file, while data
+column with duplicated section name will be renewed. Otherwise, the whole existing file will be
+overwritten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.lbelem">
+<code class="sig-name descname">lbelem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">spl_sub</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">dim_offset</span><span class="o">=</span><span class="default_value">- 10</span></em>, <em class="sig-param"><span class="n">dimstyle</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">num_block</span><span class="o">=</span><span class="default_value">'NUM.dwg'</span></em>, <em class="sig-param"><span class="n">num_scale</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">update</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.lbelem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark out elements on selected regions and get elements geometry information.</p>
+<p>This is a quick tool for primary task producing structural data used by
+<code class="docutils literal notranslate"><span class="pre">pyfacade.pymcad.Xmcd.addblock_lbcheck</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spl_sub</strong> – int, numbers of subdivided segments when obtain boundary node of a spline.</p></li>
+<li><p><strong>dim_offset</strong> – float, offset distance of dimension annotation from measured element.</p></li>
+<li><p><strong>dimstyle</strong> – str, name of applied dimension style.</p></li>
+<li><p><strong>num_block</strong> – str or None, insert a numbering mark next to element. If None is given, no numbering mark
+will be inserted.</p></li>
+<li><p><strong>num_scale</strong> – float, scale of inserted numbering mark.</p></li>
+<li><p><strong>file_name</strong> – str, path and name of .json file for data output. If not given, the exporting procedure will
+be skipped.</p></li>
+<li><p><strong>update</strong> – bool, partially update the output file if it is existing. If True, only the element data on
+section with duplicated object ID will be renewed. Otherwise, the whole file will be overwritten.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>dict, recorded element information of regions, in the form of:</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">{‘object id 1’: {‘1’: elem_data,’2’: elem_data, … },</div>
+<div class="line-block">
+<div class="line">’object id 2’: {‘1’: elem_data,’2’: elem_data, …},</div>
+<div class="line">… }</div>
+</div>
+</div>
+</div></blockquote>
+<p>Where <em>elem_data</em> represents a dict with keys and corresponding values listed as below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>’length’</p></td>
+<td><p>float, length of element.</p></td>
+</tr>
+<tr class="row-even"><td><p>’thks’</p></td>
+<td><p>list of float, element thickness at intersection.</p></td>
+</tr>
+<tr class="row-odd"><td><p>’rp’</p></td>
+<td><p>list of float, coordinates of reference point.</p></td>
+</tr>
+<tr class="row-even"><td><p>’slope’</p></td>
+<td><p>float, orientation of element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>’bx’</p></td>
+<td><div class="line-block">
+<div class="line">list of float, boundary of element in x-direction,</div>
+<div class="line">relative to section centroid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>’by’</p></td>
+<td><div class="line-block">
+<div class="line">list of float, boundary of element in y-direction,</div>
+<div class="line">relative to section centroid.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>’Ie’</p></td>
+<td><div class="line-block">
+<div class="line">float, moment of inertia of element about axis along its</div>
+<div class="line">longitudinal side.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>’type’</p></td>
+<td><div class="line-block">
+<div class="line">int. indicator for type element:</div>
+<div class="line">’G’ - element under stress gradient</div>
+<div class="line">’U’ - element under Uniform compressive stress</div>
+<div class="line">’R’ - <strong>reinforced</strong> element under Uniform compressive stress</div>
+<div class="line">’X’ - stress gradient along X-aix</div>
+<div class="line">’Y’ - stress gradient along Y-aix</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.search">
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">criteria</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search objects from drawing according to specified criteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>criteria</strong> – one-argument function which receives drawing entities and return a boolean.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of found objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.replaceblock">
+<code class="sig-name descname">replaceblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">block_name</span></em>, <em class="sig-param"><span class="n">replac_by</span></em>, <em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">(0.0, 0.0, 0.0)</span></em>, <em class="sig-param"><span class="n">new_scale</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">new_rotation</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">new_dynamic_prop</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">new_attr</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">offset_in_scale</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">inherit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.replaceblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace blocks with specified name by another block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>block_name</strong> – str, name of block to be replaced.</p></li>
+<li><p><strong>replac_by</strong> – str, path and name of new block with extension ‘.dwg’ use to replace.</p></li>
+<li><p><strong>offset</strong> – array-like of float (dx, dy, dz), offset distance in 3 directions from the new block to replaced
+one.</p></li>
+<li><p><strong>new_scale</strong> – float, scale of new block. If not given, keep same scale as replaced block.</p></li>
+<li><p><strong>new_rotation</strong> – float, rotation angle of new block about insert point in radians.  If not given, keep
+same rotation angle as replaced block.</p></li>
+<li><p><strong>new_dynamic_prop</strong> – dict, customized properties for new dynamic block. Keys of dict can be int as numeric
+index or str as property name. If not given and <em>inherit</em> = True, the new block will try
+to use same properties as replaced one.</p></li>
+<li><p><strong>new_attr</strong> – dict, attributes of new block. Keys of dict can be int as numeric index or str as tag name.
+If not given and <em>inherit</em> = True, the new block will try to use same attributes as
+replaced one.</p></li>
+<li><p><strong>offset_in_scale</strong> – bool, Also scale the <em>offset</em> extent according to the scale of new block.</p></li>
+<li><p><strong>inherit</strong> – bool, inherit dynamic block properties or block attributes from replaced block if corresponding
+value for new block is not specified.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.Acad.multitry">
+<em class="property">classmethod </em><code class="sig-name descname">multitry</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">limit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.Acad.multitry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator make function be called again when being rejected by application</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>limit</strong> – int, attempting times before raising except.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>decorated function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Universal keyword <em>‘BYLAYER’</em> and <em>‘BYBLOCK’</em> are acceptable strings for arguments <em>color</em> and <em>ltype</em> of
+method <code class="docutils literal notranslate"><span class="pre">setcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">setlinetype</span></code>, <code class="docutils literal notranslate"><span class="pre">addline</span></code>, <code class="docutils literal notranslate"><span class="pre">addcurve</span></code>, <code class="docutils literal notranslate"><span class="pre">addrect</span></code>, <code class="docutils literal notranslate"><span class="pre">addcircle</span></code>, <code class="docutils literal notranslate"><span class="pre">fillhatch</span></code>,
+<code class="docutils literal notranslate"><span class="pre">addleader</span></code>, <code class="docutils literal notranslate"><span class="pre">addtext</span></code>, <code class="docutils literal notranslate"><span class="pre">addmtext</span></code>, <code class="docutils literal notranslate"><span class="pre">addtable</span></code>, <code class="docutils literal notranslate"><span class="pre">addpolygon</span></code> and <code class="docutils literal notranslate"><span class="pre">freedraw</span></code>.</p>
+</div>
+<hr class="docutils" />
+<p><strong>Table of Color Name</strong></p>
+<p>Below are strings of valid <em>Color Name</em> recognized by method <code class="docutils literal notranslate"><span class="pre">setcolor</span></code>, <code class="docutils literal notranslate"><span class="pre">setlayer</span></code>, <code class="docutils literal notranslate"><span class="pre">addline</span></code>, <code class="docutils literal notranslate"><span class="pre">addcurve</span></code>,
+<code class="docutils literal notranslate"><span class="pre">addrect</span></code>, <code class="docutils literal notranslate"><span class="pre">addcircle</span></code>, <code class="docutils literal notranslate"><span class="pre">fillhatch</span></code>, <code class="docutils literal notranslate"><span class="pre">addleader</span></code>, <code class="docutils literal notranslate"><span class="pre">addtext</span></code>, <code class="docutils literal notranslate"><span class="pre">addmtext</span></code>, <code class="docutils literal notranslate"><span class="pre">addtable</span></code>, <code class="docutils literal notranslate"><span class="pre">addpolygon</span></code>
+and <code class="docutils literal notranslate"><span class="pre">freedraw</span></code>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Color Name</p></th>
+<th class="head"><p>Equivalent RGB Tuple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>‘red’</p></td>
+<td><p>(255, 0, 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘yellow’</p></td>
+<td><p>(255, 255, 0)</p></td>
+</tr>
+<tr class="row-even"><td><p>‘green’</p></td>
+<td><p>(0, 255, 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘cyan’</p></td>
+<td><p>(0, 255, 255)</p></td>
+</tr>
+<tr class="row-even"><td><p>‘blue’</p></td>
+<td><p>(0, 0, 255)</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘magenta’</p></td>
+<td><p>(255, 0, 255)</p></td>
+</tr>
+<tr class="row-even"><td><p>‘gray’</p></td>
+<td><p>(128, 128, 128)</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p>Also a subclass is implemented as quick tools for <code class="docutils literal notranslate"><span class="pre">pyfacade.</span> <span class="pre">pyeng</span></code> to acquire information from AutoCAD drawing
+interactively</p>
+<dl class="py class">
+<dt id="pyfacade.pyacad.CADFrame">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pyacad.</code><code class="sig-name descname">CADFrame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">geoacc</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subclass of <code class="docutils literal notranslate"><span class="pre">pyacad.Acad</span></code>, extends for interactively acquiring structural information of 2D frame.</p>
+<p>Acquired data is used to build up analysis model by Module <code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – str, file name (and path) to open with application. Activate the specified file
+if it is opened already. Otherwise, try to open the file from specified path. When successfully opened,
+prompts will be shown in the command line of AutoCAD, asking for selecting and specifying the basic frame.</p></li>
+<li><p><strong>geoacc</strong> – int. number of decimal place to be kept when outputting the nodes’ coordinates.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.nodes">
+<em class="property">property </em><code class="sig-name descname">nodes</code><a class="headerlink" href="#pyfacade.pyacad.CADFrame.nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of nodes’ coordinates. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.beams">
+<em class="property">property </em><code class="sig-name descname">beams</code><a class="headerlink" href="#pyfacade.pyacad.CADFrame.beams" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of beam set, indicating index pair of start and end nodes of each beam. Read-only</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.node_num">
+<code class="sig-name descname">node_num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.node_num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show number of nodes on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rng</strong> – list on int, indices of nodes require showing number. If not give, show numbers of all nodes.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of added text objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.beam_num">
+<code class="sig-name descname">beam_num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rng</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.beam_num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show number of beams on drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rng</strong> – list on int, indices of beams require showing number. If not give, show numbers of all beams.</p></li>
+<li><p><strong>color</strong> – str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of added text objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_restrain">
+<code class="sig-name descname">set_restrain</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_restrain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify restrain conditions on node from drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict. Definition of structural restrain in the form of
+{node_no:[res_condition_x, res_condition_y, res_condition_rotate], …}, where:
+0=released and 1=restrained.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_release">
+<code class="sig-name descname">set_release</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify end release of beams from drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict. Definition of release conditions of beams in the form of
+{beam_no:[(axial_condition_start, rotation_condition_start), (axial_condition_end, rotation_condition_end)],…},
+where: 0=fixed and 1=released.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_udl">
+<code class="sig-name descname">set_udl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_udl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify uniform distributed load on beams from drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict. Definition of applied <em>Uniformly Distributed Load</em> on model in the form of
+{beam_no:(axial_force, transverse_force),…}. Unit=N/mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_pointload">
+<code class="sig-name descname">set_pointload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_pointload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify point load on nodes from drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict. Definition of applied <em>Concentrated Load</em> on model in the form of
+{node:[Fx, Fy, Mz]…}. Unit=N or N*mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_E">
+<code class="sig-name descname">set_E</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_E" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign modulus of elasticity for each beams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lib</strong> – dict of modulus of elasticity, unit = N/mm <sup>2</sup>. If provided, application will request
+specifying key of dict for each beam. Otherwise, non-zero positive value will be requested.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list. Assigned <em>Modulus of Elasticity</em> of beams, unit = N/mm <sup>2</sup>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_A">
+<code class="sig-name descname">set_A</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_A" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign section area for each beams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lib</strong> – dict of section area, unit = mm <sup>2</sup>. If provided, application will request specifying
+key of dict for each beam. Otherwise, non-zero positive value will be requested.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list. Assigned <em>Section Area</em> of beams, unit = mm <sup>2</sup>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyacad.CADFrame.set_I">
+<code class="sig-name descname">set_I</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyacad.CADFrame.set_I" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign moment of inertia for each beams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lib</strong> – dict of moment of inertia, unit = mm <sup>4</sup>. If provided, application will request
+specifying key of dict for each beam. Otherwise, non-zero positive value will be requested.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list. Assigned <em>Moment of Inertia</em> of beams, unit = mm <sup>4</sup>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="module_strcals.html" class="btn btn-neutral float-right" title="Toolbox for Structural Calculation (pyfacade.strcals)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="module_pymcad.html" class="btn btn-neutral float-left" title="MathCAD Interface (pyfacade.pymcad)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qi Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MathCAD Interface (pyfacade.pymcad) &mdash; pyfacade 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="AutoCAD Interface (pyfacade.pyacad)" href="module_pyacad.html" />
+    <link rel="prev" title="MathCAD XML Constructor (pyfacade.transxml)" href="module_transxml.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pyfacade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_pyeng.html">Solver for 2D-frame Question (pycade.pyeng)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_transxml.html">MathCAD XML Constructor (pyfacade.transxml)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MathCAD Interface (pyfacade.pymcad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pyacad.html">AutoCAD Interface (pyfacade.pyacad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_strcals.html">Toolbox for Structural Calculation (pyfacade.strcals)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyfacade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>MathCAD Interface (pyfacade.pymcad)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/module_pymcad.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pymcad">
+<span id="mathcad-interface-pyfacade-pymcad"></span><h1>MathCAD Interface (pyfacade.pymcad)<a class="headerlink" href="#module-pymcad" title="Permalink to this headline">¶</a></h1>
+<p>Module <code class="docutils literal notranslate"><span class="pre">pyfacade.pymcad</span></code> provides two Classes working with MathCAD on implement level in both statical and
+interactive way.</p>
+<ul class="simple">
+<li><p>Class <code class="docutils literal notranslate"><span class="pre">Xmcd</span></code> - <a class="reference internal" href="#class-xmcd"><span class="std std-ref">.xmcd file parser.</span></a></p></li>
+<li><p>Class <code class="docutils literal notranslate"><span class="pre">Mathcad</span></code> - <a class="reference internal" href="#class-mathcad"><span class="std std-ref">MathCAD API.</span></a></p></li>
+</ul>
+<span class="target" id="class-xmcd"></span><dl class="py class">
+<dt id="pyfacade.pymcad.Xmcd">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pymcad.</code><code class="sig-name descname">Xmcd</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Operation interface parsing and modifying xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – str, full path of target xmcd file.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.worksheet">
+<em class="property">property </em><code class="sig-name descname">worksheet</code><a class="headerlink" href="#pyfacade.pymcad.Xmcd.worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root element of the xmcd file. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.namespace">
+<em class="property">property </em><code class="sig-name descname">namespace</code><a class="headerlink" href="#pyfacade.pymcad.Xmcd.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name space used by the xmcd file. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.regions">
+<em class="property">property </em><code class="sig-name descname">regions</code><a class="headerlink" href="#pyfacade.pymcad.Xmcd.regions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element &lt;regions&gt;, the main part of the xmcd file. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.show_fulltree">
+<code class="sig-name descname">show_fulltree</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">levels</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">show_namespace</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.show_fulltree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the entire structure of xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>levels</strong> – int, max. levels to be shown, count from root as level 0</p></li>
+<li><p><strong>show_namespace</strong> – bool, include name space as initial of element tag</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.show_region">
+<code class="sig-name descname">show_region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">levels</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="n">show_namespace</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.show_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the sub-structure of element &lt;regions&gt;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>levels</strong> – int, max. levels to be shown, count from element &lt;regions&gt; as level 0</p></li>
+<li><p><strong>show_namespace</strong> – bool, include name space as initial of element tag</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.read_region">
+<em class="property">classmethod </em><code class="sig-name descname">read_region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.read_region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read all the &lt;region&gt; sub-elements from specified xmcd file to a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – str, full path of target xmcd file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of &lt;region&gt; sub-elements.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.dfupdate">
+<em class="property">static </em><code class="sig-name descname">dfupdate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">repls</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">remove</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.dfupdate" title="Permalink to this definition">¶</a></dt>
+<dd><p>A quick tool to replace string content in specified columns of data frame surrounded by Curly Braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>
+according to provided dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> – a pandas.DateFrame</p></li>
+<li><p><strong>repls</strong> – dict, {‘replace_mark_1’: new_1, ‘replace_mark_2’: new_2,…}</p></li>
+<li><p><strong>columns</strong> – list of str, column names to be update, <em>None</em> for all columns.</p></li>
+<li><p><strong>remove</strong> – bool, remove the row which contains invalid replace mark.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple, (list of index of replaced row, list of index of unreplaced row)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.copyfrom">
+<code class="sig-name descname">copyfrom</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em>, <em class="sig-param"><span class="n">row_offset</span><span class="o">=</span><span class="default_value">24</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.copyfrom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy all &lt;region&gt; sub-elements from a specified file to the end of current file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> – str, full path of target xmcd file.</p></li>
+<li><p><strong>row_offset</strong> – float, offset from the the last line of existing part to the first line of pasted part when
+presented in MathCAD Worksheet.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addtext">
+<code class="sig-name descname">addtext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">row</span></em>, <em class="sig-param"><span class="n">col</span><span class="o">=</span><span class="default_value">30</span></em>, <em class="sig-param"><span class="n">width</span><span class="o">=</span><span class="default_value">164</span></em>, <em class="sig-param"><span class="n">border</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">highlight</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">bgc</span><span class="o">=</span><span class="default_value">'inherit'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">lock_width</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">style</span><span class="o">=</span><span class="default_value">'Normal'</span></em>, <em class="sig-param"><span class="n">bold</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">italic</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">underline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addtext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a text region to current xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> – str, content to be added into xmcd file.</p></li>
+<li><p><strong>id</strong> – int, id of new text region.</p></li>
+<li><p><strong>row</strong> – float, target row location.</p></li>
+<li><p><strong>col</strong> – float, target column location.</p></li>
+<li><p><strong>width</strong> – float, width of text region, only valid when <em>lock_width</em> = True.</p></li>
+<li><p><strong>border</strong> – bool, show border of text region.</p></li>
+<li><p><strong>highlight</strong> – bool, highlight text region.</p></li>
+<li><p><strong>bgc</strong> – str, color name or hex code in lowercase of background, only valid when <em>highlight</em> = True.</p></li>
+<li><p><strong>tag</strong> – str, tag of region.</p></li>
+<li><p><strong>lock_width</strong> – bool, fix the width of text region.</p></li>
+<li><p><strong>style</strong> – str, name of pre-defined text style.</p></li>
+<li><p><strong>bold</strong> – bool, use bold font style.</p></li>
+<li><p><strong>italic</strong> – bool, use italic font style.</p></li>
+<li><p><strong>underline</strong> – bool, text with underline.</p></li>
+<li><p><strong>color</strong> – str, color name or hex code in lowercase for text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of inserted &lt;region&gt; element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addmath">
+<code class="sig-name descname">addmath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em>, <em class="sig-param"><span class="n">row</span></em>, <em class="sig-param"><span class="n">col</span><span class="o">=</span><span class="default_value">204</span></em>, <em class="sig-param"><span class="n">border</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">highlight</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">bgc</span><span class="o">=</span><span class="default_value">'inherit'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">expression</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">evaluate</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addmath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a math region to current xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_name</strong> – str, name of variable.</p></li>
+<li><p><strong>id</strong> – int, id of new text region.</p></li>
+<li><p><strong>row</strong> – float, target row location.</p></li>
+<li><p><strong>col</strong> – float, target column location.</p></li>
+<li><p><strong>border</strong> – bool, show border of math region.</p></li>
+<li><p><strong>highlight</strong> – bool. highlight math region</p></li>
+<li><p><strong>bgc</strong> – str, color name or hex code in lowercase of background, only valid when <em>highlight</em> = True.</p></li>
+<li><p><strong>tag</strong> – str, tag of region.</p></li>
+<li><p><strong>expression</strong> – str, expression for variable definition. When expression is not provided, insert a math
+region of evaluation (if <em>evaluate</em> = True) or a individual math region of variable only
+(if <em>evaluate</em> = False)</p></li>
+<li><p><strong>evaluate</strong> – bool, in-line evaluate the variable.</p></li>
+<li><p><strong>unit</strong> – str, unit use to overwrite default unit in evaluating result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of inserted &lt;region&gt; element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addcompare">
+<code class="sig-name descname">addcompare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">row</span></em>, <em class="sig-param"><span class="n">csign</span><span class="o">=</span><span class="default_value">'&lt;='</span></em>, <em class="sig-param"><span class="n">var_name1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">var_name2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">col</span><span class="o">=</span><span class="default_value">204</span></em>, <em class="sig-param"><span class="n">border</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">highlight</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">bgc</span><span class="o">=</span><span class="default_value">'inherit'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">expression1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">evaluate1</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unit1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">expression2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">evaluate2</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unit2</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addcompare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a special fusion region with 2 math sub-regions connected by a comparing symbol to current xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> – float, target row location.</p></li>
+<li><p><strong>csign</strong> – str, comparing operation.</p></li>
+<li><p><strong>var_name1</strong> – str, name of variable at left-hand.</p></li>
+<li><p><strong>var_name2</strong> – str, name of variable at right-hand.</p></li>
+<li><p><strong>col</strong> – float, target column location.</p></li>
+<li><p><strong>border</strong> – bool, show border of text region.</p></li>
+<li><p><strong>highlight</strong> – bool, highlight text region.</p></li>
+<li><p><strong>bgc</strong> – str, color name or hex code in lowercase for background,  only valid when <em>highlight</em> = True.</p></li>
+<li><p><strong>tag</strong> – str, tag of region.</p></li>
+<li><p><strong>expression1</strong> – str, expression for left-hand variable definition.</p></li>
+<li><p><strong>evaluate1</strong> – bool, in-line evaluate the variable at left-hand.</p></li>
+<li><p><strong>unit1</strong> – str, unit use to overwrite default unit in evaluating result at left-hand.</p></li>
+<li><p><strong>expression2</strong> – str, expression for right-hand variable definition.</p></li>
+<li><p><strong>evaluate2</strong> – bool. in-line evaluate the variable at right-hand.</p></li>
+<li><p><strong>unit2</strong> – unit use to overwrite default unit in evaluating result at right-hand.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A copy of inserted &lt;region&gt; element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addsolve">
+<code class="sig-name descname">addsolve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conditionset</span></em>, <em class="sig-param"><span class="n">unknown_guess</span></em>, <em class="sig-param"><span class="n">row</span></em>, <em class="sig-param"><span class="n">spacing</span><span class="o">=</span><span class="default_value">24</span></em>, <em class="sig-param"><span class="n">txt_col</span><span class="o">=</span><span class="default_value">30</span></em>, <em class="sig-param"><span class="n">math_col</span><span class="o">=</span><span class="default_value">204</span></em>, <em class="sig-param"><span class="n">math_border</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">math_highlight</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">math_bgc</span><span class="o">=</span><span class="default_value">'inherit'</span></em>, <em class="sig-param"><span class="n">tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">txt_border</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">txt_highlight</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">txt_bgc</span><span class="o">=</span><span class="default_value">'inherit'</span></em>, <em class="sig-param"><span class="n">txt_bold</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">txt_italic</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">txt_underline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">txt_color</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addsolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a <em>Solve Block</em> to current xmcd file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conditionset</strong> – nested list, conditions of solving in the form of
+[[‘left-hand expression, ‘symbol’, right-hand expression], […],…]
+‘symbol’ can be <code class="docutils literal notranslate"><span class="pre">'=='</span></code>, <code class="docutils literal notranslate"><span class="pre">'&lt;'</span></code>, <code class="docutils literal notranslate"><span class="pre">'&lt;='</span></code>, <code class="docutils literal notranslate"><span class="pre">'&gt;'</span></code>, <code class="docutils literal notranslate"><span class="pre">'&gt;='</span></code>, <code class="docutils literal notranslate"><span class="pre">'!='</span></code></p></li>
+<li><p><strong>unknown_guess</strong> – dict, guesses of unknown variables. in the form of
+{‘variable_1: guess_1, ‘variable_2: guess_2, …}</p></li>
+<li><p><strong>row</strong> – float, start row location.</p></li>
+<li><p><strong>spacing</strong> – float, line spacing.</p></li>
+<li><p><strong>txt_col</strong> – float, target column location of text.</p></li>
+<li><p><strong>math_col</strong> – float, target column location of math expression.</p></li>
+<li><p><strong>math_border</strong> – bool, show border of math region.</p></li>
+<li><p><strong>math_highlight</strong> – bool, highlight math region.</p></li>
+<li><p><strong>math_bgc</strong> – str., color name or hex code in lowercase for math background,
+only valid when <em>highlight</em> = True.</p></li>
+<li><p><strong>tag</strong> – str, tag of region.</p></li>
+<li><p><strong>unit</strong> – str, unit use to overwrite default unit in evaluating result.</p></li>
+<li><p><strong>txt_border</strong> – bool, show border of text region.</p></li>
+<li><p><strong>txt_highlight</strong> – bool, highlight text region</p></li>
+<li><p><strong>txt_bgc</strong> – str, color name or hex code in lowercase for text background,
+only valid  when <em>highlight</em> = True.</p></li>
+<li><p><strong>txt_bold</strong> – bool, use bold font style.</p></li>
+<li><p><strong>txt_italic</strong> – bool, use italic font style.</p></li>
+<li><p><strong>txt_underline</strong> – bool, text with underline.</p></li>
+<li><p><strong>txt_color</strong> – str. color name or hex code in lowercase for text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>save current xmcd as specified file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – str, path and the file name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addblock_fst">
+<code class="sig-name descname">addblock_fst</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fst_layout</span></em>, <em class="sig-param"><span class="n">loads</span></em>, <em class="sig-param"><span class="n">eccentricity</span></em>, <em class="sig-param"><span class="n">ply_mat</span></em>, <em class="sig-param"><span class="n">ply_thk</span></em>, <em class="sig-param"><span class="n">ply_edg</span><span class="o">=</span><span class="default_value">[0, 0]</span></em>, <em class="sig-param"><span class="n">hole_type</span><span class="o">=</span><span class="default_value">['standard', 'standard']</span></em>, <em class="sig-param"><span class="n">pryedge</span><span class="o">=</span><span class="default_value">[0, 0]</span></em>, <em class="sig-param"><span class="n">loadsubs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fastener</span><span class="o">=</span><span class="default_value">'bolt'</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'M6'</span></em>, <em class="sig-param"><span class="n">grade</span><span class="o">=</span><span class="default_value">'A4-70'</span></em>, <em class="sig-param"><span class="n">packing</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">grib</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">alum_code</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sec_num</span><span class="o">=</span><span class="default_value">'1.1'</span></em>, <em class="sig-param"><span class="n">sec_title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">template</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addblock_fst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a group of regions for fastener checking to current xmcd file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fst_layout</strong> – 2d list of float, coordinates of fasteners in the form of [[u1, v1], [u2, v2],…], unit=mm.</p></li>
+<li><p><strong>loads</strong> – list of float, external load in form as N.mm [Fu, Fv, Fn, Mu, Mv, Mn], unit=N, mm.</p></li>
+<li><p><strong>eccentricity</strong> – list of float, distance from loading point to reference origin [du, dv, dn], unit=mm.</p></li>
+<li><p><strong>ply_mat</strong> – list of str, material name of connected parts [part1, part2].</p></li>
+<li><p><strong>ply_thk</strong> – list of float, thickness of connected parts, unit=mm.</p></li>
+<li><p><strong>ply_edg</strong> – list of float, edge distance on connected parts, unit=mm.</p></li>
+<li><p><strong>hole_type</strong> – list of str, hole type on connected parts.</p></li>
+<li><p><strong>pryedge</strong> – list of float, nominal lever arm for prying force about u and v, unit =mm.</p></li>
+<li><p><strong>loadsubs</strong> – list of float, external load for substitution if argument loads includes algebra.</p></li>
+<li><p><strong>fastener</strong> – str, general name of fastener to be shown in calculations.</p></li>
+<li><p><strong>name</strong> – str, fastener name/code.</p></li>
+<li><p><strong>grade</strong> – str, grade code of fastener.</p></li>
+<li><p><strong>packing</strong> – float, packing thickness, unit=mm.</p></li>
+<li><p><strong>grib</strong> – float, grib length, unit=mm.</p></li>
+<li><p><strong>alum_code</strong> – bool, verify fasteners according to <em>BS8118</em> as fastener on aluminum member when True,
+or according to <em>BS5950</em> as fastener on steel member when False.</p></li>
+<li><p><strong>sec_num</strong> – str, section number to be shown in title of inserted part.</p></li>
+<li><p><strong>sec_title</strong> – str, section title of inserted part.</p></li>
+<li><p><strong>template</strong> – str, file path of the template used to create the regions. If no template is specified, a
+default one will be searched from the package folder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Xmcd.addblock_lbcheck">
+<code class="sig-name descname">addblock_lbcheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section_elem</span></em>, <em class="sig-param"><span class="n">material</span><span class="o">=</span><span class="default_value">'6063-T6'</span></em>, <em class="sig-param"><span class="n">full_detail</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">avg_thk</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sec_num</span><span class="o">=</span><span class="default_value">'2.1.1'</span></em>, <em class="sig-param"><span class="n">sec_title</span><span class="o">=</span><span class="default_value">'Local Buckling Check'</span></em>, <em class="sig-param"><span class="n">template</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Xmcd.addblock_lbcheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a group of regions for local buckling checking of aluminum member</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_elem</strong> – dict, elements data of a section in the form of
+{‘1’: {‘length’: .., ‘thks’: [..], ‘rp’: [..], ‘slope’: .., ‘bx’: [..], ‘by’: [..],
+‘Ie’: .., ‘type’: ..},
+‘2’:{…}
+…}</p></li>
+<li><p><strong>material</strong> – str: material name.</p></li>
+<li><p><strong>full_detail</strong> – bool, show full calculation detail.</p></li>
+<li><p><strong>avg_thk</strong> – bool, get element thickness from average thickness of intersections when element is internal.</p></li>
+<li><p><strong>sec_num</strong> – str, section number to be shown in title of inserted part.</p></li>
+<li><p><strong>sec_title</strong> – str, section title of inserted part.</p></li>
+<li><p><strong>template</strong> – str, file path of the template used to create the regions. If no template is specified, a
+default one will be searched from the package folder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="class-mathcad"></span><dl class="py class">
+<dt id="pyfacade.pymcad.Mathcad">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pymcad.</code><code class="sig-name descname">Mathcad</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">visible</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Mathcad" title="Permalink to this definition">¶</a></dt>
+<dd><p>MathCAD Automation API</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>visible</strong> – bool, show MathCAD Application UI after launching.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pymcad.Mathcad.visible">
+<em class="property">property </em><code class="sig-name descname">visible</code><a class="headerlink" href="#pyfacade.pymcad.Mathcad.visible" title="Permalink to this definition">¶</a></dt>
+<dd><p>bool, visibility of application.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Mathcad.filepath">
+<em class="property">property </em><code class="sig-name descname">filepath</code><a class="headerlink" href="#pyfacade.pymcad.Mathcad.filepath" title="Permalink to this definition">¶</a></dt>
+<dd><p>str, default file path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Mathcad.worksheet">
+<code class="sig-name descname">worksheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Mathcad.worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a worksheet object with specified file name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> – str, name (and path) of requested xmcd file. When specified, the target worksheet will be
+firstly searched from files currently opened by application. If no valid worksheet is found,
+the function then try to load requested file according to specified name and path. Otherwise,
+if <em>file_name</em> is left None as default, the current active worksheet will be returned.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">pymcad.Worksheet</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Mathcad.sheetslist">
+<code class="sig-name descname">sheetslist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fullname</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Mathcad.sheetslist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a name list of worksheet opened by application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fullname</strong> – bool, show full path of the worksheet.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of str.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Mathcad.closeall">
+<code class="sig-name descname">closeall</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quit</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mute</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Mathcad.closeall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close all the worksheets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>quit</strong> – bool, quit the application after closing worksheets.</p></li>
+<li><p><strong>save</strong> – bool, save the worksheets before closing.</p></li>
+<li><p><strong>mute</strong> – bool, save automatically without asking for user confirmation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyfacade.pymcad.Worksheet">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pymcad.</code><code class="sig-name descname">Worksheet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mcsheet</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface with MathCAD worksheet.</p>
+<p>Create a instance by calling <code class="docutils literal notranslate"><span class="pre">worksheet</span></code> method of <code class="docutils literal notranslate"><span class="pre">pymcad.Mathcad</span></code>.</p>
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#pyfacade.pymcad.Worksheet.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the worksheet. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#pyfacade.pymcad.Worksheet.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path of the worksheet file. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.fullname">
+<em class="property">property </em><code class="sig-name descname">fullname</code><a class="headerlink" href="#pyfacade.pymcad.Worksheet.fullname" title="Permalink to this definition">¶</a></dt>
+<dd><p>The fully-qualified path to the worksheet. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.windowstate">
+<em class="property">property </em><code class="sig-name descname">windowstate</code><a class="headerlink" href="#pyfacade.pymcad.Worksheet.windowstate" title="Permalink to this definition">¶</a></dt>
+<dd><p>State of the worksheet window.</p>
+<div class="line-block">
+<div class="line">0- The window is maximized.</div>
+<div class="line">1- The window is minimized.</div>
+<div class="line">2- The window is resizable.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.region">
+<code class="sig-name descname">region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request a region object in the worksheet by its tag name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tag</strong> – str, tag name of requested region.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">pymcad.Region</span></code> object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.activate">
+<code class="sig-name descname">activate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.activate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate the worksheet and bring it to the top of the application UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the worksheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>full_file_name</strong> – str, path and full name to save the file as. If it is not provided, the file will be
+saved in-place.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.getvalue">
+<code class="sig-name descname">getvalue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.getvalue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the <strong>last</strong> value of a variable in worksheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>var_name</strong> – str, name of variable.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><div class="line-block">
+<div class="line">str if the value of variable is a string.</div>
+<div class="line">float if the value of variable is a real number.</div>
+<div class="line">complex if the value of variable is a complex.</div>
+<div class="line">numpy.ndarray if the value of variable is a matrix.</div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.setvalue">
+<code class="sig-name descname">setvalue</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.setvalue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set Initial value of a variable.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>value set by this way could <strong>NOT</strong> be saved.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_name</strong> – str, name of variable.</p></li>
+<li><p><strong>value</strong> – float, string, or array-like.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.recalculate">
+<code class="sig-name descname">recalculate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.recalculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-calculate the worksheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.scrollto">
+<code class="sig-name descname">scrollto</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coordinate_x</span></em>, <em class="sig-param"><span class="n">coordinate_y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.scrollto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll the window of worksheet to specified location</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coordinate_x</strong> – float, X-coordinate to scroll the window to.</p></li>
+<li><p><strong>coordinate_y</strong> – float, y-coordinate to scroll the window to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.printout">
+<code class="sig-name descname">printout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.printout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the work sheet by default print setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Worksheet.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mute</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Worksheet.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the worksheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save</strong> – bool, save the worksheet before closing.</p></li>
+<li><p><strong>mute</strong> – bool, save automatically without asking for user confirmation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pyfacade.pymcad.Region">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pymcad.</code><code class="sig-name descname">Region</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mcregion</span></em>, <em class="sig-param"><span class="n">wnd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Region" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface with region in MathCAD worksheet.</p>
+<p>Create a instance by calling <code class="docutils literal notranslate"><span class="pre">region</span></code> method of <code class="docutils literal notranslate"><span class="pre">pymcad.Worksheet</span></code>.’</p>
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.x">
+<em class="property">property </em><code class="sig-name descname">x</code><a class="headerlink" href="#pyfacade.pymcad.Region.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>X-coordinate of the region. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#pyfacade.pymcad.Region.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Y-coordinate of the region. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.tag">
+<em class="property">property </em><code class="sig-name descname">tag</code><a class="headerlink" href="#pyfacade.pymcad.Region.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>tag name of the region. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.type">
+<em class="property">property </em><code class="sig-name descname">type</code><a class="headerlink" href="#pyfacade.pymcad.Region.type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type of the region. Read-only.</p>
+<div class="line-block">
+<div class="line">0 - Text region.</div>
+<div class="line">1 - Math region.</div>
+<div class="line">2 - Bitmap region.</div>
+<div class="line">3 - Metafile region.</div>
+<div class="line">4 - OLE object region.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.xml">
+<em class="property">property </em><code class="sig-name descname">xml</code><a class="headerlink" href="#pyfacade.pymcad.Region.xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>XML data of the region. Only applicable to <em>Math Region</em></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.errmsg">
+<em class="property">property </em><code class="sig-name descname">errmsg</code><a class="headerlink" href="#pyfacade.pymcad.Region.errmsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error message of the region. Read-only.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pymcad.Region.locate">
+<code class="sig-name descname">locate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pymcad.Region.locate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locate window to the region</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<p><strong>Table of Color Name</strong></p>
+<p>Below are strings of <em>Color Name</em> recognized by method <code class="docutils literal notranslate"><span class="pre">addtext</span></code>, <code class="docutils literal notranslate"><span class="pre">addmath</span></code>, <code class="docutils literal notranslate"><span class="pre">addcompare</span></code>, <code class="docutils literal notranslate"><span class="pre">addsolve</span></code> of
+class <code class="docutils literal notranslate"><span class="pre">pymcad.Xmcd</span></code>, and the corresponding <em>Hex Code</em> .</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Color Name</p></th>
+<th class="head"><p>Hex Code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>‘red’</p></td>
+<td><p>#ff0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘maroon’</p></td>
+<td><p>#800000</p></td>
+</tr>
+<tr class="row-even"><td><p>‘pink’</p></td>
+<td><p>#ff8080</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘violet’</p></td>
+<td><p>#ff80ff</p></td>
+</tr>
+<tr class="row-even"><td><p>‘magenta’</p></td>
+<td><p>#ff00ff</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘orange’</p></td>
+<td><p>#ff8000</p></td>
+</tr>
+<tr class="row-even"><td><p>‘yellow’</p></td>
+<td><p>#ffff80</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘lime’</p></td>
+<td><p>#80ff80</p></td>
+</tr>
+<tr class="row-even"><td><p>‘green’</p></td>
+<td><p>#00ff00</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘aqua’</p></td>
+<td><p>#80ffff</p></td>
+</tr>
+<tr class="row-even"><td><p>‘blue’</p></td>
+<td><p>#0000ff</p></td>
+</tr>
+<tr class="row-odd"><td><p>‘gray’</p></td>
+<td><p>#c0c0c0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="module_pyacad.html" class="btn btn-neutral float-right" title="AutoCAD Interface (pyfacade.pyacad)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="module_transxml.html" class="btn btn-neutral float-left" title="MathCAD XML Constructor (pyfacade.transxml)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qi Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

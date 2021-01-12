@@ -1,0 +1,622 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Toolbox for Structural Calculation (pyfacade.strcals) &mdash; pyfacade 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="AutoCAD Interface (pyfacade.pyacad)" href="module_pyacad.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pyfacade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_pyeng.html">Solver for 2D-frame Question (pyfacade.pyeng)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_transxml.html">MathCAD XML Constructor (pyfacade.transxml)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pymcad.html">MathCAD Interface (pyfacade.pymcad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pyacad.html">AutoCAD Interface (pyfacade.pyacad)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Toolbox for Structural Calculation (pyfacade.strcals)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyfacade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Toolbox for Structural Calculation (pyfacade.strcals)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/module_strcals.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-strcals">
+<span id="toolbox-for-structural-calculation-pyfacade-strcals"></span><h1>Toolbox for Structural Calculation (pyfacade.strcals)<a class="headerlink" href="#module-strcals" title="Permalink to this headline">¶</a></h1>
+<p>Module <code class="docutils literal notranslate"><span class="pre">pyfacade.strcals</span></code> provides some utility functions based on other modules of this package,
+for structural calculation and verification works.</p>
+<dl class="py function">
+<dt id="pyfacade.strcals.eqslds">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">eqslds</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">I1</span></em>, <em class="sig-param"><span class="n">I2</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">E</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.eqslds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate equivalent slenderness of a section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>I1</strong> – float, moment of inertia about major axis of the section.</p></li>
+<li><p><strong>I2</strong> – float, moment of inertia about major axis of the section.</p></li>
+<li><p><strong>alpha</strong> – float, angle between major aixs and x-axis, in radians.</p></li>
+<li><p><strong>E</strong> – float, modulus of elasticity of the section material.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple of float, (k_yx, k_yy, k_xx, k_xy), where <em>k_ij</em> represents equivalent slenderness about i-axis under
+force in j-direction.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.biabend">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">biabend</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section_prop</span></em>, <em class="sig-param"><span class="n">Mx</span></em>, <em class="sig-param"><span class="n">My</span></em>, <em class="sig-param"><span class="n">full_output</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.biabend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate maximum normal stress on section due to biaxial bending.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_prop</strong> – sub-dict for a section extracted from the dict created by <code class="docutils literal notranslate"><span class="pre">pyacad.Acad.seclib</span></code>.</p></li>
+<li><p><strong>Mx</strong> – float, bending moment about x-axis, unit = N*mm.</p></li>
+<li><p><strong>My</strong> – float, bending moment about y-axis, unit = N*mm.</p></li>
+<li><p><strong>full_output</strong> – bool, output all the calculation parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p>tuple, in the form of (s_min, s_max, theta, Mn, In, dn)</p>
+<div class="line-block">
+<div class="line">s_min - float, minimum stress on the section, unit = N/mm <sup>2</sup></div>
+<div class="line">s_max - float, maximum stress on the section, unit = N/mm <sup>2</sup></div>
+<div class="line">theta - float, angle between neutral axis and x-axis, in radians.</div>
+<div class="line">Mn - float, resultant effective moment about neutral axis, unit = N*mm</div>
+<div class="line">In - float, moment of inertia of section about neutral axis, unit = mm <sup>4</sup>.</div>
+<div class="line">dn - tuple of float (d_min, d_max), minimum and maximum relative distance from the most critical points to
+neutral axis.</div>
+</div>
+<p>The last 4 items are excluded when <em>full_output</em> = False.</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.combsec">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">combsec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sec_lib</span></em>, <em class="sig-param"><span class="n">sec_mat</span></em>, <em class="sig-param"><span class="n">combinations</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.combsec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sec_lib</strong> – nested dict stats section properties in the form of
+{sec_name_1: {‘I1’:.., ‘I2’:..,’alpha’:..}, sec_name_2:…}</p></li>
+<li><p><strong>sec_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}</p></li>
+<li><p><strong>combinations</strong> – <p>nested list, relation of section combinations, [[sec_name_1, sec_name_2, comb_indicator],…]
+The <em>comb_indicator</em> is one of below:</p>
+<div class="line-block">
+<div class="line">’x’, ‘X’ or 1 - combine in x-direction</div>
+<div class="line">’y’, ‘Y’ or 2 - combine in y-direction</div>
+<div class="line">’xy’, ‘XY’ or 0 - combine in both directions</div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple, (section group in x-direction, section group in y-direction, matrix of force sharing,
+matrix of moment sharing, matrix of equivalent slenderness)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.check_transoms">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">check_transoms</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section_lib</span></em>, <em class="sig-param"><span class="n">section_mat</span></em>, <em class="sig-param"><span class="n">section_comb</span></em>, <em class="sig-param"><span class="n">span</span></em>, <em class="sig-param"><span class="n">h1</span></em>, <em class="sig-param"><span class="n">h2</span></em>, <em class="sig-param"><span class="n">load_app</span></em>, <em class="sig-param"><span class="n">wl</span></em>, <em class="sig-param"><span class="n">dl1</span></em>, <em class="sig-param"><span class="n">dl2</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">wlf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">imp</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">imq</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">feature</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">wlf_flip</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">four_side1</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">four_side2</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ds1</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">ds2</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">wlc</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.check_transoms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verification of transom of combined sections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_lib</strong> – str or dict, section library stating section properties and boundary information. In form of
+str as path and name of json file created by <code class="docutils literal notranslate"><span class="pre">pyacad.Acad.seclib</span></code>, or a nested dict in the
+same form.</p></li>
+<li><p><strong>section_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}</p></li>
+<li><p><strong>section_comb</strong> – <p>nested list, relation of section combinations, [[sec_name_1, sec_name_2, comb_indicator],…].
+The <em>comb_indicator</em> is one of below:</p>
+<div class="line-block">
+<div class="line">’x’, ‘X’ or 1 - combine in x-direction.</div>
+<div class="line">’y’, ‘Y’ or 2 - combine in y-direction.</div>
+<div class="line">’xy’, ‘XY’ or 0 - combine in both directions.</div>
+</div>
+</p></li>
+<li><p><strong>span</strong> – float, span of transom, unit = mm.</p></li>
+<li><p><strong>h1</strong> – float, height of upper panel, unit = mm.</p></li>
+<li><p><strong>h2</strong> – float, height of lower panel, unit = mm.</p></li>
+<li><p><strong>load_app</strong> – <p>list of str, name of sections take loads [for_wl1, for_wl2, for_wlf, for_imp, for_dl1, for_dl2].</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">for_wl1 - name of section taking wind load from upper panel.</div>
+<div class="line">for_wl2 - name of section taking wind load from lower panel.</div>
+<div class="line">for_wlf - name of section taking wind load from horizontal feature, if any.</div>
+<div class="line">for_imp - name of section taking vertical imposed load, if any.</div>
+<div class="line">for_dl1 - name of section taking dead load from upper panel, if any.</div>
+<div class="line">for_dl2 - name of section taking dead load from lower panel, if any.</div>
+</div>
+</div></blockquote>
+<p>the last four items can be <code class="docutils literal notranslate"><span class="pre">None</span></code> when corresponding load does not exist.</p>
+</p></li>
+<li><p><strong>wl</strong> – list of float, design wind load on panel, [pressure, suction], unit = kPa, positive as pressure,
+negative as suction.</p></li>
+<li><p><strong>dl1</strong> – float, design weight of upper panel, unit = N.</p></li>
+<li><p><strong>dl2</strong> – float, design weight of lower panel, unit = N.</p></li>
+<li><p><strong>wlf</strong> – float, design wind load on feature, unit = kPa, positive as uplifting, negative as downward.</p></li>
+<li><p><strong>imp</strong> – float, design imposed point load, unit = N, positive as uplifting, negative as downward.</p></li>
+<li><p><strong>imq</strong> – float, design imposed linear load, unit = N/mm, positive as uplifting, negative as downward.</p></li>
+<li><p><strong>feature</strong> – float, windward breadth of horizontal feature, unit = mm.</p></li>
+<li><p><strong>wlf_flip</strong> – bool, also check the case that wind load direction on feature is flipped.</p></li>
+<li><p><strong>four_side1</strong> – bool, load path of upper panel is considered as 4-side-supported.</p></li>
+<li><p><strong>four_side2</strong> – bool, load path of lower panel is considered as 4-side-supported.</p></li>
+<li><p><strong>ds1</strong> – float, distance from ends to apply location of upper panel weight. unit = mm.
+Apply panel weight as udl if <em>ds1</em> = 0.</p></li>
+<li><p><strong>ds2</strong> – float, distance from ends to apply location of lower panel weight. unit = mm.
+Apply panel weight as udl if <em>ds1</em> = 0.</p></li>
+<li><p><strong>wlc</strong> – float, combination factor of wind load when combine with imposed load.</p></li>
+<li><p><strong>summary</strong> – bool, output the summary of verification only.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>namedtuple <code class="docutils literal notranslate"><span class="pre">Transom_summary</span></code> if <em>summary</em> = True. Otherwise return namedtuple <code class="docutils literal notranslate"><span class="pre">Transom_output</span></code>.</p>
+</dd>
+</dl>
+<p>Refer to explanations to <a class="reference internal" href="#transom-output"><span class="std std-ref">Namedtuples for Output of Transom Check</span></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.check_mullions">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">check_mullions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section_lib</span></em>, <em class="sig-param"><span class="n">section_mat</span></em>, <em class="sig-param"><span class="n">section_comb</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">b1</span></em>, <em class="sig-param"><span class="n">b2</span></em>, <em class="sig-param"><span class="n">load_app</span></em>, <em class="sig-param"><span class="n">wl</span></em>, <em class="sig-param"><span class="n">panel_dens1</span></em>, <em class="sig-param"><span class="n">panel_dens2</span></em>, <em class="sig-param"><span class="n">support1</span></em>, <em class="sig-param"><span class="n">support2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">support2_lateral</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">wlvf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">wlhf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">bvf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">bhf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">hf_gap</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">hf_loc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wlvf_flip</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">wlhf_flip</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.check_mullions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verification of mullion of consistently combined sections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_lib</strong> – str or dict, section library stating section properties and boundary information. In form of
+str as path and name of json file created by <code class="docutils literal notranslate"><span class="pre">pyacad.Acad.seclib</span></code>, or a nested dict in the
+same form.</p></li>
+<li><p><strong>section_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}</p></li>
+<li><p><strong>section_comb</strong> – <p>list, relationship of section combinations, [[sec_name_1, sec_name_2, comb_indicator],…].
+The <em>comb_indicator</em> is one of below:</p>
+<div class="line-block">
+<div class="line">’x’, ‘X’ or 1 - combine in x-direction</div>
+<div class="line">’y’, ‘Y’ or 2 - combine in y-direction</div>
+<div class="line">’xy’, ‘XY’ or 0 - combine in both directions</div>
+</div>
+</p></li>
+<li><p><strong>height</strong> – list of float, height of mullions from lower to upper, unit = mm</p></li>
+<li><p><strong>b1</strong> – float, width of panel at left side of mullion, unit = mm</p></li>
+<li><p><strong>b2</strong> – float, width of panel at right side of mullion, unit = mm</p></li>
+<li><p><strong>load_app</strong> – <p>list of str, name of sections take loads
+[for_wl1, for_wl2, for_dl1, for_dl2, for_wlvf, for_wlhf1, for_wlhf2]</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">for_wl1 - name of section taking wind load from left panel.</div>
+<div class="line">for_wl2 - name of section taking wind load from right panel.</div>
+<div class="line">for_dl1 - name of section taking dead load from left panel.</div>
+<div class="line">for_dl2 - name of section taking dead load from right panel.</div>
+<div class="line">for_wlvf - name of section taking wind load from vertical feature, if any.</div>
+<div class="line">for_wlhf1 - name of section taking wind load from horizontal feature at left side, if any.</div>
+<div class="line">for_wlhf2 - name of section taking wind load from horizontal feature at right side, if any.</div>
+</div>
+</div></blockquote>
+<p>the last three items can be <code class="docutils literal notranslate"><span class="pre">None</span></code> when corresponding load does not exist</p>
+</p></li>
+<li><p><strong>wl</strong> – list of float, design wind load on panel, [pressure, suction], unit = kPa, positive as pressure,
+negative as suction.</p></li>
+<li><p><strong>panel_dens1</strong> – float, design area density of panel at left side of mullion, unit = kN/m <sup>2</sup>.</p></li>
+<li><p><strong>panel_dens2</strong> – float, design area density of panel at right side of mullion, unit = kN/m <sup>2</sup>.</p></li>
+<li><p><strong>support1</strong> – list of float, distance from top end of mullion to primary support, unit = mm.</p></li>
+<li><p><strong>support2</strong> – list of float, distance from primary support to secondary support, unit = mm.
+No secondary support in that span if corresponding item in list is 0.</p></li>
+<li><p><strong>support2_lateral</strong> – bool, secondary support also provides lateral restrain.</p></li>
+<li><p><strong>wlvf</strong> – float, design wind load on vertical feature, unit = kPa, positive as rightward, negative as leftward.</p></li>
+<li><p><strong>wlhf</strong> – float, design wind load on horizontal feature, unit = kPa, positive as uplifting, negative as downward.</p></li>
+<li><p><strong>bvf</strong> – float, windward breadth of vertical feature, unit = mm.</p></li>
+<li><p><strong>bhf</strong> – float, windward breadth of horizontal feature, unit = mm.</p></li>
+<li><p><strong>hf_gap</strong> – float, gap between horizontal feature and centroid of connected section, unit = mm.</p></li>
+<li><p><strong>hf_loc</strong> – list, distance of horizontal features to top end of mullion at each span, unit = mm.
+No horizontal feature in that span if corresponding item in list is 0.</p></li>
+<li><p><strong>wlvf_flip</strong> – bool, also check the case that wind load direction on vertical feature is flipped.</p></li>
+<li><p><strong>wlhf_flip</strong> – bool, also check the case that wind load direction on horizontal feature is flipped.</p></li>
+<li><p><strong>summary</strong> – bool, output the summary of verification only.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>if <em>summary</em> = True, return a namedtuple <code class="docutils literal notranslate"><span class="pre">Mullion_summary</span></code>. otherwise return 3 namedtuple,
+<code class="docutils literal notranslate"><span class="pre">Mullion_model</span></code>, <code class="docutils literal notranslate"><span class="pre">Mullion_verify</span></code> and <code class="docutils literal notranslate"><span class="pre">Mullion_critical</span></code>.</p>
+</dd>
+</dl>
+<p>Refer to explanations to <a class="reference internal" href="#mullion-output"><span class="std std-ref">Namedtuples for Output of Mullion Check</span></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.check_mullions_varsec">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">check_mullions_varsec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section_lib</span></em>, <em class="sig-param"><span class="n">section_mat</span></em>, <em class="sig-param"><span class="n">section_combs</span></em>, <em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">b1</span></em>, <em class="sig-param"><span class="n">b2</span></em>, <em class="sig-param"><span class="n">load_app</span></em>, <em class="sig-param"><span class="n">wl</span></em>, <em class="sig-param"><span class="n">panel_dens1</span></em>, <em class="sig-param"><span class="n">panel_dens2</span></em>, <em class="sig-param"><span class="n">support1</span></em>, <em class="sig-param"><span class="n">support2</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">support2_lateral</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">wlvf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">wlhf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">bvf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">bhf</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">hf_gap</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">hf_loc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wlvf_flip</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">wlhf_flip</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">summary</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.check_mullions_varsec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verification of mullion of combined sections inconsistently.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_lib</strong> – str or dict, section library stating section properties and boundary information. In form of
+str as path and name of json file created by <code class="docutils literal notranslate"><span class="pre">pyacad.Acad.seclib</span></code>, or a nested dict in the
+same form.</p></li>
+<li><p><strong>section_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}</p></li>
+<li><p><strong>section_combs</strong> – <p>nested list of section combinations, [comb1, comb2, comb3 …] in same order as mullion span
+<strong>from Bottom to Top</strong>, each combination is in the form of
+[[sec_name_1, sec_name_2, comb_indicator],…]. The <em>comb_indicator</em> is one of below:</p>
+<div class="line-block">
+<div class="line">’x’, ‘X’ or 1 - combine in x-direction</div>
+<div class="line">’y’, ‘Y’ or 2 - combine in y-direction</div>
+<div class="line">’xy’, ‘XY’ or 0 - combine in both directions</div>
+</div>
+</p></li>
+<li><p><strong>height</strong> – list of float, height of mullions from lower to upper, unit = mm.</p></li>
+<li><p><strong>b1</strong> – float, width of panel at left side of mullion, unit = mm.</p></li>
+<li><p><strong>b2</strong> – float, width of panel at right side of mullion, unit = mm.</p></li>
+<li><p><strong>load_app</strong> – list of str, name of sections takes loads
+[for_wl1, for_wl2, for_dl1, for_dl2, for_wlvf, for_wlhf1, for_wlhf2]
+the last three can be ‘None’ when corresponding load does not exist</p></li>
+<li><p><strong>wl</strong> – list of float, design wind load on panel, [pressure, suction], unit = kPa, positive as pressure,
+negative as suction</p></li>
+<li><p><strong>panel_dens1</strong> – float, design area density of panel at left side of mullion, unit = kN/m <sup>2</sup>.</p></li>
+<li><p><strong>panel_dens2</strong> – float, design area density of panel at right side of mullion, unit = kN/m <sup>2</sup>.</p></li>
+<li><p><strong>support1</strong> – list of float, distance from top end of mullion to primary support, unit = mm.</p></li>
+<li><p><strong>support2</strong> – list of float, distance from primary support to secondary support, unit = mm.
+No secondary support in that span if corresponding item in list is 0.</p></li>
+<li><p><strong>support2_lateral</strong> – bool, secondary support also provides lateral restrain.</p></li>
+<li><p><strong>wlvf</strong> – float, design wind load on vertical feature, unit = kPa, positive as rightward, negative as leftward.</p></li>
+<li><p><strong>wlhf</strong> – float, design wind load on horizontal feature, unit = kPa, positive as uplifting, negative as downward.</p></li>
+<li><p><strong>bvf</strong> – float, windward breadth of vertical feature, unit = mm.</p></li>
+<li><p><strong>bhf</strong> – float, windward breadth of horizontal feature, unit = mm.</p></li>
+<li><p><strong>hf_gap</strong> – float, gap between horizontal feature and centroid of connected section, unit = mm.</p></li>
+<li><p><strong>hf_loc</strong> – list, distance of horizontal features to top end of mullion at each span, unit = mm.
+No horizontal feature in that span if corresponding item in list is 0.</p></li>
+<li><p><strong>wlvf_flip</strong> – bool, also check the case that wind load direction on vertical feature is flipped.</p></li>
+<li><p><strong>wlhf_flip</strong> – bool, also check the case that wind load direction on horizontal feature is flipped.</p></li>
+<li><p><strong>summary</strong> – bool, output the verification summary only.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>if <em>summary</em> = True, return a namedtuple <code class="docutils literal notranslate"><span class="pre">Mullion_summary</span></code>. otherwise return 3 namedtuple,
+<code class="docutils literal notranslate"><span class="pre">Mullion_model</span></code>, <code class="docutils literal notranslate"><span class="pre">Mullion_verify</span></code> and <code class="docutils literal notranslate"><span class="pre">Mullion_critical</span></code>.</p>
+</dd>
+</dl>
+<p>Refer to explanations to <a class="reference internal" href="#mullion-output"><span class="std std-ref">Namedtuples for Output of Mullion Check</span></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.build_frame">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">build_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">drawing</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sec_mod</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sec_area</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sec_inert</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">auto_assign</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">geoacc</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">file_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.build_frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interactively build 2D frame model through AutoCAD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>drawing</strong> – str. file name (and path) with extension of .dwg to open and operate on. Activate the specified
+file if it is opened already. Otherwise, try to open the file from specified path.</p></li>
+<li><p><strong>sec_mod</strong> – list of float, modulus of elasticity of each beam. unit = N/mm <sup>2</sup>.
+If not given, use unit value (1) as default.</p></li>
+<li><p><strong>sec_area</strong> – list of float, section area of each beam, unit = mm <sup>2</sup>.
+If not given, use unit value (1) as default.</p></li>
+<li><p><strong>sec_inert</strong> – list of float, moment of inertia of each beam, unit = mm <sup>4</sup>.
+If not given, use unit value (1) as default.</p></li>
+<li><p><strong>auto_assign</strong> – bool. Automatically assign the provide modulus of elasticity, section area and moment of
+inertia to beams in order. If the size of provided list is not enough, the last value in list
+will be repeated. If False, interactive keyborad inputting will be requested.</p></li>
+<li><p><strong>geoacc</strong> – int. number of decimal place to be kept when getting the nodes’ coordinates.</p></li>
+<li><p><strong>file_name</strong> – str, file name for exporting model information, with extension of ‘.json’. If not specified,
+exporting procedure will be skipped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple. (<code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng.Beam2</span></code> object, <code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng.Bsolver</span></code> object)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.strcals.load_frame">
+<code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">load_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_name</span></em>, <em class="sig-param"><span class="n">build</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.load_frame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load 2D frame model from file saved by <code class="docutils literal notranslate"><span class="pre">build_frame</span></code> .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> – str, file name with extension of ‘.json’ to be loaded.</p></li>
+<li><p><strong>build</strong> – bool, build 2D frame based on loaded model information.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If <em>build</em> = True, return a tuple (<code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng.Beam2</span></code> object, <code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng.Bsolver</span></code> object).
+Otherwise, return a namedtuple <code class="docutils literal notranslate"><span class="pre">Frame_model</span></code>.</p>
+</dd>
+</dl>
+<p>Refer to explanations to <a class="reference internal" href="#load-frame"><span class="std std-ref">Namedtuples for Output of Loading Frame</span></a></p>
+</dd></dl>
+
+<hr class="docutils" />
+<p id="transom-output"><strong>Namedtuples for Output of Transom Check</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Transom_summary</span></code>, including 3 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>max_stress</strong>: a tuple in the form of (max. stress in alum. member, max. stress in steel member),
+presents max. stress on the entire model produced by most critical factored load combinations.</p></li>
+<li><p><strong>max_deflection_wl</strong>: a tuple in the form of (max. deflection in x-axis, max deflection in y-axis),
+presents max. deflection of the entire model produced by nominal wind load.</p></li>
+<li><p><strong>max_deflection_dl</strong>: a tuple in the form of (max. deflection in x-axis, max deflection in y-axis),
+presents max. deflection of the entire model produced by nominal dead load.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Transom_output</span></code>, including 4 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>shear</strong>: dict of max shear (shear in x-axis, shear in y-axis) due to factored load combinations on each section.
+Unit=N.</p></li>
+<li><p><strong>stress</strong>: dict of max stress (compressive, tensile) due to factored load combinations on each sections. Unit=MPa.</p></li>
+<li><p><strong>deflection_wl</strong>: dict of (max deflection in x-axis, max deflection in y-axis) due to nominal wind load
+combinations on each section. Unit=mm.</p></li>
+<li><p><strong>deflection_dl</strong>: dict of (max deflection in x-axis, max deflection in y-axis) due to nominal dead load
+combinations on each section. Unit=mm.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<p id="mullion-output"><strong>Namedtuples for Output of Mullion Check</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mullion_summary</span></code>, including 2 fields,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>max_stress</strong>: a tuple in the form of (max. stress in alum. member, max. stress in steel member),
+presents max. stress on the entire model produced by most critical factored load combinations.</p></li>
+<li><p><strong>max_deflection</strong>: a tuple in the form of (max. deflection in x-axis, max deflection in y-axis),
+presents max. deflection of the entire model produced by most critical nominal load combination.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mullion_model</span></code>, including 5 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>N</strong>: overall matrix of non-factored max axial force due to load cases</p></li>
+<li><p><strong>V</strong>: overall matrix of non-factored max shear force due to load cases</p></li>
+<li><p><strong>Mn</strong>: overall matrix of non-factored bending moment at support due to load cases</p></li>
+<li><p><strong>Mp</strong>: overall matrix of non-factored bending moment in span due to load cases</p></li>
+<li><p><strong>D</strong>: overall matrix of deflection due to load cases</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mullion_verify</span></code>, including 6 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>axial</strong>: dict of factored (max compression, max tension) on each section. Unit=N.</p></li>
+<li><p><strong>shear</strong>: dict of (max shear in x-axis, max shear in y-axis) due to factored load combinations on each section.
+Unit=N.</p></li>
+<li><p><strong>moment_n</strong>: dict of factored moments pair (about x-axis, about y-axis) causing max. compressive bending stress
+under load combinations on each section. Unit=N*mm.</p></li>
+<li><p><strong>moment_p</strong>: dict of factored moments pair (about x-axis, about y-axis) causing max. tensile bending stress
+under load combinations on each section. Unit=N*mm.</p></li>
+<li><p><strong>stress</strong>: dict of max stress (compressive, tensile) due to factored load combinations on each sections. Unit=MPa.</p></li>
+<li><p><strong>deflection</strong>: dict of (max deflection in x-axis, max deflection in y-axis) due to nominal load combinations on
+each section. Unit=mm.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Mullion_critical</span></code>, including 4 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>N</strong>: <em>location</em> occurs (max compression, max tension)</p></li>
+<li><p><strong>V</strong>: <em>location</em> occurs (max shear in x-axis, max shear in y-axis)</p></li>
+<li><p><strong>S</strong>: <em>location</em> occurs (max compressive stress, max tensile stress)</p></li>
+<li><p><strong>D</strong>: <em>location</em> occurs (max deflection in x-axis, max deflection in y-axis)</p></li>
+</ul>
+<p>Where, location is a tuple in the form of (relative_position_on_member, member_number).</p>
+</div></blockquote>
+</li>
+</ul>
+<hr class="docutils" />
+<p id="load-frame"><strong>Namedtuples for Output of Loading Frame</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Frame_model</span></code>, including 9 fields:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>nodes</strong>: nested list, coordinates of all nodes in model. Unit = mm.</p></li>
+<li><p><strong>beams</strong>: nested list, beam sets of index pair of start and end nodes of each beam.</p></li>
+<li><p><strong>A</strong>: list, section area of each beam. Unit = mm <sup>2</sup></p></li>
+<li><p><strong>I</strong>: list, moment of inertia of each beam. Unit = mm <sup>4</sup></p></li>
+<li><p><strong>E</strong>: list, modulus of elasticity of each beam. Unit = N/mm <sup>2</sup></p></li>
+<li><p><strong>restrain</strong>: dict, definition of structural restrain.</p></li>
+<li><p><strong>release</strong>: dict, definition of release condition of beams.</p></li>
+<li><p><strong>udl</strong>: dict, applied uniformly distributed load on beams.</p></li>
+<li><p><strong>pl</strong>: dict, applied concentrated load on nodes.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="module_pyacad.html" class="btn btn-neutral float-left" title="AutoCAD Interface (pyfacade.pyacad)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qi Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Solver for 2D-frame Question (pyfacade.pyeng) &mdash; pyfacade 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MathCAD XML Constructor (pyfacade.transxml)" href="module_transxml.html" />
+    <link rel="prev" title="Welcome to pyfacade’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pyfacade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Solver for 2D-frame Question (pyfacade.pyeng)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_transxml.html">MathCAD XML Constructor (pyfacade.transxml)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pymcad.html">MathCAD Interface (pyfacade.pymcad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pyacad.html">AutoCAD Interface (pyfacade.pyacad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_strcals.html">Toolbox for Structural Calculation (pyfacade.strcals)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyfacade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Solver for 2D-frame Question (pyfacade.pyeng)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/module_pyeng.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyeng">
+<span id="solver-for-2d-frame-question-pyfacade-pyeng"></span><h1>Solver for 2D-frame Question (pyfacade.pyeng)<a class="headerlink" href="#module-pyeng" title="Permalink to this headline">¶</a></h1>
+<p>Module <code class="docutils literal notranslate"><span class="pre">pyfacade.pyeng</span></code> provides full-functional methods for 2D beam model analysis, which are encapsulated to 2 classes:</p>
+<ul class="simple">
+<li><p>Class <code class="docutils literal notranslate"><span class="pre">Beam2</span></code> - <a class="reference internal" href="#class-beam2"><span class="std std-ref">2D beam element.</span></a></p></li>
+<li><p>Class <code class="docutils literal notranslate"><span class="pre">Bsolver</span></code> - <a class="reference internal" href="#class-bsolver"><span class="std std-ref">FEM solver for beam questions.</span></a></p></li>
+</ul>
+<span class="target" id="class-beam2"></span><dl class="py class">
+<dt id="pyfacade.pyeng.Beam2">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pyeng.</code><code class="sig-name descname">Beam2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_node</span></em>, <em class="sig-param"><span class="n">end_node</span></em>, <em class="sig-param"><span class="n">section_area</span></em>, <em class="sig-param"><span class="n">moment_of_inertia</span></em>, <em class="sig-param"><span class="n">modulus_of_elasticity</span></em>, <em class="sig-param"><span class="n">node_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finite element represents a two-dimensional beam in structural model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_node</strong> – int, index of start node of specified beam in node_list.</p></li>
+<li><p><strong>end_node</strong> – int, index of end node of specified beam in node_list.</p></li>
+<li><p><strong>section_area</strong> – float, cross section area of beam, unit=mm <sup>2</sup>.</p></li>
+<li><p><strong>moment_of_inertia</strong> – float, moment of inertia of beam section, unit=mm <sup>4</sup>.</p></li>
+<li><p><strong>modulus_of_elasticity</strong> – float, modulus of elasticity of beam material, unit=N/mm <sup>2</sup>.</p></li>
+<li><p><strong>node_list</strong> – nested list as [[x0,y0],[x1,y1],…], list of coordinates of all nodes in structural model.
+Unit=mm.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.eval">
+<code class="sig-name descname">eval</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establish necessary structural parameters for finite element analyze.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Run this method once after initialization or any changing on initial parameters.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.length">
+<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#pyfacade.pyeng.Beam2.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of beam. unit=mm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.angle">
+<em class="property">property </em><code class="sig-name descname">angle</code><a class="headerlink" href="#pyfacade.pyeng.Beam2.angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Angle between beam axial direction and +x direction, unit=rad.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.T">
+<em class="property">property </em><code class="sig-name descname">T</code><a class="headerlink" href="#pyfacade.pyeng.Beam2.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>The translate matrix from global coordinates to beam local coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.K">
+<em class="property">property </em><code class="sig-name descname">K</code><a class="headerlink" href="#pyfacade.pyeng.Beam2.K" title="Permalink to this definition">¶</a></dt>
+<dd><p>The standard stiffness matrix of beam element</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.nodef">
+<em class="property">property </em><code class="sig-name descname">nodef</code><a class="headerlink" href="#pyfacade.pyeng.Beam2.nodef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent applied force at node, in the form of [N_start, V_start, M_start, N_end, V_end, M_end],
+unit=N or N*mm</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.fill_GK">
+<code class="sig-name descname">fill_GK</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Global_Matrix</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.fill_GK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert element stiffness into <em>Global Stiffness Matrix</em> of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Global_Matrix</strong> – numpy.ndarray, target matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.fill_GR">
+<code class="sig-name descname">fill_GR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Global_Matrix</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.fill_GR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert equivalent node into <em>Global Node Force Matrix</em> of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Global_Matrix</strong> – numpy.ndarray, target matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.solve">
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Global_D</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import solved results from global model to beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>Global_D</strong> – numpy.ndarray, target matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.endforce">
+<code class="sig-name descname">endforce</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.endforce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output solved end force of beam element in the form of [[N_start, V_start, M_start, N_end, V_end, M_end]
+unit=N or N*mm</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.enddisp">
+<code class="sig-name descname">enddisp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.enddisp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output local displacement at both end of beam element in the form of
+[axial_start, translation_start, rotation_start, axial_end, translation_end, rotation_end], unit=mm or rad</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_N">
+<code class="sig-name descname">get_N</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate axial force at specified position on beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list. Unit=N, Positive value is tension.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_N">
+<code class="sig-name descname">extre_N</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of axial force on the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of axial force=N.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.plot_N">
+<code class="sig-name descname">plot_N</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sn</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">deci</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.plot_N" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show axial force curve of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sn</strong> – int. Number of slice when plotting the curve. More slice provides more smooth appearance of curve.</p></li>
+<li><p><strong>scale</strong> – float, zoom-out scales when plotting the curve.</p></li>
+<li><p><strong>deci</strong> – int, number of decimal places kept when plotting values on curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (min_axial_force, max_axial_force), unit=N.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_V">
+<code class="sig-name descname">get_V</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate shear force at specified position on beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list. Unit=N.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_V">
+<code class="sig-name descname">extre_V</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of shear force on the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of shear force=N.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.plot_V">
+<code class="sig-name descname">plot_V</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sn</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">deci</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.plot_V" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show shear force curve of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sn</strong> – int. Number of slice when plotting the curve. More slice provides more smooth appearance of curve.</p></li>
+<li><p><strong>scale</strong> – float, zoom-out scales when plotting the curve.</p></li>
+<li><p><strong>deci</strong> – int, number of decimal places kept when plotting values on curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (min_shear_force, max_shear_force), unit=N.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_M">
+<code class="sig-name descname">get_M</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate bending moment at specified position on beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list. Unit=N*mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_M">
+<code class="sig-name descname">extre_M</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of bending moment on the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of moment = N*mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.plot_M">
+<code class="sig-name descname">plot_M</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sn</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">deci</span><span class="o">=</span><span class="default_value">4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.plot_M" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show moment curve of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sn</strong> – int. Number of slice when plotting the curve. More slice provides more smooth appearance of curve.</p></li>
+<li><p><strong>scale</strong> – float, zoom-out scales when plotting the curve.</p></li>
+<li><p><strong>deci</strong> – int, number of decimal places kept when plotting values on curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (min_bending_moment, max_bending_moment), unit=N*mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_Defy">
+<code class="sig-name descname">get_Defy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_Defy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate transverse deflection at specified position on beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list. Unit=mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_Defx">
+<code class="sig-name descname">get_Defx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_Defx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate longitudinal displacement at specified position on beam element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list. Unit=mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.get_Defxy">
+<code class="sig-name descname">get_Defxy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samp</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">samps</span></em>, <em class="sig-param"><span class="n">resultant</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.get_Defxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate resultant displacement at specified position on beam element.
+return longitudinal deflection and transverse deflection respectively when resultant=False</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samp</strong> – float, relative position along the element length, from 0 to 1.</p></li>
+<li><p><strong>samps</strong> – float, other relative positions along the element length, from 0 to 1.</p></li>
+<li><p><strong>resultant</strong> – bool, return resultant deflection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>float or list of float if <em>resultant</em> =True, <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> [def_x, def_y] or list of
+<code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> if <em>resultant</em> =False. Unit=mm</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_Defy">
+<code class="sig-name descname">extre_Defy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_Defy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of transverse deflection on the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of deflection = mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_Defx">
+<code class="sig-name descname">extre_Defx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_Defx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of longitudinal displacement of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of displacement = mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.extre_Defxy">
+<code class="sig-name descname">extre_Defxy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.extre_Defxy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the extreme value of resultant displacement on the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>tuple ((position_occurs_min, min_value), (position_occurs_max, max_value)), unit of displacement = mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Beam2.plot_Def">
+<code class="sig-name descname">plot_Def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sn</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">deci</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">def_type</span><span class="o">=</span><span class="default_value">'transverse'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Beam2.plot_Def" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show deflection curve of the element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sn</strong> – int, Number of slice when plotting the curve. More slice provides more smooth appearance of curve.</p></li>
+<li><p><strong>scale</strong> – float, zoom-out scales when plotting the curve.</p></li>
+<li><p><strong>deci</strong> – int, number of decimal places kept when plotting values on curve.</p></li>
+<li><p><strong>def_type</strong> – <p>int or string, type of deflection to be shown, acceptable indicator:</p>
+<ul>
+<li><p><em>0, ‘xy’, ‘resultant’</em> - resultant deflection.</p></li>
+<li><p><em>1, ‘x’, ‘axial’</em> - longitudinal deformation.</p></li>
+<li><p><em>2, ‘y’, ‘transverse’</em> - transverse deflection.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (min_deflection, max_deflection), unit=mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Methods <code class="docutils literal notranslate"><span class="pre">fill_GK</span></code>, <code class="docutils literal notranslate"><span class="pre">fill_GR</span></code> and <code class="docutils literal notranslate"><span class="pre">solve</span></code> are manual operating apis kept for Interactive Mode.
+For general purpose of a FEM study, they are automatically called by running <code class="docutils literal notranslate"><span class="pre">Bsolver.solve()</span></code></p>
+</div>
+<span class="target" id="class-bsolver"></span><dl class="py class">
+<dt id="pyfacade.pyeng.Bsolver">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.pyeng.</code><code class="sig-name descname">Bsolver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">b2objs</span></em>, <em class="sig-param"><span class="n">node_coord</span></em>, <em class="sig-param"><span class="n">restrain_dict</span></em>, <em class="sig-param"><span class="n">beam_release</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">distributed_load</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">node_forces</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>FEM solver for beam model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b2objs</strong> – list of <code class="docutils literal notranslate"><span class="pre">Beam2</span></code> objects involved in the model.</p></li>
+<li><p><strong>node_coord</strong> – nested list as [[x0,y0],[x1,y1],…], list of coordinates of all nodes in structural model.
+Unit=mm.</p></li>
+<li><p><strong>restrain_dict</strong> – dict. Definition of structural restrain in the form of
+{node_no:[res_condition_x, res_condition_y, res_condition_rotate], …}, where:
+0=released and 1=restrained.</p></li>
+<li><p><strong>beam_release</strong> – dict. Definition of release conditions of beams in the form of
+{beam_no:[(axial_condition_start, rotation_condition_start), (axial_condition_end, rotation_condition_end)],…},
+where: 0=fixed and 1=released.</p></li>
+<li><p><strong>distributed_load</strong> – dict. Definition of applied <em>Uniformly Distributed Load</em> on model in the form of
+{beam_no:(axial_force, transverse_force),…}. Unit=N/mm.</p></li>
+<li><p><strong>node_forces</strong> – dict. Definition of applied <em>Concentrated Load</em> on model in the form of
+{node:[Fx, Fy, Mz]…}. Unit=N or N*mm.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.solve">
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Matrix of global node displacement.</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Once being called successfully, solved results (such as member force, deflection, etc.) will be
+automatically assigned to related beam objects. Any existing result in those objects will be hence
+overridden.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.get_react">
+<code class="sig-name descname">get_react</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.get_react" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output matrix of node reactions in the form of [[Rx_0, Ry_0, M_0], [Rx_1, Ry_1, M_1], …]. Unit = N or N*mm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.get_endf">
+<code class="sig-name descname">get_endf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.get_endf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output overall matrix of beam end forces. Unit = N or N*mm.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.get_enddisp">
+<code class="sig-name descname">get_enddisp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.get_enddisp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output overall matrix of beam end displacements. Unit = mm or rad.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.get_summary">
+<code class="sig-name descname">get_summary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">datatype</span></em>, <em class="sig-param"><span class="n">envelop</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.get_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output extreme value of specified data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datatype</strong> – <p>int or str. indicator of required data type.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>’Axial Force’</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>’Shear’</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>’Moment’</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>’Deflection’</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>’Axial Displacement’</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>’Resultant Displacement’</p></td>
+</tr>
+</tbody>
+</table>
+</p></li>
+<li><p><strong>envelop</strong> – bool, output the extreme value of entire model. Extreme value for each beam element is listed
+when <em>envelop</em> = False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple (min_value, max_value) if <em>envelop</em> = True. or list of tuple
+[(min_value_beam0, max_value_beam0), (min_value_beam1, max_value_beam1), …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.show_mdl">
+<code class="sig-name descname">show_mdl</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_num</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">beam_num</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">(8, 6)</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.show_mdl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot model figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_num</strong> – bool, show node number on figure.</p></li>
+<li><p><strong>beam_num</strong> – bool, show beam number on figure.</p></li>
+<li><p><strong>size</strong> – tuple (size_x, size_y), size of the plotted figure.</p></li>
+<li><p><strong>save</strong> – bool, save model figure.</p></li>
+<li><p><strong>path</strong> – str, path to save the model figure. Current working directory is used if <em>path</em> = None (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.show_diag">
+<code class="sig-name descname">show_diag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ptype</span></em>, <em class="sig-param"><span class="n">Size</span><span class="o">=</span><span class="default_value">(8, 6)</span></em>, <em class="sig-param"><span class="n">ShowEnve</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">DivN</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">Scale</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">Accr</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">save</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.show_diag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the diagram showing specified results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ptype</strong> – str, type of required results, is one of <em>‘Axial Force’</em>, <em>‘Shear’</em>, <em>‘Moment’</em>, <em>‘Deflection’</em>,
+<em>‘Axial Displacement’</em> and <em>‘Resultant Displacement’</em></p></li>
+<li><p><strong>Size</strong> – tuple (size_x, size_y), size of the plotted figure.</p></li>
+<li><p><strong>ShowEnve</strong> – bool, show min/max value in figure.</p></li>
+<li><p><strong>DivN</strong> – int, Number of slice when plotting the curve.</p></li>
+<li><p><strong>Scale</strong> – float, zoom-out scales when plotting the curve.</p></li>
+<li><p><strong>Accr</strong> – int, number of decimal places kept when marking values on diagram.</p></li>
+<li><p><strong>save</strong> – bool, save diagram figure.</p></li>
+<li><p><strong>path</strong> – str, path to save the diagram figure. Current working directory is used if <em>path</em> = None (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.pyeng.Bsolver.out_csv">
+<code class="sig-name descname">out_csv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">datatype</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.pyeng.Bsolver.out_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output results to CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datatype</strong> – <p>int, indicator of required data type to be output.</p>
+<ul>
+<li><p>1 - output reaction data.</p></li>
+<li><p>2 - output member force and deflection data.</p></li>
+<li><p>0 - output all data.</p></li>
+</ul>
+</p></li>
+<li><p><strong>path</strong> – str, path to save the CSV file. Current working directory is used if <em>path</em> = None (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="module_transxml.html" class="btn btn-neutral float-right" title="MathCAD XML Constructor (pyfacade.transxml)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to pyfacade’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qi Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

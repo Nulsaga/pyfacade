@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MathCAD XML Constructor (pyfacade.transxml) &mdash; pyfacade 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MathCAD Interface (pyfacade.pymcad)" href="module_pymcad.html" />
+    <link rel="prev" title="Solver for 2D-frame Question (pycade.pyeng)" href="module_pyeng.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> pyfacade
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module_pyeng.html">Solver for 2D-frame Question (pycade.pyeng)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MathCAD XML Constructor (pyfacade.transxml)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-introduction">1. Module Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#syntax-of-math-expression">2. Syntax of Math Expression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plain-expression">2.1. Plain Expression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic">2.1.1. Basic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#symbols-and-keywords">2.1.2. Symbols and Keywords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions">2.1.3. Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#programming-block">2.2. Programming Block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="module_pymcad.html">MathCAD Interface (pyfacade.pymcad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_pyacad.html">AutoCAD Interface (pyfacade.pyacad)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_strcals.html">Toolbox for Structural Calculation (pyfacade.strcals)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyfacade</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>MathCAD XML Constructor (pyfacade.transxml)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/module_transxml.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-transxml">
+<span id="mathcad-xml-constructor-pyfacade-transxml"></span><h1>MathCAD XML Constructor (pyfacade.transxml)<a class="headerlink" href="#module-transxml" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-introduction">
+<h2>1. Module Introduction<a class="headerlink" href="#module-introduction" title="Permalink to this headline">¶</a></h2>
+<p>Module <code class="docutils literal notranslate"><span class="pre">pyfacade.transxml</span></code> provides some utility functions for translating mathematical expressions to
+<em>Extensible Markup Language</em> (XML) in specific form recognized by MathCAD.</p>
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_define">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_define</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_name</span></em>, <em class="sig-param"><span class="n">expression</span></em>, <em class="sig-param"><span class="n">ev</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_define" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate a variable definition expression to MathCAD XML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_name</strong> – str, name of variable.</p></li>
+<li><p><strong>expression</strong> – str, math expression to be assigned to variable.</p></li>
+<li><p><strong>ev</strong> – bool, evaluate the result of expression in line.</p></li>
+<li><p><strong>unit</strong> – str, unit to be used when present the result, only valid when <em>ev</em> = True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, formatted MathCAD XML.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_eval">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_eval</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var_expression</span></em>, <em class="sig-param"><span class="n">unit</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate and evaluate a math expression to MathCAD XML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_expression</strong> – str, math expression to be evaluated</p></li>
+<li><p><strong>unit</strong> – str, unit to be used when presenting the evaluated result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, formatted MathCAD XML.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_ind">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_ind</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_ind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate a individual expression or variable to MathCAD XML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>content</strong> – str, math expression or variable name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, formatted MathCAD XML.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_func">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_func</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func_name</span></em>, <em class="sig-param"><span class="n">vars</span></em>, <em class="sig-param"><span class="n">expression</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate a function definition expression to MathCAD XML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func_name</strong> – str, name of function.</p></li>
+<li><p><strong>vars</strong> – str or list of str, arguments of the function.</p></li>
+<li><p><strong>expression</strong> – str, expression of the function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, formatted MathCAD XML.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_sub">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_sub</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">math_expression</span></em>, <em class="sig-param"><span class="n">subdict</span></em>, <em class="sig-param"><span class="n">simp</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>substitute variables in provided expression according to specified dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>math_expression</strong> – str, original expression.</p></li>
+<li><p><strong>subdict</strong> – dict, a mapping dict for substitution in the form of {var1: value1, var2: value2…}</p></li>
+<li><p><strong>simp</strong> – bool, simplify the expression by removing any item equals to 0 after substitution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, new expression with specified variables substituted</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.to_matrix">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">to_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.to_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a statement block of matrix according to input array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_array</strong> – array_like as matrix data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, pre-formatted XML paragraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pyfacade.transxml.xml_prog">
+<code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">xml_prog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">statements</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.xml_prog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a statement block of in-line programing according to input string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>statements</strong> – list of str, programing statements. each str represents a line of statement in programing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str, pre-formatted XML paragraph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Paragraph returned by <code class="docutils literal notranslate"><span class="pre">to_matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">xml_prog</span></code> can’t be directly inserted to MAthCAD XML file as elements.
+Instead, they play roles like normal string of expression, which need to be translated by calling <code class="docutils literal notranslate"><span class="pre">xml_define</span></code>,
+<code class="docutils literal notranslate"><span class="pre">xml_eval</span></code> or <code class="docutils literal notranslate"><span class="pre">xml_ind</span></code>.</p>
+</div>
+<p>Alternatively, Class <code class="docutils literal notranslate"><span class="pre">Xexpr</span></code> is provided as quick access working with math expression string.</p>
+<dl class="py class">
+<dt id="pyfacade.transxml.Xexpr">
+<em class="property">class </em><code class="sig-prename descclassname">pyfacade.transxml.</code><code class="sig-name descname">Xexpr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expression</span></em>, <em class="sig-param"><span class="n">alias</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.Xexpr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formatted string of math expression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expression</strong> – str, original math expression. Invalid blank in string will be removed automatically.</p></li>
+<li><p><strong>alias</strong> – alias of the expression.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyfacade.transxml.Xexpr.__bool__">
+<code class="sig-name descname">__bool__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.Xexpr.__bool__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <strong>False</strong> when instance represents a empty expression (‘’) or ‘0’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.transxml.Xexpr.ex">
+<em class="property">property </em><code class="sig-name descname">ex</code><a class="headerlink" href="#pyfacade.transxml.Xexpr.ex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Math expression string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.transxml.Xexpr.sub">
+<code class="sig-name descname">sub</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">subdict</span></em>, <em class="sig-param"><span class="n">inplace</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">simp</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.Xexpr.sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substitute variables in expression according to specified dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subdict</strong> – dict, a mapping dict for substitution in the form of {var1: value1, var2: value2…}</p></li>
+<li><p><strong>inplace</strong> – bool, overwrite the expression.</p></li>
+<li><p><strong>simp</strong> – bool, simplify the expression by removing any item equals to 0 after substitution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new <code class="docutils literal notranslate"><span class="pre">Xexpr</span></code> object with variables substituted if <em>inplace</em> = False. Else, return None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.transxml.Xexpr.zero">
+<code class="sig-name descname">zero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span></em>, <em class="sig-param"><span class="n">inplace</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">simp</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.Xexpr.zero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the specified variables in expression to Zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vars</strong> – str or list of str, variable name to be set to 0.</p></li>
+<li><p><strong>inplace</strong> – bool, overwrite the  expression.</p></li>
+<li><p><strong>simp</strong> – bool, simplify the expression by removing any item equals to 0 after substitution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A new <code class="docutils literal notranslate"><span class="pre">Xexpr</span></code> Object with the variables set to 0 if <em>inplace</em> = False. Else, return None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyfacade.transxml.Xexpr.inject">
+<code class="sig-name descname">inject</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataframe</span></em>, <em class="sig-param"><span class="n">alias_col</span><span class="o">=</span><span class="default_value">'main'</span></em>, <em class="sig-param"><span class="n">expr_col</span><span class="o">=</span><span class="default_value">'expression'</span></em>, <em class="sig-param"><span class="n">alias</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.transxml.Xexpr.inject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert the math expression to specified data frame by matching the alias.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> – pandas.DataFrame, target data frame to write expression in.</p></li>
+<li><p><strong>alias_col</strong> – str, column in data frame where to match the alias.</p></li>
+<li><p><strong>expr_col</strong> – str, target column in data frame to insert expression in</p></li>
+<li><p><strong>alias</strong> – str, alias to be matched.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="syntax-of-math-expression">
+<h2>2. Syntax of Math Expression<a class="headerlink" href="#syntax-of-math-expression" title="Permalink to this headline">¶</a></h2>
+<p>String can be operated and translated by this module must comply with syntax stated in this section.</p>
+<div class="section" id="plain-expression">
+<h3>2.1. Plain Expression<a class="headerlink" href="#plain-expression" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="basic">
+<h4>2.1.1. Basic<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h4>
+<p>A string of plain expression contains number, variable, function, or some of formers concatenated by recognized math symbols.
+Below are some samples of valid plain expression string:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;12&#39;</span>  <span class="c1"># simply a number</span>
+
+<span class="s1">&#39;5*X+Y&#39;</span>  <span class="c1"># number and variables concatenated by math symbols</span>
+
+<span class="s1">&#39;(sin(0.5*@p)-m^2)//2&#39;</span>  <span class="c1"># expression contains function and escaped character</span>
+</pre></div>
+</div>
+<p>Here are basic rules to write plain expression:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>No blank in string allowed.</p></li>
+<li><p>Always use Parentheses <code class="docutils literal notranslate"><span class="pre">'()'</span></code> instead of Square Bracket <code class="docutils literal notranslate"><span class="pre">'[]'</span></code> or Curly Braces <code class="docutils literal notranslate"><span class="pre">'{}'</span></code>.</p></li>
+<li><p>A item with Negative Sign <code class="docutils literal notranslate"><span class="pre">'-'</span></code> after any math symbols must be surrounded by parentheses.</p></li>
+<li><p>To input variable with subscription, add a Dot <code class="docutils literal notranslate"><span class="pre">'.'</span></code> between variable name and its subscription. To input Multi-subscriptions, separate them by Dots.</p></li>
+<li><p>To input index of a array, add a Underline <code class="docutils literal notranslate"><span class="pre">'_'</span></code> between variable name and the index. To input indices of multi-dimensional matrix , separate them by Underlines.</p></li>
+<li><p>To input greek letter, escape the corresponding roman letter with initial symbol <code class="docutils literal notranslate"><span class="pre">'&#64;'</span></code>. Refer to <a class="reference internal" href="#table-greek"><span class="std std-ref">Correspondence Table</span></a>.</p></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="symbols-and-keywords">
+<h4>2.1.2. Symbols and Keywords<a class="headerlink" href="#symbols-and-keywords" title="Permalink to this headline">¶</a></h4>
+<p>Below lists math symbols supported by this module.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+</p></td>
+<td><p>plus</p></td>
+</tr>
+<tr class="row-odd"><td><p>-</p></td>
+<td><p>minus</p></td>
+</tr>
+<tr class="row-even"><td><p>*</p></td>
+<td><p>multiplication in default style</p></td>
+</tr>
+<tr class="row-odd"><td><p>**</p></td>
+<td><p>multiplication shown as ‘×’</p></td>
+</tr>
+<tr class="row-even"><td><p>//</p></td>
+<td><p>division</p></td>
+</tr>
+<tr class="row-odd"><td><p>^</p></td>
+<td><p>power</p></td>
+</tr>
+<tr class="row-even"><td><p>#</p></td>
+<td><p>n-th Root</p></td>
+</tr>
+<tr class="row-odd"><td><p>!</p></td>
+<td><p>factorial</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>\\</cite></p></td>
+<td><p>square root</p></td>
+</tr>
+<tr class="row-odd"><td><p>|</p></td>
+<td><p>absolute value</p></td>
+</tr>
+<tr class="row-even"><td><p>==</p></td>
+<td><p>equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;</p></td>
+<td><p>less than</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;=</p></td>
+<td><p>less than or equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;</p></td>
+<td><p>greater than</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;=</p></td>
+<td><p>greater than or equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p>!=</p></td>
+<td><p>not equal to</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As <em>unary operators</em>, <code class="docutils literal notranslate"><span class="pre">'\\'</span></code> and <code class="docutils literal notranslate"><span class="pre">'|'</span></code> should be followed by number or expression surrounded with parentheses to indicate its application extent.</p>
+</div>
+<p>Keywords for advanced math operators is shown below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Keyword</p></th>
+<th class="head"><p>Equivalent Math Operator</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>sigma</strong> (x,f(x),a,b)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sum_{a}^{b} f(x)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>iterp</strong> (x,f(x),a,b)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\prod_{a}^{b} f(x)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>integral</strong> (x,f(x),a,b)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\int_{a}^{b} f(x)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>matrix</strong> (x,y,val_1,val_2,val_3,…)</p></td>
+<td><div class="line-block">
+<div class="line">A matrix of x rows and y columns, and filled with val_1, val_2, val_3…</div>
+<div class="line">in row-order.</div>
+<div class="line">Positions without value provided are left to 0.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><strong>determ</strong> (M)</p></td>
+<td><p>Determinate of matrix M, <span class="math notranslate nohighlight">\(\left | M \right |\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>transpose</strong> (M)</p></td>
+<td><p>Transpose of matrix M, <span class="math notranslate nohighlight">\(M^{T}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>crossp</strong> (M1,M2)</p></td>
+<td><p>Cross product of matrix M1 and M2, <span class="math notranslate nohighlight">\(M1\times M2\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p id="table-greek"><strong>The Greek and Roman Characters Correspondence Table</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p>Greek Letter</p></th>
+<th class="head" colspan="2"><p>Roman Letter</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>upper</p></th>
+<th class="head"><p>lower</p></th>
+<th class="head"><p>upper</p></th>
+<th class="head"><p>lower</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>Α</p></td>
+<td><p>α</p></td>
+<td><p>A</p></td>
+<td><p>a</p></td>
+</tr>
+<tr class="row-even"><td><p>Β</p></td>
+<td><p>β</p></td>
+<td><p>B</p></td>
+<td><p>b</p></td>
+</tr>
+<tr class="row-odd"><td><p>Γ</p></td>
+<td><p>γ</p></td>
+<td><p>G</p></td>
+<td><p>g</p></td>
+</tr>
+<tr class="row-even"><td><p>Δ</p></td>
+<td><p>δ</p></td>
+<td><p>D</p></td>
+<td><p>d</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ε</p></td>
+<td><p>ε</p></td>
+<td><p>E</p></td>
+<td><p>e</p></td>
+</tr>
+<tr class="row-even"><td><p>Ζ</p></td>
+<td><p>ζ</p></td>
+<td><p>Z</p></td>
+<td><p>z</p></td>
+</tr>
+<tr class="row-odd"><td><p>Η</p></td>
+<td><p>η</p></td>
+<td><p>H</p></td>
+<td><p>h</p></td>
+</tr>
+<tr class="row-even"><td><p>Θ</p></td>
+<td><p>θ</p></td>
+<td><p>Q</p></td>
+<td><p>q</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ι</p></td>
+<td><p>ι</p></td>
+<td><p>I</p></td>
+<td><p>i</p></td>
+</tr>
+<tr class="row-even"><td><p>Κ</p></td>
+<td><p>κ</p></td>
+<td><p>K</p></td>
+<td><p>k</p></td>
+</tr>
+<tr class="row-odd"><td><p>Λ</p></td>
+<td><p>λ</p></td>
+<td><p>L</p></td>
+<td><p>l</p></td>
+</tr>
+<tr class="row-even"><td><p>Μ</p></td>
+<td><p>μ</p></td>
+<td><p>M</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ν</p></td>
+<td><p>ν</p></td>
+<td><p>N</p></td>
+<td><p>n</p></td>
+</tr>
+<tr class="row-even"><td><p>Ξ</p></td>
+<td><p>ξ</p></td>
+<td><p>X</p></td>
+<td><p>x</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ο</p></td>
+<td><p>ο</p></td>
+<td><p>O</p></td>
+<td><p>o</p></td>
+</tr>
+<tr class="row-even"><td><p>Π</p></td>
+<td><p>π</p></td>
+<td><p>P</p></td>
+<td><p>p</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ρ</p></td>
+<td><p>ρ</p></td>
+<td><p>R</p></td>
+<td><p>r</p></td>
+</tr>
+<tr class="row-even"><td><p>Σ</p></td>
+<td><p>σ</p></td>
+<td><p>S</p></td>
+<td><p>s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Τ</p></td>
+<td><p>τ</p></td>
+<td><p>T</p></td>
+<td><p>t</p></td>
+</tr>
+<tr class="row-even"><td><p>Υ</p></td>
+<td><p>υ</p></td>
+<td><p>U</p></td>
+<td><p>u</p></td>
+</tr>
+<tr class="row-odd"><td><p>Φ</p></td>
+<td><p>φ</p></td>
+<td><p>F</p></td>
+<td><p>f</p></td>
+</tr>
+<tr class="row-even"><td><p>Χ</p></td>
+<td><p>χ</p></td>
+<td><p>C</p></td>
+<td><p>c</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ψ</p></td>
+<td><p>ψ</p></td>
+<td><p>Y</p></td>
+<td><p>y</p></td>
+</tr>
+<tr class="row-even"><td><p>Ω</p></td>
+<td><p>ω</p></td>
+<td><p>W</p></td>
+<td><p>w</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions">
+<h4>2.1.3. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h4>
+<p>Functions, either built-in functions of MathCAD or custom-defined functions, can be included in math expression by simply
+state the function name followed with parentheses, in which necessary arguments is listed and separated by comma, such like
+<code class="docutils literal notranslate"><span class="pre">'tan(x+2)'</span></code>, <code class="docutils literal notranslate"><span class="pre">'max(10,15)'</span></code>, <code class="docutils literal notranslate"><span class="pre">'myfunc(a,b,c)'</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The validity of functions in expression will <strong>NOT</strong> be checked when being translated into XML for MathCAD. It is
+no problem to insert expression contains undefined function or function with improper number of arguments into MathCAD,
+as long as its syntax is correct.</p>
+</div>
+</div>
+</div>
+<div class="section" id="programming-block">
+<h3>2.2. Programming Block<a class="headerlink" href="#programming-block" title="Permalink to this headline">¶</a></h3>
+<p>Programming block can be constructed by <code class="docutils literal notranslate"><span class="pre">transxml.xml_prog</span></code> according to a group of statements using programming
+keywords listed as below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operation</p></th>
+<th class="head"><p>Keyword</p></th>
+<th class="head"><p>Translated Code in MathCAD</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IF Statement</p></td>
+<td><p><strong>pgif</strong> (condition,statement)</p></td>
+<td><p><em>statement</em> <strong>if</strong> <em>condition</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ELSE Statement</p></td>
+<td><p><strong>pgelse</strong> (statement)</p></td>
+<td><p><em>statement</em> <strong>otherwise</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>FOR loop</p></td>
+<td><p><strong>pgfor</strong> (i,a,s,b,statement)</p></td>
+<td><div class="line-block">
+<div class="line"><strong>for</strong> <em>i</em> <strong>∈</strong> a,s..b</div>
+<div class="line-block">
+<div class="line"><em>statement</em></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>WHILE loop</p></td>
+<td><p><strong>pgwhile</strong> (condition,statement)</p></td>
+<td><div class="line-block">
+<div class="line"><strong>while</strong> <em>condition</em></div>
+<div class="line-block">
+<div class="line"><em>statement</em></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Local DEFINE statement</p></td>
+<td><p><strong>locd</strong> (v,expression)</p></td>
+<td><p><em>v</em> <strong>←</strong> <em>expression</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>BREAK statement</p></td>
+<td><p><strong>pgbreak</strong></p></td>
+<td><p><strong>break</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>CONTINUE statement</p></td>
+<td><p><strong>pgcontinue</strong></p></td>
+<td><p><strong>continue</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>RETURN action</p></td>
+<td><p><strong>pgreturn</strong> (expression)</p></td>
+<td><p><strong>return</strong> <em>expression</em></p></td>
+</tr>
+<tr class="row-even"><td><p>Logical AND</p></td>
+<td><p><strong>lgand</strong> (bool1,bool2)</p></td>
+<td><p><em>bool1</em> <strong>˄</strong> <em>bool2</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>Logical OR</p></td>
+<td><p><strong>lgor</strong> (bool1,bool2)</p></td>
+<td><p><em>bool1</em> <strong>˅</strong> <em>bool2</em></p></td>
+</tr>
+<tr class="row-even"><td><p>Logical NOT</p></td>
+<td><p><strong>lgnot</strong> (bool)</p></td>
+<td><p><strong>¬</strong> <em>bool</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>Logical COMPARING</p></td>
+<td><p><strong>lgcp</strong> (sign,a,b) <a class="footnote-reference brackets" href="#id2" id="id1">*</a></p></td>
+<td><p><em>a</em> <strong>sign</strong> <em>b</em></p></td>
+</tr>
+</tbody>
+</table>
+<p>Statements can be nested to build a complex programming block.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">*</a></span></dt>
+<dd><p>Acceptable comparing sign are <code class="docutils literal notranslate"><span class="pre">'=='</span></code>, <code class="docutils literal notranslate"><span class="pre">'&lt;'</span></code>, <code class="docutils literal notranslate"><span class="pre">'&lt;='</span></code>, <code class="docutils literal notranslate"><span class="pre">'&gt;'</span></code>, <code class="docutils literal notranslate"><span class="pre">'&gt;='</span></code>, <code class="docutils literal notranslate"><span class="pre">'!='</span></code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="module_pymcad.html" class="btn btn-neutral float-right" title="MathCAD Interface (pyfacade.pymcad)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="module_pyeng.html" class="btn btn-neutral float-left" title="Solver for 2D-frame Question (pycade.pyeng)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qi Wang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

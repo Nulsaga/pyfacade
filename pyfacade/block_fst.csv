@@ -1,0 +1,125 @@
+type,main,row,col,width,border,highlight,bgc,tag,lock_width,style,bold,italic,underline,color,expression,evaluate,evaluate2,unit,remark
+2,{sec}.1 Properties of {fst} Group,24,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,
+1,Number of {fst}s:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,blue,,,,,
+0,n.f,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,break1
+1,Coordinate of {fst} {n}: ,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,fstc
+0,u_{n},0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,0,FALSE,,,fstc
+0,v_{n},0,294,120,FALSE,FALSE,inherit,,FALSE,,,,,,0,FALSE,,,fstc
+1,Centroid coordinate of {fst} group:,42,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,contin1
+0,u.c,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,"1//n.f*sigma(n,u_n,1,n.f)",TRUE,,,
+0,v.c,54,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,"1//n.f*sigma(n,v_n,1,n.f)",TRUE,,,
+1,Moment of inertia about u-axis: ,54,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,I.u,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,"sigma(n,(v_n-v.c)^2,1,n.f)",TRUE,,,
+1,Moment of inertia about v-axis: ,54,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,I.v,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,"sigma(n,(u_n-u.c)^2,1,n.f)",TRUE,,,
+1,Polar Moment of inertia:,54,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,I.p,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,"sigma(n,(v_n-v.c)^2,1,n.f)+sigma(n,(u_n-u.c)^2,1,n.f)",TRUE,,,
+2,{sec}.2 Load on {fst} Group,36,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,
+1,Factored load from connected part:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,F.u,0,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN,
+0,F.v,24,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN,
+0,F.n,24,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN,
+0,M.u,24,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN*m,
+0,M.v,24,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN*m,
+0,M.n,24,204,120,FALSE,TRUE,inherit,,FALSE,,,,,,unknown,FALSE,,kN*m,
+1,Aixial force on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,N.f,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,F.n,TRUE,,kN,
+1,Shear on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,V.f.u,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,F.u,TRUE,,kN,
+1,Shear on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,V.f.v,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,F.v,TRUE,,kN,
+1,Moment on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,M.f.u,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,unknown,TRUE,,kN*m,
+1,Moment on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,M.f.v,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,unknown,TRUE,,kN*m,
+1,Torsion on centroid of {fst} group:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,M.f.n,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,unknown,TRUE,,kN*m,
+2,"{sec}.3 Load Capacity of {fst_full}{fst}, {grd} ",30,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,
+1,Nominal thread diameter of {fst}:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,d.f,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Minimum diameter of {fst}:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,d.min,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Stress area:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,A.s,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Minimum thickness of connected parts: ,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Tensile capacity of {fst}:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,maroon,,,,,
+0,P.t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,kN,
+1,Bearing capacity of {fst}:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,maroon,,,,,
+0,P.b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,kN,
+1,Total thickness of packing at each shear plane:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,t.pa,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Reduction factor due to packing:,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,@b.p,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,
+1,Grip length of connection:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,T.g,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,
+1,Reduction factor due to grip length:,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,
+0,@b.g,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,
+1,Shear capacity of {fst}:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,maroon,,,,,
+0,P.s,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,
+2,{sec}.4 Connection Strength Check,24,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,
+1,Coordinate of {fst} under maximum tension: ,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxt
+0,u.m.t,0,204,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxt
+0,v.m.t,0,294,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxt
+1,Maximum tension on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxt
+0,F.t.ma,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,maxt
+-1,F.t.ma;<;P.t,36,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxt
+-255,eval_fta,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,maxt
+1,Coordinate of {fst} under maximum shear: ,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxs
+0,u.m.s,0,204,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxs
+0,v.m.s,0,294,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxs
+1,Maximum shear in u-axis on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxs
+0,V.u.ma,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,maxs
+1,Maximum shear in v-axis on {fst}: ,42,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxs
+0,V.v.ma,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,maxs
+1,Maximum resultant shear on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxs
+0,V.ma,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,maxs
+-1,V.ma;<;P.s,24,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxs
+-1,V.ma;<;P.b,24,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxs
+-255,eval_sa,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,maxs
+1,Coordinate of {fst} under maximum combined force: ,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,u.m,0,204,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxc
+0,v.m,0,294,120,FALSE,TRUE,yellow,,FALSE,,,,,,0,FALSE,,,maxc
+1,Maximum tension on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,F.t.m,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,maxc
+-255,F.t.m;<;P.t,36,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxc
+-255,eval_ft,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,maxc
+1,Maximum shear in u-axis on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,V.u.m,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,maxc
+1,Maximum shear in v-axis on {fst}: ,42,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,V.v.m,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,TRUE,,,maxc
+1,Maximum resultant shear on {fst}: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,V.m,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,maxc
+-255,V.m;<;P.s,24,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxc
+-255,V.m;<;P.b,24,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,maxc
+-255,eval_s,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,maxc
+1,Combined utilization: ,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,maxc
+0,@b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,maxc
+-255,@b;<{limit};,36,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,maxc
+-255,eval_com,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,maxc
+-255,<no printing divider>,,,,,,,,,,,,,,,,,,break2
+2,{sec}.{subsec} Local Bearing Check for Aluminum Connected Part,24,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,lbc_a
+1,Thickness of connected part:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_a
+0,t,0,204,120,FALSE,TRUE,green,,FALSE,,,,,,unknown,FALSE,,,lbc_a
+-1,d/t_ratio,36,204,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,lbc_a
+1,parameter,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_a
+0,c,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,lbc_a
+1,Distance from center of hole to the adjacent edge:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_a
+0,e,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,unknown,FALSE,,,lbc_a
+1,Material factor for joint on alum. member,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_a
+0,@g.m.a,0,204,120,FALSE,TRUE,green,,FALSE,,,,,,1.2,FALSE,,,lbc_a
+1,Local bearing capacity of connected part,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,maroon,,,,,lbc_a
+0,P.lb,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,kN,lbc_a
+-1,P.lb;>;{V},36,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,lbc_a
+-255,eval_lb,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,lbc_a
+2,{sec}.{subsec} Local Bearing Check for Steel Connected Part,24,18,240,FALSE,FALSE,inherit,,FALSE,Heading {h},FALSE,FALSE,FALSE,,,,,,lbc_s
+1,Thickness of connected part:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_s
+0,t,0,204,120,FALSE,TRUE,green,,FALSE,,,,,,unknown,FALSE,,,lbc_s
+1,Distance from center of hole to the adjacent edge:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_s
+0,e,0,204,120,FALSE,TRUE,aqua,,FALSE,,,,,,unknown,FALSE,,,lbc_s
+1,Hole coefficient:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,lbc_s
+0,k.bs,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,,lbc_s
+1,Local bearing capacity of connected part,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,maroon,,,,,lbc_s
+0,P.lb,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,unknown,FALSE,,kN,lbc_s
+-1,P.lb;>;{V},30,204,164,FALSE,TRUE,gray,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,kN;kN,lbc_s
+-255,eval_lb,0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,FALSE,,,,,,lbc_s

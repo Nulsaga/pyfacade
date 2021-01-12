@@ -1,0 +1,68 @@
+type,main,row,col,width,border,highlight,bgc,tag,lock_width,style,bold,italic,underline,color,expression,evaluate,evaluate2,unit,remark
+1,{num},24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,TRUE,FALSE,TRUE,blue,,,,,int_grad
+1,Internal element under stress gradient:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,int_grad
+0,y.o,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_yo},FALSE,,,int_grad
+0,y.c,24,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_yc},FALSE,,,int_grad
+1,Use curve A of fig 4.2:,{row_1},30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,int_grad
+0,g,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_g},FALSE,,,int_grad
+1,"BS8118: Part 1, Table K.1",0,438,20,FALSE,FALSE,inherit,,FALSE,Spe.,FALSE,FALSE,FALSE,,,,,,int_grad
+0,g,{row_2},204,120,FALSE,FALSE,inherit,,FALSE,,,,,,,TRUE,,,int_grad
+1,Element length:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,int_grad
+0,d,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,y.c-y.o,TRUE,,,int_grad
+1,Element thickness:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,int_grad
+0,t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_t},FALSE,,,int_grad
+1,Slenderness parameter:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,int_grad
+0,@b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,g*(d//t),FALSE,,,int_grad
+-1,@b;{sign};{coff}*@e,30,204,164,FALSE,TRUE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,int_grad
+1,{lb_class},0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,TRUE,,,,,,int_grad
+1,{num},24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,TRUE,FALSE,TRUE,blue,,,,,uniform
+1,{ele_type} element under uniform compression:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,uniform
+0,b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_b},FALSE,,,uniform
+1,Element thickness:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,uniform
+0,t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_t},FALSE,,,uniform
+1,Slenderness parameter:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,uniform
+0,@b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,b//t,FALSE,,,uniform
+-1,@b;{sign};{coff}*@e,30,204,164,FALSE,TRUE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,uniform
+1,{lb_class},0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,TRUE,,,,,,uniform
+1,{num},24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,TRUE,FALSE,TRUE,blue,,,,,out_grad
+1,Outstand element under stress gradient:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_grad
+0,d,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_d},FALSE,,,out_grad
+1,Element thickness:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_grad
+0,t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_t},FALSE,,,out_grad
+0,g,24,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,1,FALSE,,,out_grad
+1,Slenderness parameter:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_grad
+0,@b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,g*(d//t),FALSE,,,out_grad
+-1,@b;{sign};{coff}*@e,30,204,164,FALSE,TRUE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,out_grad
+1,{lb_class},0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,TRUE,,,,,,out_grad
+1,{num},24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,TRUE,FALSE,TRUE,blue,,,,,out_rein
+1,Reinforced outstand element under uniform compression:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+0,b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_b},FALSE,,,out_rein
+1,Element thickness:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+0,t,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_t},FALSE,,,out_rein
+{a_1},Moment of interia of element:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+{a_0},I.e,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_Ie},FALSE,,,out_rein
+{a_1},Equation:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+{a_0},Given,0,204,120,FALSE,TRUE,lime,,FALSE,,,,,,,FALSE,,,out_rein
+{a_0},"lgcp(==,t*c^3//12+c*t*((c+t)//2)^2+b*t^3//12,I.e)",36,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,,FALSE,,,out_rein
+{a_1},Guess value:,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+{a_0},c,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,10*mm,FALSE,,,out_rein
+1,Effective height of rib:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+{a_0},c,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,find(c),TRUE,,,out_rein
+{b_0},c,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_c},FALSE,,,out_rein
+1,Use curve of fig 4.4(a):,{row_1},30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+0,h,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_h},FALSE,,,out_rein
+1,"BS8118: Part 1, Table K.1",0,438,20,FALSE,FALSE,inherit,,FALSE,Spe.,FALSE,FALSE,FALSE,,,,,,out_rein
+0,h,{row_2},204,120,FALSE,FALSE,inherit,,FALSE,,,,,,,TRUE,,,out_rein
+1,Slenderness parameter:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,out_rein
+0,@b,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,h*(b//t),FALSE,,,out_rein
+-1,@b;{sign};{coff}*@e,30,204,164,FALSE,TRUE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,;,TRUE,TRUE,;,out_rein
+1,{lb_class},0,438,20,FALSE,FALSE,inherit,,FALSE,Normal,TRUE,FALSE,TRUE,,,,,,out_rein
+1,Ratio:,30,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,reduce
+0,x,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,@b//@e,TRUE,,,reduce
+1,Use curve {cur} of fig 4.5,36,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,reduce
+0,k.L,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,{exp_kL},FALSE,,,reduce
+1,"BS8118: Part 1, Table K.1",0,438,20,FALSE,FALSE,inherit,,FALSE,Spe.,FALSE,FALSE,FALSE,,,,,,reduce
+1,Local buckling factor:,{row_3},30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,reduce
+0,k.L,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,,TRUE,,,reduce
+1,Ruduced thickness:,24,30,164,FALSE,FALSE,inherit,,TRUE,Normal,FALSE,FALSE,FALSE,,,,,,reduce
+0,t.r,0,204,120,FALSE,FALSE,inherit,,FALSE,,,,,,t*k.L,TRUE,,,reduce
