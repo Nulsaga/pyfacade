@@ -761,45 +761,4 @@ class Xexpr():
 
 # endregion
 
-# For testing and debug
-if __name__ == '__main__':
-    import pyperclip as clp
 
-    # print(repl_grk('@a12@g@p3'))
-    # clp.copy(xml_define("A", '-F.x*5'))
-    # clp.copy(xml_define('@a', "(-1.66a+35.52**m)//49.9x"))
-    # clp.copy(xml_define('z', "\\(2*|(5-9))", True))
-    # clp.copy(xml_define('z', "15m*20kN", True, unit='N*mm'))
-    # clp.copy(xml_define('u.c', '1//n.f*sigma(n,Y_n,1,n.f)'))
-    # clp.copy(xml_define('x', '-25*(-F_n)'))
-    # clp.copy(xml_eval('(z+5)//2', 'mm*N'))
-    # clp.copy(xml_define('t.pa', 'min((9*d.f)//(8*d.f+3*t.pa),1.0)'))
-    # clp.copy(xml_define('C', "crossp(A,B)"))
-    # print(xml_define('A', 'M.f.u*(v.c+v.m)//9'))
-    # print(xml_sub("sin(M+1)*d+(-M)^2+(d)//2", {"M": 0, "d": 0}))
-    # A=Xexpr("sin(M+1)*d+(-M)^2+(d)//2", alias="MAM")
-    # print(A.sub({"M":0}, inplace=False).alias)
-    # print(A.ex)
-    # clp.copy(xml_define('A', xml_prog([f"pgfor(i,1,2,10,{xml_prog(['pgif(lgcp(<=,i,6),locd(x,x+i))','pgelse(pgbreak)'])})",'x'])))
-    clp.copy(xml_ind(xml_prog(['pgwhile(a,b)','sin(x)'])))
-    clp.copy(xml_ind(xml_ex('Given')))
-    clp.copy(xml_ind('lgcp(>,y.o//y.c,-1)'))
-    # clp.copy(xml_eval('find(x,y)'))
-    # clp.copy(xml_define('x_1', '25'))
-    # clp.copy(xml_eval(xml_prog([f"pgfor(i,1,2,10,{xml_prog(['pgif(lgcp(<=,i,6),locd(x,x+i))', 'pgelse(pgbreak)'])})", 'pgreturn(x)'])))
-
-    # p = xml_prog(["pgif(lgand(lgcp(<,y.o//y.c,1),lgcp(>,y.o//y.c,-1)),0.70+0.30*(y.o//y.c))",
-    #               "pgif(lgcp(<=,y.o//y.c,-1),0.80//(1-y.o//y.c))"])
-    # clp.copy(xml_define('A', p))
-
-    p = xml_prog(["pgif(lgcp(>=,c//t,1),(1+0.1*(c//t-1)^2)^(-0.5))", "pgelse(1)"])
-    # clp.copy(xml_define('A', p))
-    clp.copy(xml_ind('lgcp(==,t*c^3//12+c*t*((c+t)//2)^2+b*t^3//12,I.e)'))
-    # clp.copy(xml_define('m', 'matrix(3,4,1,2,3,4,5)'))
-    clp.copy(xml_ind('matrix(3,4,1,2,3,4,5)'))
-
-    m=np.array([[1,2,3],[4,5,6],[7,8,9]])
-    n=[5,6,7,8]
-    clp.copy(xml_ind(to_matrix(m)))
-    # clp.copy(xml_define('A', to_matrix(n)))
-    clp.copy(xml_ind("1\\2"))

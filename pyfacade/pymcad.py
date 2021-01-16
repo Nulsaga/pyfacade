@@ -1587,16 +1587,3 @@ class Region():
         self.__wnd.ScrollToRegion(self.__reg)
 
 
-if __name__ == '__main__':
-    mw = Xmcd("temp.xmcd")
-    layout = [(10, 0), (20, 150), (30, 200), (0, 250)]  # unit=mm [(x1,y1),(x2, y2)...]
-    loads = [10000, 2000, 0, 0, 1000000, 0]  # unit=N, N.mm [Fu, Fv, Fn, Mu, Mv, Mn]
-    ecc = (50.5, 10, 0)  # unit=mm [du, dv, dn]
-    ply_mat = ['6063-T6', "S275-16"]
-    thk = [3, 5]  # unit=mm
-    ply_edg = [15, 10]  # unit=mm
-    pryedge=[100, 50]  # lever arm for bending about u, v
-    mw.addblock_fst(fst_layout=layout, loads=loads, eccentricity=ecc, ply_mat=ply_mat, ply_thk=thk,
-                    ply_edg=ply_edg, pryedge=pryedge, alum_code=True, fastener="screw", name="M6", packing=10, grib=20,
-                    sec_num="2.1")
-    # mw.write("new03.xmcd")
