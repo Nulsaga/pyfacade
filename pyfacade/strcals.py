@@ -2161,7 +2161,7 @@ def load_frame(file_name, build=True):
                         {int(k): frame['restrain'][k] for k in frame['restrain'].keys()},
                         {int(k): frame['release'][k] for k in frame['release'].keys()},
                         {int(k): frame['udl'][k] for k in frame['udl'].keys()},
-                        {int(k): frame['P'][k] for k in frame['P'].keys()})
+                        {int(k): frame['pl'][k] for k in frame['pl'].keys()})
         model.solve()
 
         return bs, model
@@ -2175,7 +2175,7 @@ def load_frame(file_name, build=True):
                            {int(k): frame['restrain'][k] for k in frame['restrain'].keys()},
                            {int(k): frame['release'][k] for k in frame['release'].keys()},
                            {int(k): frame['udl'][k] for k in frame['udl'].keys()},
-                           {int(k): frame['P'][k] for k in frame['P'].keys()})
+                           {int(k): frame['pl'][k] for k in frame['pl'].keys()})
 
 # todo: Function: transom of sole section check
 

@@ -104,14 +104,15 @@ class Acad():
                 try:
                     self.__dwg = self.__app.Documents.Open(file_name)
                     print(f"Drawing <{file_name}> has been loaded successfully")
-                except:
-                    print(f"Fail to load {file_name}")
-                    raise
+                except pywintypes.com_error:
+                    raise OSError(f"Fail to load {file_name}")
         else:
             if self.__app.Documents.Count:  # if there's any drawing being opened already
                 self.__dwg = self.__app.ActiveDocument
             else:
                 self.new()
+        time.sleep(0.5)
+
     @staticmethod
     def findacad():
         """Show *Windows Handle* of AutoCAD application.
@@ -2690,7 +2691,7 @@ if __name__ == '__main__':
     #                 "C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\NUM.dwg", inherit=False)
     fr=CADFrame()
     print(fr.nodes)
-    print(fr.beams)
+    # print(fr.beams)
     # fr.node_num()
     # fr.beam_num(color='green')
     # res=fr.set_pointload()
