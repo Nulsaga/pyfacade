@@ -1,0 +1,9 @@
+sphinx==3.3.0
+sphinx_rtd_theme==0.5.1
+pywin32
+geomdl
+lxml
+numpy
+scipy
+pandas
+matplotlib
