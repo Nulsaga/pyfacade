@@ -4,4 +4,4 @@ numpy
 scipy
 pandas
 matplotlib
-pywin32==228
+pywin32
