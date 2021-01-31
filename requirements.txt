@@ -4,4 +4,3 @@ numpy
 scipy
 pandas
 matplotlib
-pywin32
