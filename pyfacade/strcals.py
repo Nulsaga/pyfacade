@@ -24,7 +24,7 @@ from pyfacade.pyeng import Beam2, Bsolver
 Abspath = os.path.dirname(__file__)
 
 # Dictionary: material properties, (read from csv)
-Material = pd.read_csv(Abspath+"\\material.csv", index_col="signature")
+Material = pd.read_csv(Abspath+"/material.csv", index_col="signature")
 
 # Named tuple for results of verification output
 Transom_summary = namedtuple("Transom_summary", "max_stress, max_deflection_wl, max_deflection_dl")

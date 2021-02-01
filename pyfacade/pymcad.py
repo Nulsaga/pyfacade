@@ -64,7 +64,7 @@ Fst_grade = {'A2-50': ((210, 125, 420), (210, 145, 511)),
              'Gr8.8': ((533, 317, 1066), (560, 375, 1000))}
 
 # Dictionary: material properties, (read from csv)
-Material = pd.read_csv(Abspath+"\\material.csv", index_col="signature")
+Material = pd.read_csv(Abspath+"/material.csv", index_col="signature")
 
 
 # Class: Xmcd file maker
