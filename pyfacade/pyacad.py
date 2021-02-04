@@ -227,7 +227,7 @@ class Acad():
         self.__app.Update()
 
     def isbusy(self):
-        """Check if application is busy now
+        """Check if application is busy now.
 
         :return: bool.
         """
@@ -536,7 +536,7 @@ class Acad():
         return selected
 
     def byid(self, obj_id):
-        """Get a *AutoCAD Entity* by its object ID
+        """Get a *AutoCAD Entity* by its object ID.
 
         :param obj_id: int, AUtoCAD object ID.
         :return: entity object.
@@ -583,7 +583,7 @@ class Acad():
         return df.where(df.notna(), None)  # replace nan by None
 
     def command(self, comds):
-        """send a commands list to AutoCAD
+        """Send a commands list to AutoCAD.
 
         :param comds: list of str, commends to be executed.
         :return: None
@@ -639,7 +639,7 @@ class Acad():
 
     def setlayer(self, layer_name, color=None, ltype=None, lweight=None, plottable=None,
                  hidden=None, freeze=None, lock=None, activate=False):
-        """Change settings of a layer
+        """Change settings of a layer.
 
         :param layer_name: str, name of operating layer, if layer name is not existing, a new layer will be created
         :param color: str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.
@@ -749,7 +749,7 @@ class Acad():
                  layer=None):
         """Draw Nurbs curve as spline passing through specified fit points.
 
-        :param fitpoints: list of float [x,y,z], coordinate of fit points.
+        :param fitpoints: Nested list of float like [[x1,y1,z1], [x2,y2,z2]...], represents coordinate of fit points.
         :param start_tan: list of float, 3D vector of tangency at start point
         :param end_tan: list of float, 3D vector of tangency at end point
         :param color: str as color name, or list of int [r,g,b] as RGB value. If not given, use current active color.
@@ -796,7 +796,7 @@ class Acad():
                             ltype=ltype, scale=scale, layer=layer)
 
     def addcircle(self, center, radius, color=None, ltype=None, scale=None, layer=None):
-        """Draw a circle by defining center point and radius
+        """Draw a circle by defining center point and radius.
 
         :param center: list of float [x,y,z], coordinate of center point.
         :param radius: float, radius of circle.
@@ -1039,7 +1039,7 @@ class Acad():
         return blk
 
     def makeregion(self, objects=None, layer=None, del_source=True):
-        """Create region from selected or provided objects
+        """Create region from selected or provided objects.
 
         :param objects: list of objects. If not given, interactive selecting on screen will be requested.
         :param del_source: bool, delete the source objects after region being created.
@@ -1066,7 +1066,7 @@ class Acad():
         return reg
 
     def textstyle(self, style_name, font_file, bigfont_file='', bold=False, italic=False, regen=True, activate=False):
-        """Define a text style
+        """Define a text style.
 
         :param style_name: str, name of text style, existing text style with same name will be overwritten.
         :param font_file: str, path and name of font file.
@@ -1164,7 +1164,7 @@ class Acad():
                  show_header=False, headers=[], acc=2, title_textheight=None, header_textheight=None,
                  main_textheight=None, title_style=None, header_style=None, main_style=None,
                  title_align=None, header_align=None, main_align=None, cell_style=None, cell_color=None, merge_empty=0):
-        """Insert a Table on drawing according to input data.
+        """Insert a table on drawing according to input data.
 
         :param table_data: array-like, Series or DataFrame, data to be shown in table.
         :param insert_point: list of float [x,y,z], coordinate of reference point for text alignment.
@@ -1564,7 +1564,9 @@ class Acad():
             return [b.InsertionPoint for b in blks if b.Name == block_name]
 
     def readsecprop(self, sort=1, sec_name=None, file_name=None):
-        """ read section properties data from selected tables in drawing.
+        """Read section properties data from selected tables in drawing.
+
+        This method is experimental and only works on table in specific form.
 
         :param sort: int, method of sorting selected tables.
 
@@ -1758,7 +1760,7 @@ class Acad():
         return (upper_cy - lower_cy) * ar * 0.5
 
     def getboundary(self, region_obj, spl_sub=100, file_name=None):
-        """Get vector from centroid of a section to its boundary corner and arcs
+        """Get vector from centroid of a section to its boundary corner and arcs.
 
         :param region_obj: Region object.
         :param spl_sub: int, numbers of subdivided segments of a spline boundary.
@@ -1918,7 +1920,7 @@ class Acad():
 
     def seclib(self, file_name, sort=1, sec_name=None, spl_sub=100, update=True):
         """Select a group of regions and output their object ID, section properties and boundary information to .csv
-        or .json file
+        or .json file.
 
         :param file_name: str, file name of output with extension of '.csv' or '.json'.
         :param sort: int, method of sorting selected regions.
@@ -2359,7 +2361,7 @@ class CADFrame(Acad):
 
     @property
     def beams(self):
-        """List of beam set, indicating index pair of start and end nodes of each beam. Read-only"""
+        """List of beam set, indicating index pair of start and end nodes of each beam. Read-only."""
         return self.__beams
 
     def __cleanpt(self, points):  # cleaning procedure for internal use only.

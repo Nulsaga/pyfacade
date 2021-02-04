@@ -587,7 +587,7 @@ class soper():
 
 # Function: Substitution variables in string expression
 def xml_sub(math_expression, subdict, simp=True):
-    """substitute variables in provided expression according to specified dict.
+    """Substitute variables in provided expression according to specified dict.
 
     :param math_expression: str, original expression.
     :param subdict: dict, a mapping dict for substitution in the form of {var1: value1, var2: value2...}
@@ -652,10 +652,10 @@ def xml_sub(math_expression, subdict, simp=True):
 
 # Function: translate a numpy array into a xml statement block
 def to_matrix(input_array):
-    """Produce a statement block of matrix according to input array
+    """Produce a statement block of matrix according to input array.
 
-    :param input_array: array_like as matrix data
-    :return: str, pre-formatted XML paragraph
+    :param input_array: array_like as matrix data.
+    :return: str, pre-formatted XML paragraph.
     """
     arr = np.asarray(input_array)
     content_str = str(list(arr.flatten(order='F'))).strip('[]').replace(' ', '')
@@ -669,10 +669,10 @@ def to_matrix(input_array):
 
 # Function: create a programing xml statement block
 def xml_prog(statements):
-    """Produce a statement block of in-line programing according to input string
+    """Produce a statement block of in-line programing according to input string.
 
-    :param statements: list of str, programing statements. each str represents a line of statement in programing
-    :return: str, pre-formatted XML paragraph
+    :param statements: list of str, programing statements. each str represents a line of statement in programing.
+    :return: str, pre-formatted XML paragraph.
     """
 
     m = ['<ml:program>']

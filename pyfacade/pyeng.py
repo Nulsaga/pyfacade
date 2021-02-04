@@ -181,13 +181,13 @@ class Beam2():
 
     @property
     def K(self):
-        """The standard stiffness matrix of beam element"""
+        """The standard stiffness matrix of beam element."""
         return self.__MK
 
     @property
     def nodef(self):
         """Equivalent applied force at node, in the form of [N_start, V_start, M_start, N_end, V_end, M_end],
-        unit=N or N*mm
+        unit=N or N*mm.
         """
         return self.__r
 
@@ -231,7 +231,7 @@ class Beam2():
 
     def endforce(self):
         """Output solved end force of beam element in the form of [[N_start, V_start, M_start, N_end, V_end, M_end]
-        unit=N or N*mm"""
+        unit=N or N*mm."""
         return self.__edf
 
     def enddisp(self):
@@ -461,7 +461,7 @@ class Beam2():
 
     def get_Defxy(self, samp, *samps, resultant=True):
         """ Calculate resultant displacement at specified position on beam element.
-        return longitudinal deflection and transverse deflection respectively when resultant=False
+        return longitudinal deflection and transverse deflection respectively when resultant=False.
 
         :param samp: float, relative position along the element length, from 0 to 1.
         :param samps: float, other relative positions along the element length, from 0 to 1.
@@ -563,7 +563,7 @@ class Beam2():
 
 # Class: Solver for 2D Beam Structure
 class Bsolver():
-    """ FEM solver for beam model
+    """ FEM solver for beam model.
 
         :param b2objs: list of ``Beam2`` objects involved in the model.
         :param node_coord: nested list as [[x0,y0],[x1,y1],...], list of coordinates of all nodes in structural model.

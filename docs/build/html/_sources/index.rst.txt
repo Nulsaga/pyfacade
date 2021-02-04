@@ -10,6 +10,8 @@
 Welcome to pyfacade's documentation!
 ====================================
 
+Pyfacade is a toolbox provides software interface and various scripts for design and engineering works.
+
 .. toctree::
    :maxdepth: 1
    :caption: Contents:

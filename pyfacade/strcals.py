@@ -64,10 +64,10 @@ def biabend(section_prop, Mx, My, full_output=False):
     :param full_output: bool, output all the calculation parameter.
     :return: tuple, in the form of (s_min, s_max, theta, Mn, In, dn)
 
-            | s_min - float, minimum stress on the section, unit = N/mm :superscript:`2`
-            | s_max - float, maximum stress on the section, unit = N/mm :superscript:`2`
+            | s_min - float, minimum stress on the section, unit = N/mm :superscript:`2`.
+            | s_max - float, maximum stress on the section, unit = N/mm :superscript:`2`.
             | theta - float, angle between neutral axis and x-axis, in radians.
-            | Mn - float, resultant effective moment about neutral axis, unit = N*mm
+            | Mn - float, resultant effective moment about neutral axis, unit = N*mm.
             | In - float, moment of inertia of section about neutral axis, unit = mm :superscript:`4`.
             | dn - tuple of float (d_min, d_max), minimum and maximum relative distance from the most critical points to
                     neutral axis.
@@ -104,11 +104,11 @@ def biabend(section_prop, Mx, My, full_output=False):
 
 
 def combsec(sec_lib, sec_mat, combinations):
-    """Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases
+    """Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases.
 
     :param sec_lib: nested dict stats section properties in the form of
-                    {sec_name_1: {'I1':.., 'I2':..,'alpha':..}, sec_name_2:...}
-    :param sec_mat: dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, ...}
+                    {sec_name_1: {'I1':.., 'I2':..,'alpha':..}, sec_name_2:...}.
+    :param sec_mat: dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, ...}.
     :param combinations: nested list, relation of section combinations, [[sec_name_1, sec_name_2, comb_indicator],...]
                          The *comb_indicator* is one of below:
 
@@ -117,7 +117,7 @@ def combsec(sec_lib, sec_mat, combinations):
                          | 'xy', 'XY' or 0 - combine in both directions
 
     :return: tuple, (section group in x-direction, section group in y-direction, matrix of force sharing,
-             matrix of moment sharing, matrix of equivalent slenderness)
+             matrix of moment sharing, matrix of equivalent slenderness).
     """
 
     # Function: sort section pair into corresponding group according to the combination relations

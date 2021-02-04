@@ -482,7 +482,7 @@ class Xmcd:
     def addsolve(self, conditionset, unknown_guess, row, spacing=24, txt_col=30, math_col=204, math_border=False,
                  math_highlight=False, math_bgc="inherit", tag="", unit=None, txt_border=False, txt_highlight=False,
                  txt_bgc="inherit", txt_bold=False, txt_italic=False, txt_underline=False, txt_color=None):
-        """Insert a *Solve Block* to current xmcd file
+        """Insert a *Solve Block* to current xmcd file.
 
         :param conditionset: nested list, conditions of solving in the form of
                             [['left-hand expression, 'symbol', right-hand expression], [...],...]
@@ -1119,7 +1119,7 @@ class Xmcd:
 
     def addblock_lbcheck(self, section_elem, material='6063-T6', full_detail=False, avg_thk=True, sec_num="2.1.1",
                          sec_title="Local Buckling Check", template=None):
-        """Insert a group of regions for local buckling checking of aluminum member
+        """Insert a group of regions for local buckling checking of aluminum member.
 
         :param section_elem: dict, elements data of a section in the form of
                              {'1': {'length': .., 'thks': [..], 'rp': [..], 'slope': .., 'bx': [..], 'by': [..],
@@ -1319,7 +1319,7 @@ class Mathcad():
         self.__app.DefaultFilePath = path
 
     def worksheet(self, file_name=None):
-        """Request a worksheet object with specified file name
+        """Request a worksheet object with specified file name.
 
         :param file_name: str, name (and path) of requested xmcd file. When specified, the target worksheet will be
                         firstly searched from files currently opened by application. If no valid worksheet is found,
@@ -1582,7 +1582,10 @@ class Region():
             return self.__reg.MathInterface.ErrorMsg
 
     def locate(self):
-        """Locate window to the region"""
+        """Locate window to the region.
+
+        :return: None
+        """
         self.__wnd.Activate()
         self.__wnd.ScrollToRegion(self.__reg)
 

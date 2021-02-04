@@ -194,10 +194,10 @@ force in j-direction.</p>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><p>tuple, in the form of (s_min, s_max, theta, Mn, In, dn)</p>
 <div class="line-block">
-<div class="line">s_min - float, minimum stress on the section, unit = N/mm <sup>2</sup></div>
-<div class="line">s_max - float, maximum stress on the section, unit = N/mm <sup>2</sup></div>
+<div class="line">s_min - float, minimum stress on the section, unit = N/mm <sup>2</sup>.</div>
+<div class="line">s_max - float, maximum stress on the section, unit = N/mm <sup>2</sup>.</div>
 <div class="line">theta - float, angle between neutral axis and x-axis, in radians.</div>
-<div class="line">Mn - float, resultant effective moment about neutral axis, unit = N*mm</div>
+<div class="line">Mn - float, resultant effective moment about neutral axis, unit = N*mm.</div>
 <div class="line">In - float, moment of inertia of section about neutral axis, unit = mm <sup>4</sup>.</div>
 <div class="line">dn - tuple of float (d_min, d_max), minimum and maximum relative distance from the most critical points to
 neutral axis.</div>
@@ -211,13 +211,13 @@ neutral axis.</div>
 <dl class="py function">
 <dt id="pyfacade.strcals.combsec">
 <code class="sig-prename descclassname">pyfacade.strcals.</code><code class="sig-name descname">combsec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sec_lib</span></em>, <em class="sig-param"><span class="n">sec_mat</span></em>, <em class="sig-param"><span class="n">combinations</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyfacade.strcals.combsec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases</p>
+<dd><p>Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sec_lib</strong> – nested dict stats section properties in the form of
-{sec_name_1: {‘I1’:.., ‘I2’:..,’alpha’:..}, sec_name_2:…}</p></li>
-<li><p><strong>sec_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}</p></li>
+{sec_name_1: {‘I1’:.., ‘I2’:..,’alpha’:..}, sec_name_2:…}.</p></li>
+<li><p><strong>sec_mat</strong> – dict, material of involved sections, {sec_name_1: material_1, sec_name_2: material_2, …}.</p></li>
 <li><p><strong>combinations</strong> – <p>nested list, relation of section combinations, [[sec_name_1, sec_name_2, comb_indicator],…]
 The <em>comb_indicator</em> is one of below:</p>
 <div class="line-block">
@@ -230,7 +230,7 @@ The <em>comb_indicator</em> is one of below:</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>tuple, (section group in x-direction, section group in y-direction, matrix of force sharing,
-matrix of moment sharing, matrix of equivalent slenderness)</p>
+matrix of moment sharing, matrix of equivalent slenderness).</p>
 </dd>
 </dl>
 </dd></dl>
