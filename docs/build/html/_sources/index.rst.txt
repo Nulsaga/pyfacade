@@ -10,7 +10,11 @@
 Welcome to pyfacade's documentation!
 ====================================
 
-Pyfacade is a toolbox provides software interface and various scripts for design and engineering works.
+Pyfacade is a Python package developed as toolbox providing software interface and utility functions for parametric design and engineering works.
+
+It aims mainly to support R&D tasks for *Architectural Facade*, however could also be utilized for general structural design purpose.
+
+----
 
 .. toctree::
    :maxdepth: 1

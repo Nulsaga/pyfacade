@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?validation-md5-digest bacce3513c632f081cc485e077d90768?>
+<worksheet version="3.0.3" xmlns="http://schemas.mathsoft.com/worksheet30" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://schemas.mathsoft.com/worksheet30" xmlns:ml="http://schemas.mathsoft.com/math30" xmlns:u="http://schemas.mathsoft.com/units10" xmlns:p="http://schemas.mathsoft.com/provenance10">
+	<pointReleaseData>
+		<customUnitSystem base-unit-system="si">
+			<baseUnits>
+				<unit unit-name="mole" quantity-name="amount_of_substance"/>
+				<unit unit-name="millimeter" quantity-name="length"/>
+				<unit unit-name="candela" quantity-name="luminous_intensity"/>
+				<unit unit-name="kilogram" quantity-name="mass"/>
+				<unit unit-name="kelvin" quantity-name="thermodynamic_temperature"/>
+				<unit unit-name="second" quantity-name="time"/>
+				<unit unit-name="ampere" quantity-name="current"/>
+				<unit unit-name="base_currency" quantity-name="money"/>
+			</baseUnits>
+			<derivedUnits>
+				<unit unit-name="lux" quantity-name="illuminosity"/>
+				<unit unit-name="henry" quantity-name="inductance"/>
+				<unit unit-name="weber" quantity-name="magnetic_flux"/>
+				<unit unit-name="tesla" quantity-name="magnetic_flux_density"/>
+				<unit unit-name="watt" quantity-name="power"/>
+				<unit unit-name="ohm" quantity-name="resistance"/>
+				<unit unit-name="liter" quantity-name="volume"/>
+				<unit unit-name="farad" quantity-name="capacitance"/>
+				<unit unit-name="katal" quantity-name="catalytic_activity"/>
+				<unit unit-name="coulomb" quantity-name="charge"/>
+				<unit unit-name="sievert" quantity-name="dose"/>
+				<unit unit-name="volt" quantity-name="electric_potential"/>
+				<unit unit-name="kilonewton" quantity-name="force"/>
+				<unit unit-name="megapascal" quantity-name="pressure"/>
+				<unit unit-name="joule" quantity-name="energy"/>
+			</derivedUnits>
+		</customUnitSystem>
+	</pointReleaseData>
+	<metadata>
+		<generator>Mathcad Professional 14.1</generator>
+		<userData>
+			<title/>
+			<description/>
+			<author>Permasteelisa Group</author>
+			<company/>
+			<keywords/>
+			<revisedBy>Permasteelisa Group</revisedBy>
+		</userData>
+		<identityInfo>
+			<revision>4</revision>
+			<documentID>1D8F1C1A-019D-4870-BC89-1168CD211A33</documentID>
+			<versionID>DDF58F03-432D-40E8-8C5A-32333E0338E0</versionID>
+			<parentVersionID>00000000-0000-0000-0000-000000000000</parentVersionID>
+			<branchID>00000000-0000-0000-0000-000000000000</branchID>
+		</identityInfo>
+	</metadata>
+	<settings>
+		<presentation>
+			<textRendering>
+				<textStyles>
+					<textStyle name="Normal">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="none" tabs="inherit"/>
+						<inlineAttr font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Heading 1">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="none" tabs="inherit"/>
+						<inlineAttr font-family="Arial" font-charset="0" font-size="12" font-weight="bold" font-style="normal" underline="true" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Heading 2">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="none" tabs="inherit"/>
+						<inlineAttr font-family="Calisto MT" font-charset="0" font-size="11" font-weight="bold" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Heading 3">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="none" tabs="inherit"/>
+						<inlineAttr font-family="Arial" font-charset="0" font-size="10" font-weight="bold" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Paragraph">
+						<blockAttr margin-left="0" margin-right="0" text-indent="21" text-align="left" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Arial" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="List">
+						<blockAttr margin-left="14.25" margin-right="0" text-indent="-14.25" text-align="left" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Arial" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Indent">
+						<blockAttr margin-left="108" margin-right="0" text-indent="inherit" text-align="left" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Arial" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Title">
+						<blockAttr margin-left="0" margin-right="0" text-indent="inherit" text-align="center" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Times New Roman" font-charset="0" font-size="24" font-weight="bold" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Subtitle" base-style="Title">
+						<blockAttr margin-left="0" margin-right="0" text-indent="inherit" text-align="center" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Times New Roman" font-charset="0" font-size="18" font-weight="normal" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Charpter Title" base-style="Normal">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="none" tabs="inherit"/>
+						<inlineAttr font-family="Book Antiqua" font-charset="0" font-size="16" font-weight="bold" font-style="normal" underline="false" line-through="false" vertical-align="baseline"/>
+					</textStyle>
+					<textStyle name="Spe." base-style="Normal">
+						<blockAttr margin-left="inherit" margin-right="inherit" text-indent="inherit" text-align="inherit" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="inherit" font-charset="inherit" font-size="inherit" font-weight="inherit" font-style="italic" underline="true" line-through="inherit" vertical-align="inherit"/>
+					</textStyle>
+					<textStyle name="Remark" base-style="Normal">
+						<blockAttr margin-left="0" margin-right="0" text-indent="0" text-align="left" list-style-type="inherit" tabs="inherit"/>
+						<inlineAttr font-family="Times New Roman" font-charset="0" font-size="12" font-weight="normal" font-style="italic" underline="false" line-through="false" vertical-align="baseline" color="#f00"/>
+					</textStyle>
+				</textStyles>
+			</textRendering>
+			<mathRendering equation-color="#000">
+				<operators multiplication="narrow-dot" derivative="derivative" literal-subscript="large" definition="colon-equal" global-definition="triple-equal" local-definition="left-arrow" equality="bold-equal" symbolic-evaluation="right-arrow"/>
+				<mathStyles>
+					<mathStyle name="Variables" font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="Constants" font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="User 1" font-family="Arial" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="User 2" font-family="Courier New" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="User 3" font-family="Arial" font-charset="0" font-size="10" font-weight="bold" font-style="normal" underline="false"/>
+					<mathStyle name="User 4" font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="italic" underline="false"/>
+					<mathStyle name="User 5" font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="User 6" font-family="Arial" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="User 7" font-family="Times New Roman" font-charset="0" font-size="10" font-weight="normal" font-style="normal" underline="false"/>
+					<mathStyle name="Math Text Font" font-family="Times New Roman" font-charset="0" font-size="14" font-weight="normal" font-style="normal" underline="false"/>
+				</mathStyles>
+				<dimensionNames mass="mass" length="length" time="time" current="current" thermodynamic-temperature="temperature" luminous-intensity="luminosity" amount-of-substance="substance" display="false"/>
+				<symbolics derivation-steps-style="vertical-insert" show-comments="false" evaluate-in-place="false"/>
+				<results numeric-only="true">
+					<general precision="3" show-trailing-zeros="false" radix="dec" complex-threshold="10" zero-threshold="15" imaginary-value="i" exponential-threshold="3"/>
+					<matrix display-style="auto" expand-nested-arrays="false"/>
+					<unit format-units="true" simplify-units="true" fractional-unit-exponent="false"/>
+				</results>
+			</mathRendering>
+			<pageModel show-page-frame="true" show-header-frame="false" show-footer-frame="false" header-footer-start-page="1" paper-code="9" orientation="portrait" print-single-page-width="true" page-width="594.75" page-height="842.25">
+				<margins left="39.6" right="39.6" top="93.51496" bottom="45.32598"/>
+				<header use-full-page-width="true">
+					<left>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang2052\f0\fs16\{image\}\par
+}<image item-idref="1"/>
+					</left>
+					<right>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\qr\cf1\lang2052\b\i\f0\fs24 CALCULATION REPORT\fs22\par
+\b0\fs16\par
+\b\par
+Date  \{d\}\par
+}</right>
+				</header>
+				<footer use-full-page-width="true">
+					<left>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fnil\fprq15\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\cf1\lang2052\i\f0\fs18 Report No. -\cf0\i0\f1\par
+}</left>
+					<right>{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}}
+{\colortbl ;\red0\green0\blue0;}
+\viewkind4\uc1\pard\qr\cf1\lang2052\b\f0\fs18 JOB TITLE | \b0 Page \{n\} \par
+}</right>
+				</footer>
+			</pageModel>
+			<colorModel background-color="#fff" default-highlight-color="#ffff80"/>
+			<language math="en" UI="en"/>
+		</presentation>
+		<calculation>
+			<builtInVariables array-origin="0" convergence-tolerance="0.001" constraint-tolerance="0.001" random-seed="1" prn-precision="4" prn-col-width="8"/>
+			<calculationBehavior automatic-recalculation="true" matrix-strict-singularity-check="true" optimize-expressions="false" exact-boolean="true" strings-use-origin="false" zero-over-zero="0">
+				<compatibility multiple-assignment="MC12" local-assignment="MC12"/>
+			</calculationBehavior>
+			<units>
+				<currentUnitSystem name="si" customized="true"/>
+				<customUnitSystem base-unit-system="si">
+					<baseUnits>
+						<unit unit-name="mole" quantity-name="amount_of_substance"/>
+						<unit unit-name="millimeter" quantity-name="length"/>
+						<unit unit-name="candela" quantity-name="luminous_intensity"/>
+						<unit unit-name="kilogram" quantity-name="mass"/>
+						<unit unit-name="kelvin" quantity-name="thermodynamic_temperature"/>
+						<unit unit-name="second" quantity-name="time"/>
+						<unit unit-name="ampere" quantity-name="current"/>
+					</baseUnits>
+					<derivedUnits>
+						<unit unit-name="lux" quantity-name="illuminosity"/>
+						<unit unit-name="henry" quantity-name="inductance"/>
+						<unit unit-name="weber" quantity-name="magnetic_flux"/>
+						<unit unit-name="tesla" quantity-name="magnetic_flux_density"/>
+						<unit unit-name="watt" quantity-name="power"/>
+						<unit unit-name="ohm" quantity-name="resistance"/>
+						<unit unit-name="liter" quantity-name="volume"/>
+						<unit unit-name="farad" quantity-name="capacitance"/>
+						<unit unit-name="katal" quantity-name="catalytic_activity"/>
+						<unit unit-name="coulomb" quantity-name="charge"/>
+						<unit unit-name="sievert" quantity-name="dose"/>
+						<unit unit-name="volt" quantity-name="electric_potential"/>
+						<unit unit-name="kilonewton" quantity-name="force"/>
+						<unit unit-name="megapascal" quantity-name="pressure"/>
+						<unit unit-name="joule" quantity-name="energy"/>
+					</derivedUnits>
+				</customUnitSystem>
+			</units>
+		</calculation>
+		<editor view-annotations="false" view-regions="false">
+			<ruler is-visible="true" ruler-unit="cm">
+				<tabs>
+					<tab show-guide="true" position="14.25"/>
+					<tab show-guide="true" position="28.5"/>
+					<tab show-guide="true" position="198.75"/>
+					<tab show-guide="true" position="432.75"/>
+					<tab show-guide="true" position="497.25"/>
+				</tabs>
+			</ruler>
+			<plotTemplate>
+				<xy item-idref="2"/>
+			</plotTemplate>
+			<grid granularity-x="6" granularity-y="6"/>
+		</editor>
+		<fileFormat image-type="image/png" image-quality="75" save-numeric-results="true" exclude-large-results="false" save-text-images="false" screen-dpi="96"/>
+		<miscellaneous>
+			<handbook handbook-region-tag-ub="0" can-delete-original-handbook-regions="true" can-delete-user-regions="true" can-print="true" can-copy="true" can-save="true" file-permission-mask="4294967295"/>
+		</miscellaneous>
+	</settings>
+	<regions/>
+	<binaryContent>
+		<item item-id="1">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</item>
+		<item item-id="2" content-encoding="gzip">H4sIAAAAAAAA/4yQwW7CMAyG7aZbS9etu3AhSOUZeIIdENph2iT2ACiUAkVUTF2ROPLm3W8n
+u+w0R3b+Ot/vRsmJiJGfyEy1QS228/W+c1+H9e7cta5PSGKMHGl74XqnLZog07b62Bzrqvet
+ld8omqGYMF+8hWr5yty1+V7q6FjZKfKNA+tjwCKe/r/7OzzpO1fV84XRIxvAkp+JLQ+imG0E
+U8kRWwNryYZtPEgnBkMDxB2Y2wuO7oURV6IMRCqMwCOZI/YMjNofwKg9B6P2R/0XxJMyEIUw
+AvvrFu+Xtu6ayp38g6R67VfklhosE14uC6/5J3IpPwAAAP//AwARvY6sxgEAAA==</item>
+	</binaryContent>
+</worksheet>
