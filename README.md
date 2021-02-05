@@ -80,12 +80,12 @@ mw.write("report01.xmcd")  # save as a new file in same folder
 mc_app = pmc.Mathcad()  # launch the application and create a instance
 mc_app.filepath = os.getcwd()   # set the working directory as default file path
 sht=mc_app.worksheet("report01.xmcd")  # open the file we just created
-sht.getvalue("s")   # read the final value of variable "s"
+print(sht.getvalue("s"))   # print the final value of variable "s"
 
 # ...And do some modifications
 exp = sht.region("var_time")  # get the math region through its tag
 exp.xml = tx.xml_define('t', "0.1*hr")  # re-write its expression
-sht.getvalue("s")   # read the final value of variable "s" again.
+print(sht.getvalue("s"))   # print the final value of variable "s" again.
 
 sht.close() # save and close the file
 
