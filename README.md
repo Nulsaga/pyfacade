@@ -56,16 +56,14 @@ sec_prop = dwg.getsecprop(regs[0])  # calculate the section properties of create
 
 #### 2. Work with MathCAD.
 
-Firstly, copy *temp.xmcd* in [/samples](https://github.com/Nulsaga/pyfacade/tree/main/samples) folder to your current working directory.
-So that it could be located by following codes without a problem. 
+Assume that we have an empty MathCAD XML Document *MyWorksheet.xmcd* in the folder *"C:/Temp/"*
 
 ```python
 
 import pyfacade.pymcad as pmc
 import pyfacade.transxml as tx
-import os
 
-mw = pmc.Xmcd("temp.xmcd")  # create instance of the MathCAD file.
+mw = pmc.Xmcd("C:/Temp/MyWorksheet.xmcd")  # create instance of the MathCAD file.
 
 # Add some plain text and math expressions into the file
 mw.addtext("Speed:", row=50, color="blue")
@@ -74,12 +72,11 @@ mw.addtext("Time:", row=70, color="blue")
 mw.addmath("t", row=70, expression="1*min", tag="var_time")
 mw.addtext("Distance:", row=95, color="green")
 mw.addmath("s", row=95, expression="v*t", highlight=True, bgc="yellow", evaluate=True, unit="m")
-mw.write("report01.xmcd")  # save as a new file in same folder
+mw.write("C:/Temp/MyWorksheet.xmcd")  # save the changes
 
 # Now Let's see what has been created by above operations
 mc_app = pmc.Mathcad()  # launch the application and create a instance
-mc_app.filepath = os.getcwd()   # set the working directory as default file path
-sht=mc_app.worksheet("report01.xmcd")  # open the file we just created
+sht=mc_app.worksheet("C:/Temp/MyWorksheet.xmcd")  # open the file we just created
 print(sht.getvalue("s"))   # print the final value of variable "s"
 
 # ...And do some modifications
