@@ -612,16 +612,16 @@ class Xmcd:
 
     # region  ============================= TOOLBOX =======================================
 
-    def make_contents(self, file_name, title_style, init_page=1, page_space=700, indent=0, prefix=""):
+    def make_contents(self, file_name, title_style, init_page=None, page_space=None, indent=0, prefix=None):
         """Create table of contents for current xmcd file and save it to specified file.
 
         :param file_name: str, path and name of target file to save the contents as.
         :param title_style: list of str, style names of titles to be included in the contents.
-        :param init_page: int, start number of first page.
-        :param page_space: float, height of one page.
+        :param init_page: int, start number of first page. If not given, will be auto-fetched from page settings of file.
+        :param page_space: float, height of one page. If not given, will be auto-fetched from page settings of file.
         :param indent: int, numbers of 'Space' as indentations of sub-level contents. The level of a content is according
                         to the index of its style in `title_style` list.
-        :param prefix: str, prefix of page numbers.
+        :param prefix: str, prefix of page numbers. If not given, will be auto-fetched from page settings of file.
         :return: None
         """
         # Read titles and corresponding row numbers
@@ -629,12 +629,42 @@ class Xmcd:
         for rg in self.regions:
 
             if re.match(r"{.*}text", rg[0].tag) and rg[0][0].get('style') in title_style:
+                raw_txt = et.tostring(rg, method="text", encoding="UTF-8").decode("UTF-8")
                 titles.append((float(rg.get('top')),
                                title_style.index(rg[0][0].get('style')),
-                               et.tostring(rg, method="text", encoding="UTF-8").strip().decode("UTF-8")))
+                               re.sub(r'[\t\n]+', " ", raw_txt.strip())))
 
             elif re.match(r"{.*}pageBreak", rg[0].tag):
                 titles.append((float(rg.get('top')), 0, None))
+
+        pagemodel = self.__sht.find("settings//pageModel", self.__ns)  # get element sort page setting
+
+        if not init_page:
+            # fetch initial page number
+            init_page = int(pagemodel.get("header-footer-start-page"))
+
+        if not page_space:
+            # fetch page space
+            margins = pagemodel.find("margins", self.__ns)
+            page_space = float(pagemodel.get("page-height")) - float(margins.get("top")) - float(margins.get("bottom"))
+
+        if prefix is None:
+            # try to fetch prefix from footer
+            for loc in pagemodel.find("footer", self.__ns):
+                matched = re.search(r"(\S+)\\{n\\}", loc.text)
+                if matched:
+                    prefix = matched.group(1)
+                    break
+
+        if prefix is None:
+            # try to fetch prefix from header
+            for loc in pagemodel.find("header", self.__ns):
+                matched = re.search(r"(\S+)\\{n\\}", loc.text)
+                if matched:
+                    prefix = matched.group(1)
+                    break
+            else:
+                prefix = ""
 
         # Make content "<section title> <page number>"
         base_row = 0
