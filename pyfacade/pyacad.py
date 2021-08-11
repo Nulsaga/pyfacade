@@ -21,6 +21,7 @@ from numpy import pi, sqrt, sin, cos
 import pandas as pd
 from geomdl import BSpline
 import json
+import csv
 import time
 from functools import wraps
 
@@ -1421,10 +1422,10 @@ class Acad():
                 else:
                     return vector
 
-    # get the plane orientation in domain 0 to pi (0deg to 360deg) of a vector
+    # get the plane orientation in domain 0 to 2*pi (0deg to 360deg) of a vector
     @staticmethod
     def vangle(vector, rad=True):
-        """Get projected orientation of a vector on *X-Y Plane*, in range from 0 to pi.
+        """Get projected orientation of a vector on *X-Y Plane*, in range from 0 to 2*pi.
 
         :param vector: array-like [vx, vy ,vz], the vector
         :param rad: return the orientation angle in radians. When False, return the angle in degree
@@ -1764,8 +1765,8 @@ class Acad():
 
         :param region_obj: Region object.
         :param spl_sub: int, numbers of subdivided segments of a spline boundary.
-        :param file_name: str, file name for data exporting, with extension of '.json'. If not specified, exporting
-                          procedure will be skipped.
+        :param file_name: str, file name for data exporting, with extension of '.json' or '.csv'. If not specified,
+                          exporting procedure will be skipped.
         :return: tuple in the form of:
 
                 | ([vector_to_corner_1, vector_to_corner_2, ... ],
@@ -1829,9 +1830,19 @@ class Acad():
                 # delete recorded item
                 item.Delete()
 
-        if file_name:  # save as json file
-            with open(file_name, 'w') as f:
-                json.dump({'node': bv, 'arc': bv_arc}, f)
+        if file_name:   # export to file
+            if file_name[-3:] == 'csv':
+                with open(file_name, "w") as f:
+                    csvwriter = csv.writer(f, lineterminator='\n')
+                    for row in bv:
+                        csvwriter.writerow(row + (0, 0, 0))
+                    for row in bv_arc:
+                        cv, se, r = row
+                        csvwriter.writerow(cv + se + tuple([r]))
+
+            elif file_name[-4:] == 'json':  # save as json file
+                with open(file_name, 'w') as f:
+                    json.dump({'node': bv, 'arc': bv_arc}, f)
 
         return bv, bv_arc
 
