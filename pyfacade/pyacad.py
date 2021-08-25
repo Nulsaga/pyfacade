@@ -1761,7 +1761,7 @@ class Acad():
         return (upper_cy - lower_cy) * ar * 0.5
 
     def getboundary(self, region_obj, spl_sub=100, file_name=None):
-        """Get vector from centroid of a section to its boundary corner and arcs.
+        """Get vector from centroid of a section to its boundary corner, arcs or ellipse.
 
         :param region_obj: Region object.
         :param spl_sub: int, numbers of subdivided segments of a spline boundary.
@@ -1772,7 +1772,10 @@ class Acad():
                 | ([vector_to_corner_1, vector_to_corner_2, ... ],
                 | [(vector_to_center_arc1, (start_angle_arc1, end_angle_arc1), radius_arc1 ),
                 | (vector_to_center_arc2, (start_angle_arc2, end_angle_arc2), radius_arc2 ),
-                | ... ]
+                | ... ],
+                | [(vector_to_center_ellipse1, (start_angle, end_angle), (major_radius, minor_radius),major_axis_vector),
+                | (vector_to_center_ellipse2, (start_angle, end_angle), (major_radius, minor_radius),major_axis_vector),
+                | ...],
                 | )
 
                 each vector is a tuple of float (vx, vy).
@@ -1790,6 +1793,7 @@ class Acad():
         # record the boundary vector
         bv = []
         bv_arc = []
+        bv_ell = []
         for item in elem:
             if item.ObjectName == 'AcDbLine':
                 # record ends vector of line
@@ -1818,6 +1822,34 @@ class Acad():
                 # delete recorded item
                 item.Delete()
 
+            elif item.ObjectName == 'AcDbEllipse':
+                # record ends vectors of ellipse
+                ev_1 = (item.StartPoint[0] - cp_x, item.StartPoint[1] - cp_y)
+                ev_2 = (item.EndPoint[0] - cp_x, item.EndPoint[1] - cp_y)
+                if ev_1 not in bv:
+                    bv.append(ev_1)
+                if ev_2 not in bv:
+                    bv.append(ev_2)
+                # record center vectors, angel range, major/minor radius and major axis direction of ellipse
+                cv = (item.Center[0] - cp_x, item.Center[1] - cp_y)
+                maj_radi = item.MajorRadius
+                min_radi = item.MinorRadius
+                maj_axis = item.MajorAxis
+                threshold = round(self.vangle(item.MinorAxis, rad=False) - self.vangle(item.MajorAxis, rad=False))
+                if threshold == 90 or threshold == -270:  # ellipse anticlockwise
+                    sa = (item.StartAngle + self.vangle(item.MajorAxis)) % (2*pi)
+                    _ea = (item.EndAngle + self.vangle(item.MajorAxis)) % (2*pi)
+                    ea = _ea if _ea >= sa else _ea + pi * 2  # make end angle always larger
+                elif threshold == -90 or threshold == 270:  # ellipse clockwise
+                    sa = (2*pi - item.EndAngle + self.vangle(item.MajorAxis)) % (2*pi)
+                    _ea = (2*pi - item.StartAngle + self.vangle(item.MajorAxis)) % (2*pi)
+                    ea = _ea if _ea >= sa else _ea + pi * 2  # make end angle always larger
+                else:
+                    raise ValueError('Invalid Principal Axis.')
+                bv_ell.append((cv, (sa, ea), (maj_radi, min_radi), maj_axis[:2]))
+                # delete recorded item
+                item.Delete()
+
             elif item.ObjectName == 'AcDbSpline':
                 # get ends and intermediate vectors of spline
                 ctrl_pnt = item.ControlPoints
@@ -1835,19 +1867,22 @@ class Acad():
                 with open(file_name, "w") as f:
                     csvwriter = csv.writer(f, lineterminator='\n')
                     for row in bv:
-                        csvwriter.writerow(row + (0, 0, 0))
+                        csvwriter.writerow(row + (0, 0, 0, 0, 0, 0))
                     for row in bv_arc:
                         cv, se, r = row
-                        csvwriter.writerow(cv + se + tuple([r]))
+                        csvwriter.writerow(cv + se + tuple([r, 0]) + (0, 0))
+                    for row in bv_ell:
+                        cv, se, rs, rv = row
+                        csvwriter.writerow(cv + se + rs + rv)
 
             elif file_name[-4:] == 'json':  # save as json file
                 with open(file_name, 'w') as f:
-                    json.dump({'node': bv, 'arc': bv_arc}, f)
+                    json.dump({'node': bv, 'arc': bv_arc, 'ellipse': bv_ell}, f)
 
-        return bv, bv_arc
+        return bv, bv_arc, bv_ell
 
     @classmethod
-    def boundalong(cls, boundary_nodes, boundary_arc, direction_vector):
+    def boundalong(cls, boundary_nodes, boundary_arc, boundary_ellipse, direction_vector):
         """Measure the distance from centroid of section to its boundary in specified direction.
 
         :param boundary_nodes: list of vector from centroid to boundary corner.
@@ -1856,13 +1891,18 @@ class Acad():
 
                             | [(vector_to_center_arc1, (start_angle_arc1, end_angle_arc1), radius_arc1 ),
                             | (vector_to_center_arc2, (start_angle_arc2, end_angle_arc2), radius_arc2 ), ... ]
+        :param boundary_ellipse: list of tuple states geometrical information of boundary ellipse, in the form of:
+
+              | [(vector_to_center_ellipse1, (start_angle, end_angle), (major_radius, minor_radius),major_axis_vector),
+              | (vector_to_center_ellipse2, (start_angle, end_angle), (major_radius, minor_radius),major_axis_vector),
+              | ...]
 
         :param direction_vector: array-like, vector indicating the direction of measurement.
         :return: tuple of float, (max. negative distance, max. positive distance). Here negative distance is measured
                 along the opposite direction.
         """
         dv = np.asarray(direction_vector[:2])  # (vx, vy)
-        dv = dv / np.linalg.norm(dv)  # unitized
+        dv = dv / np.linalg.norm(dv)  # normalized
         dist = list(np.array(boundary_nodes) @ dv)  # distance from nodes to centroid in measuring direction
         beta = cls.vangle(dv)  # angle between measuring direction and global +x
         for cv, (angle_start, angle_end), r in boundary_arc:
@@ -1870,6 +1910,19 @@ class Acad():
                 dist.append(np.array(cv) @ dv + r)
             if angle_start < beta - pi < angle_end or angle_start < beta + pi < angle_end:
                 dist.append(np.array(cv) @ dv - r)
+        for cv, (angle_start, angle_end), (r1, r2), mav in boundary_ellipse:
+            mav_norm = mav / np.linalg.norm(mav)  # normalize the vector
+            eigv = np.column_stack([mav_norm, np.array([[0, -1], [1, 0]]) @ mav_norm])  # eigenvector of tilted ellipse
+            lam = np.array([[1/r1**2, 0], [0, 1/r2**2]])  # eigenvalue of tilted ellipse
+            elp = eigv @ lam @ eigv.T  # matrix of tilted ellipse
+            # vector from ellipse center to farest point on ellipse
+            vp = eigv @ np.array([[0, 1], [-(r2/r1)**2, 0]]) @ eigv.T @ np.array([[0, 1], [-1, 0]]) @ dv
+            for nvp in [vp / np.linalg.norm(vp), -vp / np.linalg.norm(vp)]:  # normalized, incl. opposite direction
+                beta = cls.vangle(nvp)
+                if angle_start < beta < angle_end or angle_start < beta + 2 * pi < angle_end:
+                    rv = nvp / np.sqrt(nvp @ elp @ nvp)  # radius vector to farest point
+                    dist.append((np.array(cv) + rv) @ dv)
+
         return min(dist), max(dist)
 
     def dimregion(self, region_obj, direction_vector=(1, 0, 0), spl_sub=10, dim_offset=-10, outside=True,
@@ -1889,7 +1942,7 @@ class Acad():
 
         dv = np.asarray(direction_vector[:2])  # (vx, vy)
         dv = dv / np.linalg.norm(dv)  # unitized
-        bv, bv_arc = self.getboundary(region_obj=region_obj, spl_sub=spl_sub)
+        bv, bv_arc, bv_ell = self.getboundary(region_obj=region_obj, spl_sub=spl_sub)
         dist = np.array(bv) @ dv  # distance from each recorded node to centroid
 
         cp = np.array(region_obj.Centroid)
@@ -1905,9 +1958,24 @@ class Acad():
                 if np.array(cv) @ dv - r < min(dist):
                     pt_min = cp + cv - r * dv  # overwrite dim point 1#
 
+        for cv, (angle_start, angle_end), (r1, r2), mav in bv_ell:
+            mav_norm = mav / np.linalg.norm(mav)
+            eigv = np.column_stack([mav_norm, np.array([[0, -1], [1, 0]]) @ mav_norm])
+            lam = np.array([[1/r1**2, 0], [0, 1/r2**2]])
+            elp = eigv @ lam @ eigv.T  # matrix of tilted ellipse
+            vp = eigv @ np.array([[0, 1], [-(r2/r1)**2, 0]]) @ eigv.T @ np.array([[0, 1], [-1, 0]]) @ dv
+            for nvp in [vp / np.linalg.norm(vp), -vp / np.linalg.norm(vp)]:  # normalized, incl. opposite direction
+                beta = self.vangle(nvp)
+                if angle_start < beta < angle_end or angle_start < beta + 2 * pi < angle_end:
+                    rv = nvp / np.sqrt(nvp @ elp @ nvp)
+                    if (np.array(cv) + rv) @ dv > max(dist):
+                        pt_max = cp + cv + rv  # overwrite dim point 2#
+                    elif (np.array(cv) + rv) @ dv < min(dist):
+                        pt_min = cp + cv + rv  # overwrite dim point 1#
+
         hv = np.array(
             [[0, -1], [1, 0]]) @ dv  # h-direction: perpendicular with measuring direction, 90deg anticlockwise
-        bottom, top = self.boundalong(bv, bv_arc, hv)  # boundary along h-direction
+        bottom, top = self.boundalong(bv, bv_arc, bv_ell, hv)  # boundary along h-direction
         h = (pt_min - cp) @ hv  # distance from centroid to pt_min
         to_top = top - h  # distance from pt_min to top boundary
         to_bottom = bottom - h  # distance from pt_min to bottom boundary
@@ -1980,10 +2048,10 @@ class Acad():
             except (FileNotFoundError, ValueError):
                 print(f"<{file_name}> is not existing. Creating file.")
                 rec = pd.DataFrame([], index=['id', 'A', 'Ix', 'Iy', 'Ixy', 'Zx', 'Zy', 'Sx', 'Sy',
-                                              'I1', 'I2', 'alpha', 'Z1', 'Z2', 'S1', 'S2', 'bnode', 'barc'])
+                                              'I1', 'I2', 'alpha', 'Z1', 'Z2', 'S1', 'S2', 'bnode', 'barc', 'belp'])
         else:
             rec = pd.DataFrame([], index=['id', 'A', 'Ix', 'Iy', 'Ixy', 'Zx', 'Zy', 'Sx', 'Sy',
-                                          'I1', 'I2', 'alpha', 'Z1', 'Z2', 'S1', 'S2', 'bnode', 'barc'])
+                                          'I1', 'I2', 'alpha', 'Z1', 'Z2', 'S1', 'S2', 'bnode', 'barc', 'belp'])
 
         # define default section name
         if not sec_name or len(sec_name) != len(regions):
@@ -1992,7 +2060,7 @@ class Acad():
         # record section information of each region
         for reg in regions:
             sec_info = self.getsecprop(reg)
-            sec_info['bnode'], sec_info['barc'] = self.getboundary(reg, spl_sub)
+            sec_info['bnode'], sec_info['barc'], sec_info['belp'] = self.getboundary(reg, spl_sub)
             sec_info['id'] = reg.ObjectID
             rec[sec_name.pop(0)] = pd.Series(sec_info)
 

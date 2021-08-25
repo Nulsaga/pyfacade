@@ -54,7 +54,7 @@ def eqslds(I1, I2, alpha, E):
             I1 * I2 * E)  # slenderness about x-axis under force in y-axis
     return k_yx, k_yy, k_xx, k_xy
 
-
+# ToDo: use vectorized method based on matrix of inertia
 def biabend(section_prop, Mx, My, full_output=False):
     """Calculate maximum normal stress on section due to biaxial bending.
 
@@ -91,7 +91,7 @@ def biabend(section_prop, Mx, My, full_output=False):
 
     # Find the elastic section modulus about neutral axis
     In = (Ix + Iy) / 2 + (Ix - Iy) / 2 * cos(2 * theta) - Ixy * sin(2 * theta)
-    dn = Acad.boundalong(section_prop['bnode'], section_prop['barc'], Acad.rotatevec([1, 0, 0], theta + pi / 2))
+    dn = Acad.boundalong(section_prop['bnode'], section_prop['barc'], section_prop['belp'], Acad.rotatevec([1, 0, 0], theta + pi / 2))
 
     if full_output:
         return Mn * dn[0] / In, Mn * dn[1] / In, theta, Mn, In, dn
