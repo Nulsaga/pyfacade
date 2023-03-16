@@ -1901,6 +1901,7 @@ class Acad():
         :return: tuple of float, (max. negative distance, max. positive distance). Here negative distance is measured
                 along the opposite direction.
         """
+        #TODO: make function works for a group of direction_vector
         dv = np.asarray(direction_vector[:2])  # (vx, vy)
         dv = dv / np.linalg.norm(dv)  # normalized
         dist = list(np.array(boundary_nodes) @ dv)  # distance from nodes to centroid in measuring direction
