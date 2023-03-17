@@ -2207,10 +2207,11 @@ def load_frame(file_name, build=True):
 
 if __name__ == '__main__':
     # test: biabend2
-    testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
+    # testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
+    testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
     with open(testsec_file) as sf:
         testsec = json.load(sf)
-    qs=np.array((-1,2))  # (qx, qy), N/mm
+    qs=np.array((1,2))  # (qx, qy), N/mm
     L = 1500  # span, mm
     Ms = qs*L**2/8  # moment as simply supported beam
     res=biabend2(testsec['Section_01'],Ms)
