@@ -1883,7 +1883,7 @@ class Acad():
 
     @classmethod
     def boundalong(cls, boundary_nodes, boundary_arc, boundary_ellipse, direction_vector, *direction_vectors):
-        """Measure the distance from centroid of section to its boundary in specified direction.
+        """Measure the distance from centroid of section to its boundary in specified direction(s).
 
         :param boundary_nodes: list of vector from centroid to boundary corner.
                                each vector is a tuple of float, (vx, vy).
@@ -1898,21 +1898,26 @@ class Acad():
               | ...]
 
         :param direction_vector: array-like, vector indicating the direction of measurement.
-        :return: tuple of float, (max. negative distance, max. positive distance). Here negative distance is measured
-                along the opposite direction.
+        :param direction_vectors: array-like, other direction vector of measurement.
+        :return: tuple of float if one direction vector is specified (max. negative distance, max. positive distance);
+                 otherwise, nested tuple of float for each given direction vector. Here negative distance is measured
+                 along the opposite direction.
         """
         dv = np.asarray([direction_vector]+list(direction_vectors))[:, :2]  # [(x1,y1),(x2,y2),...]
         dv = dv / np.linalg.norm(dv, axis=1).reshape((-1, 1))  # normalized
-        # TODO: do not flatten, recorde the distance by group of different direction
-        dist = (np.array(boundary_nodes) @ dv.T).flatten().tolist()  # distance from nodes to centroid in measuring direction
+        dist_node = np.array(boundary_nodes) @ dv.T # distance from nodes to centroid in measuring direction
 
+        dist_arc=[np.array([np.nan]*len(dv))]  # initial the array shape by nan
         beta = np.array([cls.vangle(d) for d in dv])  # angle between measuring direction and global +x
         for cv, (angle_start, angle_end), r in boundary_arc:
-            dist.extend((dv[np.logical_or((angle_start < beta) & (beta < angle_end),
-                                          (angle_start < beta+2*pi) & (beta+2*pi < angle_end))] @ cv + r).tolist())
-            dist.extend((dv[np.logical_or((angle_start < beta-pi) & (beta-pi < angle_end),
-                                          (angle_start < beta+pi) & (beta+pi < angle_end))] @ cv - r).tolist())
+            cond1 = np.logical_or((angle_start < beta) & (beta < angle_end),
+                                  (angle_start < beta+2*pi) & (beta+2*pi < angle_end)) # direction within arc range
+            dist_arc.append(np.where(np.stack((cond1,cond1), axis=1), dv, np.nan) @ cv + r)
+            cond2 = np.logical_or((angle_start < beta-pi) & (beta-pi < angle_end),
+                                  (angle_start < beta+pi) & (beta+pi < angle_end)) # reversed direction within arc range
+            dist_arc.append(np.where(np.stack((cond2,cond2), axis=1), dv, np.nan) @ cv - r)
 
+        dist_elp = [np.array([np.nan]*len(dv))]  # initial the array shape by nan
         for cv, (angle_start, angle_end), (r1, r2), mav in boundary_ellipse:
             mav_norm = mav / np.linalg.norm(mav)  # normalize the vector
             eigv = np.column_stack([mav_norm, np.array([[0, -1], [1, 0]]) @ mav_norm])  # eigenvector of tilted ellipse
@@ -1921,20 +1926,30 @@ class Acad():
             # vector from ellipse center to the furthest point on ellipse
             vp = dv @ eigv @ np.array([[0, 1], [-(r2/r1)**2, 0]]) @ eigv.T @ np.array([[0, 1], [-1, 0]])
             vp = vp / np.linalg.norm(vp, axis=1).reshape((-1, 1))  # normalized
+
             # vps = np.vstack([vp, -vp])  # incl. opposite direction
             # beta = np.array([cls.vangle(p) for p in vps])
             # nvp = vps[np.logical_or((angle_start < beta) & (beta < angle_end),
             #                         (angle_start < beta+2*pi) & (beta+2*pi < angle_end))]
             # rv= nvp / np.sqrt(np.diag(nvp @ elp @ nvp.T)).reshape(-1, 1)
 
-            for i, nvp in enumerate(np.vstack([vp, -vp])):  # incl. opposite direction
-                beta = cls.vangle(nvp)
-                if angle_start < beta < angle_end or angle_start < beta + 2 * pi < angle_end:
-                    rv = nvp / np.sqrt(nvp @ elp @ nvp)  # radius vector to farest point
-                    # print((np.array(cv) + rv) @ dv[i % len(dv)])
-                    dist.append((np.array(cv) + rv) @ dv[i % len(dv)])
+            for sign in [1, -1]:
+                _ds = []
+                for i, nvp in enumerate(vp*sign):  # incl. opposite direction
+                    beta = cls.vangle(nvp)
+                    if angle_start < beta < angle_end or angle_start < beta + 2 * pi < angle_end:
+                        rv = nvp / np.sqrt(nvp @ elp @ nvp)  # radius vector to farest point
+                        _ds.append((np.array(cv) + rv) @ dv[i])
+                    else:
+                        _ds.append(np.nan)
+                dist_elp.append(np.array(_ds))
 
-        return min(dist), max(dist)
+        dist = np.vstack([dist_node,dist_arc, dist_elp])  # all distances
+
+        if direction_vectors:  # multiple direction vector is provided.
+            return tuple(zip(np.nanmin(dist,axis=0), np.nanmax(dist,axis=0)))
+        else:
+            return np.nanmin(dist), np.nanmax(dist)
 
     def dimregion(self, region_obj, direction_vector=(1, 0, 0), spl_sub=10, dim_offset=-10, outside=True,
                   dimstyle=None):
@@ -1986,7 +2001,6 @@ class Acad():
 
         hv = np.array(
             [[0, -1], [1, 0]]) @ dv  # h-direction: perpendicular with measuring direction, 90deg anticlockwise
-        # todo: update application of .boundalong
         bottom, top = self.boundalong(bv, bv_arc, bv_ell, hv)  # boundary along h-direction
         h = (pt_min - cp) @ hv  # distance from centroid to pt_min
         to_top = top - h  # distance from pt_min to top boundary
@@ -2776,12 +2790,20 @@ class CADFrame(Acad):
         return self.__setprop("I", lib)
 
 if __name__ == '__main__':
-    testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
+    testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
+    # testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
     with open(testsec_file) as sf:
         testsec = json.load(sf)
     sec=testsec['Section_02']
-    dv = (1, 2, 3)
-    dvs = [(4, 5, 5), (-1, 0, 2), (7, 9, 8), (-10, 2, 0), (-10, 7, 0)]
-    ds = Acad.boundalong(sec['bnode'], sec['barc'], sec['belp'], dv, *dvs)
+
+    boundary_nodes = sec['bnode']
+    boundary_arc = sec['barc']
+    boundary_ellipse = sec['belp']
+    direction_vector = (1, 2,3)
+    direction_vectors = [(4, 5, 5), (-1, 0, 2), (7, 9, 8), (-10, 2, 0), (-10, 7, 0)]
+
+    # ds = Acad.boundalong(boundary_nodes, boundary_arc, boundary_ellipse, direction_vector, *direction_vectors )
+    # print(ds)
+    ds = Acad.boundalong(boundary_nodes, [], [], direction_vector, *direction_vectors)
     print(ds)
 

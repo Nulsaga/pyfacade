@@ -54,6 +54,7 @@ def eqslds(I1, I2, alpha, E):
             I1 * I2 * E)  # slenderness about x-axis under force in y-axis
     return k_yx, k_yy, k_xx, k_xy
 
+
 def biabend(section_prop, Mx, My, full_output=False):
     """Calculate maximum normal stress on section due to biaxial bending.
 
@@ -101,29 +102,40 @@ def biabend(section_prop, Mx, My, full_output=False):
             s1, s2 = s2, s1  # keep s1 compressive stress
         return s1, s2
 
-# TODO: Ms can be a list of moment pair
-def biabend2(section_prop, Ms):
+
+def biabend2(section_prop, biamoments):
     """Alternative quick vectorized calculation for maximum normal stress on section due to biaxial bending.
 
     :param section_prop: sub-dict for a section extracted from the dict created by ``pyacad.Acad.seclib``.
-    :param Ms: tuple of 2 float (-My, Mx), moment caused by load in x and y direction respectively, unit = N*mm.
-    :return: tuple of float (d_min, d_max), minimum and maximum normal stress on section
+    :param biamoments: tuple or nested tuple of (-My, Mx), moment pair(s) caused by loads in x and y direction
+                       respectively, unit = N*mm.
+    :return: 1D or 2D numpy array (d_min, d_max), depends on number of moment pair, min and max normal stress on section
     """
-    # A quick answer when moment = 0
-    if not any(Ms):
-        return 0, 0
+
+    _Ms = np.asarray(biamoments).reshape((-1,2))  # biaxial moments sort into 2-column 2D array
+    zero_row = np.linalg.norm(_Ms, axis=1) == 0  # row id of zero moments
+    Ms = np.delete(_Ms, zero_row, axis=0)  # drop zero moments
+
+    # quick answer for fully zero moments (0,0)
+    if Ms.size == 0:
+        return np.zeros_like(biamoments, dtype=float) # return stress as same size of given zero moments
 
     Ix = section_prop['Ix']
     Iy = section_prop['Iy']
     Ixy = section_prop['Ixy']
     Is = np.array([[Iy, Ixy],[Ixy, Ix]])
 
-    # vector perpendicular with nutural axis, point to max. positive stress
-    vv = np.linalg.inv(Is)@Ms
-    # max normal distance from nutural axis to section boundary
-    dn = Acad.boundalong(section_prop['bnode'], section_prop['barc'], section_prop['belp'], vv)
+    vvs = Ms @ np.linalg.inv(Is)  # vector point to max. positive stress
+    _vvs = vvs/np.linalg.norm(vvs, axis=1).reshape((-1,1))  # normalize, replace 0 vector to (0,0)
+    dns = Acad.boundalong(section_prop['bnode'], section_prop['barc'], section_prop['belp'], *vvs)
 
-    return vv@np.tensordot(vv/np.linalg.norm(vv),dn, axes=0)
+    if len(_Ms) == 1:
+        return vvs[0] @ np.tensordot(_vvs[0], dns, axes=0)
+    else:
+        stress = np.zeros_like(_Ms,dtype=float)
+        stress[~zero_row] = np.array([vvs[i] @ np.tensordot(_vvs[i], dns[i], axes=0) for i in range(len(vvs))])
+        return stress
+
 
 def combsec(sec_lib, sec_mat, combinations):
     """Group sections, calculate matrix of load sharing and equivalent slenderness according to combination cases.
@@ -2207,14 +2219,18 @@ def load_frame(file_name, build=True):
 
 if __name__ == '__main__':
     # test: biabend2
-    # testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
-    testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
+    testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
+    # testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
     with open(testsec_file) as sf:
         testsec = json.load(sf)
-    qs=np.array((1,2))  # (qx, qy), N/mm
+    qs=np.array([(1,0),(0,0)])  # (qx, qy), N/mm
     L = 1500  # span, mm
-    Ms = qs*L**2/8  # moment as simply supported beam
-    res=biabend2(testsec['Section_01'],Ms)
+    Moment = qs*L**2/8  # moment as simply supported beam
+    res=biabend2(testsec['Section_01'], Moment)
+    print(res)
+    qs=np.array([(1,2),(0,0)])  # (qx, qy), N/mm
+    Moment = qs*L**2/8  # moment as simply supported beam
+    res=biabend2(testsec['Section_01'], Moment)
     print(res)
 
 
