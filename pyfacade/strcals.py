@@ -280,6 +280,47 @@ def combsec(sec_lib, sec_mat, combinations):
     return group_x, group_y, eta_v, eta_m, es
 
 
+def secincidence(sections, x_pairing, y_pairing):
+    """ Create incidence matrix according to given paring relations of sections in two directions
+
+    :param sections: list, section names/ids/codes contained by the system
+    :param x_pairing: list of 2-element tuple, relations of sections in x-direction
+    :param y_pairing: list of 2-element tuple, relations of sections in y-direction
+    :return: 2D numpy array, incidence matrix of sections
+    """
+
+    num_secs = len(sections)
+    ma = []
+
+    for cnt, pairing in enumerate([x_pairing, y_pairing]):  # iter for 2 directions respectively
+        graph = {i: set() for i in range(num_secs)}  # initial incidence graph in x-dir
+        for (s0, s1) in pairing:  # fill incidence graph
+            s0_id = sections.index(s0)
+            s1_id = sections.index(s1)
+            graph[s0_id].add(s1_id)
+            graph[s1_id].add(s0_id)
+
+        secs = list(range(num_secs))  # make a list of section ids
+        connected = []  # initial the section group
+        while secs: # group sections according to connecting relations by Deep-First Searching
+            branch = set()
+            stack = [secs[0]]  # start from first item of current section list
+            while stack:
+                sec = stack.pop()
+                if sec not in branch:
+                    branch.add(sec)
+                    secs.remove(sec)  # remove the visited sections from list
+                    stack.extend(graph[sec]) # push linked sec_id into stack
+            connected.append(branch)
+
+        ma_ = np.zeros((num_secs*2, len(connected))) # rows = 2*sections number, cols= group number
+        for c, r in enumerate(connected):
+            ma_[[2*k+cnt for k in r], c] = 1
+        ma.append(ma_)
+
+    return np.hstack(ma)
+
+
 def check_transoms(section_lib, section_mat, section_comb, span, h1, h2, load_app, wl, dl1, dl2=0.0, wlf=0.0, imp=0.0,
                    imq=0.0, feature=0.0, wlf_flip=True, four_side1=True, four_side2=True, ds1=0.0, ds2=0.0, wlc=0.5,
                    summary=False):
@@ -2218,19 +2259,26 @@ def load_frame(file_name, build=True):
 # todo: Function: typical mullion quick builder
 
 if __name__ == '__main__':
-    # test: biabend2
-    testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
-    # testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
-    with open(testsec_file) as sf:
-        testsec = json.load(sf)
-    qs=np.array([(1,0),(0,0)])  # (qx, qy), N/mm
-    L = 1500  # span, mm
-    Moment = qs*L**2/8  # moment as simply supported beam
-    res=biabend2(testsec['Section_01'], Moment)
-    print(res)
-    qs=np.array([(1,2),(0,0)])  # (qx, qy), N/mm
-    Moment = qs*L**2/8  # moment as simply supported beam
-    res=biabend2(testsec['Section_01'], Moment)
-    print(res)
+    # # test: biabend2
+    # testsec_file = 'D:\\Coding File\\PyCharm\\pyfacade\\working_file\\testangle.json'
+    # # testsec_file = 'C:\\Work File\\Python Code\\PycharmProjects\\pyfacade\\working_file\\testangle.json'
+    # with open(testsec_file) as sf:
+    #     testsec = json.load(sf)
+    # qs=np.array([(1,0),(0,0)])  # (qx, qy), N/mm
+    # L = 1500  # span, mm
+    # Moment = qs*L**2/8  # moment as simply supported beam
+    # res=biabend2(testsec['Section_01'], Moment)
+    # print(res)
+    # qs=np.array([(1,2),(0,0)])  # (qx, qy), N/mm
+    # Moment = qs*L**2/8  # moment as simply supported beam
+    # res=biabend2(testsec['Section_01'], Moment)
+    # print(res)
+
+    # test: secincidence
+    sections = ['s1','s2','s3','s4','s5']
+    combination_x = [['s1','s2'],['s2','s3'],['s1','s5']]
+    combination_y = [['s2','s4'],['s5','s1']]
+    inci_m = secincidence(sections, combination_x, combination_y)
+    print(inci_m)
 
 
